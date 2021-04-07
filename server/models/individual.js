@@ -6,12 +6,11 @@ const User = require('./user');
 const individualSchema = new mongoose.Schema({
   qualities: {
     description: {
-      type: [String],
+      type: String,
       required: true
     },
     skills: {
-      type: [String],
-      enum: []
+      type: [String]
     }
   }
 });
