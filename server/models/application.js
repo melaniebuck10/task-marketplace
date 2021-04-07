@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const messengerSchema = new mongoose.Schema(
+const applicationSchema = new mongoose.Schema(
   {
     taskowner: {
       type: mongoose.Schema.Types.ObjectId,
@@ -14,8 +14,14 @@ const messengerSchema = new mongoose.Schema(
       required: true,
       ref: 'User'
     },
-    messageBody: {
-      type: String
+    task: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Task'
+      },
+    decision: {
+      type: String,
+      enum: ['pending', 'approved', 'rejected']
     }
   },
   {
@@ -26,4 +32,4 @@ const messengerSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Messenger', messengerSchema);
+module.exports = mongoose.model('Application', applicationSchema);
