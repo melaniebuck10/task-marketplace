@@ -53,7 +53,7 @@ class SignUp extends Component {
           />
 
           <label htmlFor="role-input">
-            Are you an Task Taker or a Task Owner?
+            Are you a Task Taker or a Task Owner?
           </label>
           <select
             id="role-input"
