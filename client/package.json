@@ -9,10 +9,7 @@
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
-=======
     "react-helmet-async": "^1.0.9",
->>>>>>> cfc966bb6531a958b363f4ff8980355c86e3e920
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.1"
