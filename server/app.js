@@ -14,7 +14,11 @@ const cors = require('cors');
 
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
+<<<<<<< HEAD
 const taskownerRouter = require('./routes/taskowner');
+=======
+const cors = require('cors');
+>>>>>>> 71721257a0eb8551f9e09d6a9a0d6d19cf95f348
 
 const app = express();
 
