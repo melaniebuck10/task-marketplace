@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
 const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require('./middleware/basic-authentication-deserializer.js');
 const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js');
+const cors = require('cors');
+
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
 const cors = require('cors');
