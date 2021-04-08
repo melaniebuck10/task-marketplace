@@ -10,7 +10,7 @@ const Navbar = ({ user, onSignOut }) => {
       {user && (
         <>
           {user.role === 'taskowner' && (
-            <Link to="/taskowner/:id">Your most recent tasks</Link>
+            <Link to={`/${user.role}/${user._id}`}>See your tasks</Link>
           )}
 
           {user.role === 'individual' && (
