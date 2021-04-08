@@ -4,6 +4,8 @@ const { Router } = require('express');
 
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
+const Individual = require('./../models/individual');
+const TaskOwner = require('./../models/taskowner');
 
 const router = new Router();
 
@@ -55,6 +57,11 @@ router.post('/sign-in', (req, res, next) => {
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();
   res.json({});
+});
+
+router.get('/verify', (req, res) => {
+  const user = req.user || null;
+  res.json({ user: user });
 });
 
 module.exports = router;
