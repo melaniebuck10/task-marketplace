@@ -1,23 +1,23 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import { signOut, verify } from './services/authentication';
 import Navbar from './components/Navbar';
 
-
 import Home from './views/Home';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
+// import TaskOwner from './views/TaskOnwer';
 
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -26,7 +26,7 @@ class App extends Component {
     this.setState({ loaded: true });
   }
 
-  handleUserChange = user => {
+  handleUserChange = (user) => {
     this.setState({ user });
   };
 
@@ -49,7 +49,7 @@ class App extends Component {
               <Route path="/" component={Home} exact />
               <ProtectedRoute
                 path="/sign-in"
-                render={props => (
+                render={(props) => (
                   <SignIn {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
@@ -58,7 +58,7 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/sign-up"
-                render={props => (
+                render={(props) => (
                   <SignUp {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
@@ -67,6 +67,18 @@ class App extends Component {
               />
               <Route
                 path="/individual/:id"
+                component={IndividualProfile}
+                exact
+              />
+              {/* <ProtectedRoute
+                path="/taskowner/:id"
+                component={TaskOwner}
+                authorized={user && user.role === 'taskowner'}
+                redirect="/"
+                exact
+              /> */}
+              <Route
+                path="/taskowner/:id"
                 component={IndividualProfile}
                 exact
               />

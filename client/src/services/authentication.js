@@ -1,13 +1,13 @@
 import api from './api';
 
-export const signIn = async data => {
+export const signIn = async (data) => {
   const response = await api.post('/authentication/sign-in', data);
   const body = response.data;
   const user = body.user;
   return user;
 };
 
-export const signUp = async data => {
+export const signUp = async (data) => {
   const response = await api.post('/authentication/sign-up', data);
   const body = response.data;
   const user = body.user;
