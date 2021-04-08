@@ -9,8 +9,8 @@ const Navbar = ({ user, onSignOut }) => {
       </Link>
       {user && (
         <>
-          {user.role === 'taskowner' && <Link to="/">Your most recent tasks</Link>}
-          {user.role === 'individual' && <Link to="/">Your Profile</Link>}
+          {user.role === 'taskowner' && <Link to="/tasks">Your most recent tasks</Link>}
+          {user.role === 'individual' && <Link to={`/individual/${user._id}`}>Your Profile</Link>}
         </>
       )}
       <div>

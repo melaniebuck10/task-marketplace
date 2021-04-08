@@ -14,7 +14,6 @@ const cors = require('cors');
 
 const baseRouter = require('./routes/index');
 const authenticationRouter = require('./routes/authentication');
-const cors = require('cors');
 
 const app = express();
 
