@@ -10,11 +10,12 @@ import Home from './views/Home';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import ErrorPage from './views/ErrorPage';
+import TaskOwner from './views/TaskOnwer';
 
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -23,7 +24,7 @@ class App extends Component {
     this.setState({ loaded: true });
   }
 
-  handleUserChange = user => {
+  handleUserChange = (user) => {
     this.setState({ user });
   };
 
@@ -41,47 +42,54 @@ class App extends Component {
             <title>Tasks - MarketPlace</title>
           </Helmet>
           <nav>
-          <Link to="/">Home</Link>
-          {(this.state.user && (
-            <>
-              <img
-                src={this.state.user.profilePicture}
-                alt={this.state.user.name}
-              />
-              <span>{this.state.user.name}</span>
-              <Link to="/private">Private</Link>
-              <button onClick={this.handleSignOut}>Sign Out</button>
-            </>
-          )) || (
-            <>
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/sign-up">Sign Up</Link>
-            </>
-          )}
-        </nav>
-            <Switch> 
+            <Link to="/">Home</Link>
+            {(this.state.user && (
+              <>
+                <img
+                  src={this.state.user.profilePicture}
+                  alt={this.state.user.name}
+                />
+                <span>{this.state.user.name}</span>
+                <Link to="/private">Private</Link>
+                <button onClick={this.handleSignOut}>Sign Out</button>
+              </>
+            )) || (
+              <>
+                <Link to="/sign-in">Sign In</Link>
+                <Link to="/sign-up">Sign Up</Link>
+              </>
+            )}
+          </nav>
+          <Switch>
             <Route path="/" component={Home} exact />
-              <ProtectedRoute
-                path="/sign-in"
-                render={props => (
-                  <SignIn {...props} onUserChange={this.handleUserChange} />
-                )}
-                authorized={!user}
-                redirect="/"
-                exact
-              />
-              <ProtectedRoute
-                path="/sign-up"
-                render={props => (
-                  <SignUp {...props} onUserChange={this.handleUserChange} />
-                )}
-                authorized={!user}
-                redirect="/"
-                exact
-              />
-              <Route path="/error" component={ErrorPage} />
-              <Redirect to="/error" />
-            </Switch>
+            <ProtectedRoute
+              path="/sign-in"
+              render={(props) => (
+                <SignIn {...props} onUserChange={this.handleUserChange} />
+              )}
+              authorized={!user}
+              redirect="/"
+              exact
+            />
+            <ProtectedRoute
+              path="/sign-up"
+              render={(props) => (
+                <SignUp {...props} onUserChange={this.handleUserChange} />
+              )}
+              authorized={!user}
+              redirect="/"
+              exact
+            />
+            <ProtectedRoute
+              path="/taskowner/:id"
+              component={TaskOwner}
+              authorized={user && user.role === 'taskowner'}
+              redirect="/"
+              exact
+            />
+            <Route path="/error" component={ErrorPage} />
+            <Redirect to="/error" />
+          </Switch>
         </BrowserRouter>
       </HelmetProvider>
     );
