@@ -65,7 +65,7 @@ class SignUp extends Component {
             <option value="" disabled>
             Task Taker or a Task Owner?
             </option>
-            <option value="takowner">Task Owner</option>
+            <option value="taskowner">Task Owner</option>
             <option value="individual">Task Taker</option>
           </select>
 

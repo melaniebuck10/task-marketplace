@@ -1,12 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import Navbar from './components/Navbar';
 
 import { signOut, verify } from './services/authentication';
 
+import Home from './views/Home';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import ErrorPage from './views/ErrorPage';
@@ -40,10 +40,27 @@ class App extends Component {
           <Helmet>
             <title>Tasks - MarketPlace</title>
           </Helmet>
-          <Navbar user={user} onSignOut={this.handleSignOut} />
-          {this.state.loaded && (
-            <Switch>
-              
+          <nav>
+          <Link to="/">Home</Link>
+          {(this.state.user && (
+            <>
+              <img
+                src={this.state.user.profilePicture}
+                alt={this.state.user.name}
+              />
+              <span>{this.state.user.name}</span>
+              <Link to="/private">Private</Link>
+              <button onClick={this.handleSignOut}>Sign Out</button>
+            </>
+          )) || (
+            <>
+              <Link to="/sign-in">Sign In</Link>
+              <Link to="/sign-up">Sign Up</Link>
+            </>
+          )}
+        </nav>
+            <Switch> 
+            <Route path="/" component={Home} exact />
               <ProtectedRoute
                 path="/sign-in"
                 render={props => (
@@ -65,7 +82,6 @@ class App extends Component {
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
             </Switch>
-          )}
         </BrowserRouter>
       </HelmetProvider>
     );
