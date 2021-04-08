@@ -12,6 +12,7 @@ import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
+import TaskOwner from './views/TaskOnwer';
 // import TaskOwner from './views/TaskOnwer';
 
 class App extends Component {
@@ -70,18 +71,8 @@ class App extends Component {
                 component={IndividualProfile}
                 exact
               />
-              {/* <ProtectedRoute
-                path="/taskowner/:id"
-                component={TaskOwner}
-                authorized={user && user.role === 'taskowner'}
-                redirect="/"
-                exact
-              /> */}
-              <Route
-                path="/taskowner/:id"
-                component={IndividualProfile}
-                exact
-              />
+
+              <Route path="/taskowner/:id" component={TaskOwner} exact />
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
             </Switch>
