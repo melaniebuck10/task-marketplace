@@ -1,6 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
@@ -12,7 +12,7 @@ import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
-import TaskOwner from './views/TaskOnwer';
+// import TaskOwner from './views/TaskOnwer';
 
 class App extends Component {
   state = {
@@ -70,11 +70,16 @@ class App extends Component {
                 component={IndividualProfile}
                 exact
               />
-              <ProtectedRoute
+              {/* <ProtectedRoute
                 path="/taskowner/:id"
                 component={TaskOwner}
                 authorized={user && user.role === 'taskowner'}
                 redirect="/"
+                exact
+              /> */}
+              <Route
+                path="/taskowner/:id"
+                component={IndividualProfile}
                 exact
               />
               <Route path="/error" component={ErrorPage} />
