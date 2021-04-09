@@ -13,6 +13,7 @@ import SignUp from './views/SignUp';
 import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
+import CreateTask from './views/CreateTask';
 // import TaskOwner from './views/TaskOwner';
 
 class App extends Component {
@@ -50,7 +51,7 @@ class App extends Component {
               <Route path="/" component={Home} exact />
               <ProtectedRoute
                 path="/sign-in"
-                render={props => (
+                render={(props) => (
                   <SignIn {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
@@ -64,6 +65,13 @@ class App extends Component {
                 )}
                 authorized={!user}
                 redirect="/"
+                exact
+              />
+              <ProtectedRoute
+                path="/task/create"
+                component={CreateTask}
+                authorized={user && user.role === 'taskowner'}
+                redirect="/sign-in"
                 exact
               />
               <Route
