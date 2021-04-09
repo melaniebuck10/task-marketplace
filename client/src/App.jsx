@@ -12,8 +12,8 @@ import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
 import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
-import TaskOwner from './views/TaskOnwer';
-// import TaskOwner from './views/TaskOnwer';
+import TaskOwner from './views/TaskOwner';
+// import TaskOwner from './views/TaskOwner';
 
 class App extends Component {
   state = {

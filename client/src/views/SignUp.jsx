@@ -6,20 +6,20 @@ class SignUp extends Component {
     name: '',
     email: '',
     password: '',
-    role: ''
+    role: '',
   };
 
-  handleFormSubmission = async event => {
+  handleFormSubmission = async (event) => {
     event.preventDefault();
     const { name, email, password, role } = this.state;
     const user = await signUp({ name, email, password, role });
     this.props.onUserChange(user);
   };
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -63,10 +63,10 @@ class SignUp extends Component {
             onChange={this.handleInputChange}
           >
             <option value="" disabled>
-            Task Taker or a Task Owner?
+              Task Taker or a Task Owner?
             </option>
-            <option value="taskowner">Task Owner</option>
             <option value="individual">Task Taker</option>
+            <option value="taskowner">Task Owner</option>
           </select>
 
           <label htmlFor="password-input">Password</label>

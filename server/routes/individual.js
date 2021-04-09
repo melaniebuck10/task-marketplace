@@ -8,9 +8,11 @@ const routeGuard = require('./../middleware/route-guard');
 const router = new express.Router();
 
 router.get('/:id', async (req, res, next) => {
+  const id = req.params.id;
   try {
-    const user = await User.findById(req.params.id);
-    res.json({ individual: user });
+    const individual = await User.findById(id);
+    const individualInfo = await Individual.find({ individual: id });
+    res.json({ individual, individualInfo });
   } catch (error) {
     next(error);
   }
@@ -35,6 +37,5 @@ router.patch('/qualities', routeGuard, async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = router;

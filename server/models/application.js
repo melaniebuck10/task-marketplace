@@ -15,10 +15,10 @@ const applicationSchema = new mongoose.Schema(
       ref: 'User'
     },
     task: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Task'
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Task'
+    },
     decision: {
       type: String,
       enum: ['pending', 'approved', 'rejected']

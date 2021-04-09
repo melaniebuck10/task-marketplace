@@ -41,7 +41,7 @@ class CreateTask extends Component {
         body.append(key, value);
       }
     }
-    const pet = await createTask(body);
+    const task = await createTask(body);
     this.props.history.push(`/task/${task._id}`);
   };
 
@@ -81,7 +81,7 @@ class CreateTask extends Component {
 
           <div className="row">
             <div className="col">
-              <label htmlFor="input-species">Type of Assignment</label>
+              <label htmlFor="input-assignment">Type of Assignment</label>
               <select
                 id="input-assignment"
                 name="assignment"
@@ -121,21 +121,22 @@ class CreateTask extends Component {
             </select>
           </div>
 
-        <div className="row">
-          <div className="col">
-            <label htmlFor="input-price">
-              How much can I pay you for this in EUR
-            </label>
-            <input
-              id="input-price"
-              name="price"
-              type="number"
-              placeholder="Price"
-              min="0"
-              value={this.state.price}
-              onChange={this.handleInputChange}
-              required
-            />
+          <div className="row">
+            <div className="col">
+              <label htmlFor="input-price">
+                How much can I pay you for this in EUR
+              </label>
+              <input
+                id="input-price"
+                name="price"
+                type="number"
+                placeholder="Price"
+                min="0"
+                value={this.state.price}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
           </div>
 
           <label htmlFor="input-hourOfWork">
@@ -184,5 +185,6 @@ class CreateTask extends Component {
       </main>
     );
   }
+}
 
-export default CreatePet;
+export default CreateTask;
