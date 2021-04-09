@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { loadIndividual } from '../services/individual';
+import Rating from '../components/Rating';
 
 class IndividualProfile extends Component {
   state = {
@@ -20,6 +21,7 @@ class IndividualProfile extends Component {
             <h1>{individual.name}</h1>
           </>
         )}
+        <Rating>{this.props.rating}</Rating>
       </main>
     );
   }
