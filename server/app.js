@@ -50,6 +50,7 @@ app.use(bindUserToViewLocals);
 
 app.use('/', baseRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/individual', individualRouter);
 app.use('/taskowner', taskownerRouter);
 app.use('/individual', individualRouter);
 

@@ -50,11 +50,11 @@ class App extends Component {
               <Route path="/" component={Home} exact />
               <ProtectedRoute
                 path="/sign-in"
-                render={(props) => (
+                render={props => (
                   <SignIn {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/"
+                redirect="/individual/:id"
                 exact
               />
               <ProtectedRoute
@@ -63,7 +63,7 @@ class App extends Component {
                   <SignUp {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/"
+                redirect="/individual/:id"
                 exact
               />
               <Route
@@ -71,7 +71,6 @@ class App extends Component {
                 component={IndividualProfile}
                 exact
               />
-
               <Route path="/taskowner/:id" component={TaskOwner} exact />
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
