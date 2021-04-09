@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { loadIndividual } from '../services/individual';
 import Rating from '../components/Rating';
 
@@ -13,16 +13,16 @@ class IndividualProfile extends Component {
   }
 
   render() {
-    const { individual } = this.state;
+    const { individual } = this.state; 
     return (
-      <main>
+      <div>
         {individual && (
           <>
-            <h1>{individual.name}</h1>
+            <h1>Hello, {individual.name}, this is your profile.</h1>
           </>
         )}
         <Rating>{this.props.rating}</Rating>
-      </main>
+      </div>
     );
   }
 }

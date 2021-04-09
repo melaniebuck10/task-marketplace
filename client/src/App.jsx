@@ -54,7 +54,7 @@ class App extends Component {
                   <SignIn {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/individual/:id"
+                redirect="/"
                 exact
               />
               <ProtectedRoute
@@ -63,7 +63,7 @@ class App extends Component {
                   <SignUp {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/individual/:id"
+                redirect="/"
                 exact
               />
               <Route
