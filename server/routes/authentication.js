@@ -4,30 +4,26 @@ const { Router } = require('express');
 
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
-const Individual = require('./../models/individual');
-const TaskOwner = require('./../models/taskowner');
+// const Individual = require('./../models/individual');
+// const TaskOwner = require('./../models/taskowner');
 
 const router = new Router();
 
-router.post('/sign-up', (req, res, next) => {
+router.post('/sign-up', async (req, res, next) => {
   const { name, email, password, role } = req.body;
-  bcryptjs
-    .hash(password, 10)
-    .then((hash) => {
-      return User.create({
-        name,
-        email,
-        passwordHashAndSalt: hash,
-        role
-      });
-    })
-    .then((user) => {
-      req.session.userId = user._id;
-      res.json({ user });
-    })
-    .catch((error) => {
-      next(error);
+  try {
+    const hash = await bcryptjs.hash(password, 10);
+    const user = await User.create({
+      name,
+      email,
+      passwordHashAndSalt: hash,
+      role
     });
+    req.session.userId = user._id;
+    res.json({ user });
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post('/sign-in', (req, res, next) => {
