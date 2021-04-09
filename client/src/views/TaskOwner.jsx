@@ -16,10 +16,7 @@ class TaskOwner extends Component {
       <div>
         {taskowner && (
           <>
-            <h1>
-              Hello {taskowner.name}, here you can see your information and your
-              listings
-            </h1>
+            <h1>Hello {taskowner.name}, here you can see your listings</h1>
             <p>{taskowner.name}</p>
             {/* <p>{taskownerInfo.phoneNumber}</p> */}
             {/* <p>{taskownerInfo.email}</p> */}

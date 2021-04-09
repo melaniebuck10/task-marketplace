@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createTask } from './../services/task';
-
+// HAVE NOT FIGURED OUT WHY SUBMITTING THE FORM GIVES A 500 RESPONSE
 class CreateTask extends Component {
   state = {
     name: '',
@@ -8,7 +8,8 @@ class CreateTask extends Component {
     description: '',
     price: '',
     hourOfWork: '',
-    status: []
+    typeOfWork: '',
+    status: '',
     // pictures: '',
   };
 
@@ -20,7 +21,8 @@ class CreateTask extends Component {
       description,
       price,
       hourOfWork,
-      status
+      typeOfWork,
+      status,
     } = this.state;
     const data = {
       name,
@@ -28,7 +30,8 @@ class CreateTask extends Component {
       description,
       price,
       hourOfWork,
-      status
+      typeOfWork,
+      status,
     };
     const body = new FormData();
     for (let key in data) {
@@ -48,7 +51,7 @@ class CreateTask extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -57,7 +60,7 @@ class CreateTask extends Component {
     const arrayOfFiles = [];
     for (const file of files) arrayOfFiles.push(file);
     this.setState({
-      [name]: arrayOfFiles
+      [name]: arrayOfFiles,
     });
   };
 
@@ -67,6 +70,7 @@ class CreateTask extends Component {
         <header>
           <h1>Add a task</h1>
         </header>
+
         <form onSubmit={this.handleFormSubmission}>
           <label htmlFor="input-name">Name</label>
           <input
@@ -89,7 +93,7 @@ class CreateTask extends Component {
                 onChange={this.handleInputChange}
                 required
               >
-                <option value="" disabled>
+                <option value disabled>
                   Assignment
                 </option>
                 <option value="single_task">Single Task</option>
@@ -112,7 +116,7 @@ class CreateTask extends Component {
             <select
               id="input-typeOfWork"
               name="typeOfWork"
-              value={this.state.gender}
+              value={this.state.typeOfWork}
               onChange={this.handleInputChange}
             >
               <option value="">Non-specified</option>
@@ -145,7 +149,7 @@ class CreateTask extends Component {
           <input
             id="input-hourOfWork"
             name="hourOfWork"
-            type="text"
+            type="number"
             placeholder="Amount Of Hours"
             value={this.state.hourOfWork}
             onChange={this.handleInputChange}
@@ -158,7 +162,7 @@ class CreateTask extends Component {
             type="file"
             name="pictures"
             multiple
-            required
+            disabled
             onChange={this.handleFileInputChange}
           />
 
@@ -180,7 +184,7 @@ class CreateTask extends Component {
             </select>
           </div>
 
-          <button>Create Pet</button>
+          <button>List job</button>
         </form>
       </main>
     );
