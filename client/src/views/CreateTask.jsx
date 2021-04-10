@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createTask } from './../services/task';
 
-// HAVE NOT FIGURED OUT WHY SUBMITTING THE FORM GIVES A 500 RESPONSE
 class CreateTask extends Component {
   state = {
     name: '',
@@ -10,7 +9,7 @@ class CreateTask extends Component {
     price: '',
     hourOfWork: '',
     typeOfWork: '',
-    status: ''
+    status: '',
     // pictures: '',
   };
 
@@ -23,7 +22,7 @@ class CreateTask extends Component {
       price,
       hourOfWork,
       typeOfWork,
-      status
+      status,
     } = this.state;
     const data = {
       name,
@@ -32,7 +31,7 @@ class CreateTask extends Component {
       price,
       hourOfWork,
       typeOfWork,
-      status
+      status,
     };
     /*
     const body = new FormData();
@@ -55,7 +54,7 @@ class CreateTask extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -64,7 +63,7 @@ class CreateTask extends Component {
     const arrayOfFiles = [];
     for (const file of files) arrayOfFiles.push(file);
     this.setState({
-      [name]: arrayOfFiles
+      [name]: arrayOfFiles,
     });
   };
 

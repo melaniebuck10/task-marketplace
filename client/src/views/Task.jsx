@@ -11,8 +11,9 @@ class Task extends Component {
   };
 
   async componentDidMount() {
-    const { task } = await loadTask(this.props.match.params.id);
-    this.setState({ task });
+    const task = await loadTask(this.props.match.params.id);
+    console.log(task);
+    this.setState({ task: task });
   }
 
   /* handleTaskApplication = async () => {
@@ -38,7 +39,7 @@ class Task extends Component {
               </Link>
             </span>
             <br />
-            <h4>{task.location}</h4>
+            {/* <h4>{task.location}</h4> */}
             <p>{task.price}</p>
           </>
         )}
