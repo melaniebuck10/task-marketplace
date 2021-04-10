@@ -40,9 +40,10 @@ class SingleTask extends Component {
             </span>
             <br />
             {/* <h4>{task.location}</h4> */}
-            <p>{task.price}</p>
+            <p>{task.price} Eur</p>
           </>
         )}
+        <button>Edit Task</button>
       </main>
     );
   }
