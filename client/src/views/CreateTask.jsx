@@ -10,7 +10,7 @@ class CreateTask extends Component {
     hourOfWork: '',
     typeOfWork: '',
     status: '',
-    // pictures: '',
+    pictures: ''
   };
 
   handleFormSubmission = async (event) => {
@@ -23,6 +23,7 @@ class CreateTask extends Component {
       hourOfWork,
       typeOfWork,
       status,
+      pictures
     } = this.state;
     const data = {
       name,
@@ -32,8 +33,8 @@ class CreateTask extends Component {
       hourOfWork,
       typeOfWork,
       status,
+      pictures
     };
-    /*
     const body = new FormData();
     for (let key in data) {
       const value = data[key];
@@ -45,16 +46,15 @@ class CreateTask extends Component {
         body.append(key, value);
       }
     }
-    */
-    // const task = await createTask(body);
-    const task = await createTask(data);
+    const task = await createTask(body);
+    //const task = await createTask(data);
     this.props.history.push(`/task/${task._id}`);
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -63,7 +63,7 @@ class CreateTask extends Component {
     const arrayOfFiles = [];
     for (const file of files) arrayOfFiles.push(file);
     this.setState({
-      [name]: arrayOfFiles,
+      [name]: arrayOfFiles
     });
   };
 
@@ -165,7 +165,6 @@ class CreateTask extends Component {
             type="file"
             name="pictures"
             multiple
-            disabled
             onChange={this.handleFileInputChange}
           />
 

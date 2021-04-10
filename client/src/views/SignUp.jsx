@@ -9,7 +9,7 @@ class SignUp extends Component {
     role: '',
     description: '',
     address: '',
-    phoneNumber: '',
+    phoneNumber: ''
   };
 
   handleFormSubmission = async (event) => {
@@ -22,6 +22,7 @@ class SignUp extends Component {
       description,
       address,
       phoneNumber,
+      profilePicture
     } = this.state;
     const user = await signUp({
       name,
@@ -31,6 +32,7 @@ class SignUp extends Component {
       description,
       address,
       phoneNumber,
+      profilePicture
     });
     this.props.onUserChange(user);
   };
@@ -38,13 +40,13 @@ class SignUp extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
 
   handleDisplay = (e) => {
     this.setState({
-      display: !this.state.display,
+      display: !this.state.display
     });
     console.log(this.state.display);
   };
@@ -76,6 +78,17 @@ class SignUp extends Component {
             value={this.state.email}
             onChange={this.handleInputChange}
           />
+          <label htmlFor="input-profilePicture">Profile Picture</label>
+          <input
+            id="input-profilePicture"
+            type="file"
+            name="profilePicture"
+            accept="image/png, image/jpeg"
+            single
+            disable
+            onChange={this.handleFileInputChange}
+          />
+            
           <label htmlFor="role-input">
             Are you a Task Taker or a Task Owner?
           </label>
@@ -92,7 +105,6 @@ class SignUp extends Component {
             <option value="individual">Task Taker</option>
             <option value="taskowner">Task Owner</option>
           </select>
-            
           {this.state.role === 'individual' ? (
             <>
                 <label htmlFor="description-input">Description </label>

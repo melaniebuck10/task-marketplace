@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const TaskOwner = require('./../models/taskowner');
+const fileUpload = require('./../middleware/file-upload');
 
 const router = new Router();
 
