@@ -1,20 +1,8 @@
 {
   "name": "task-marketplace",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/melaniebuck10/task-marketplace.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/melaniebuck10/task-marketplace/issues"
-  },
-  "homepage": "https://github.com/melaniebuck10/task-marketplace#readme"
+    "start": "cd server && npm run start",
+    "prepare": "cd server && npm i"
+  }
 }
