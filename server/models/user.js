@@ -21,7 +21,14 @@ const schema = new mongoose.Schema(
       type: String
     }
   },
-  { discriminatorKey: 'role' }
+
+  {
+    discriminatorKey: 'role',
+    timestamps: {
+      createdAt: 'creationDate',
+      updatedAt: 'updateDate'
+    }
+  }
 );
 
 module.exports = mongoose.model('User', schema);
