@@ -17,11 +17,12 @@ import CreateTask from './views/CreateTask';
 // import TaskOwner from './views/TaskOwner';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
+import Messenger from './views/Messenger';
 
 class App extends Component {
   state = {
     user: null,
-    loaded: false,
+    loaded: false
   };
 
   async componentDidMount() {
@@ -89,6 +90,7 @@ class App extends Component {
                 exact
               />
               <Route path="/taskowner/:id" component={TaskOwner} exact />
+              <Route path="/messenger" component={Messenger} exact />
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
             </Switch>
