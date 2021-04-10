@@ -10,17 +10,20 @@ const TaskOwner = require('./../models/taskowner');
 const router = new Router();
 
 router.post('/sign-up', async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, role, description } = req.body;
+  console.log(req.body);
   try {
     const hash = await bcryptjs.hash(password, 10);
     const user = await User.create({
       name,
       email,
       passwordHashAndSalt: hash,
-      role
+      role,
+      description
     });
     req.session.userId = user._id;
     res.json({ user });
+    console.log('Successfully created new user');
   } catch (error) {
     next(error);
   }
