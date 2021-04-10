@@ -6,6 +6,7 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const TaskOwner = require('./../models/taskowner');
+const nodemailer = require('./../nodemailer');
 
 const router = new Router();
 
@@ -23,6 +24,7 @@ router.post('/sign-up', async (req, res, next) => {
     });
     req.session.userId = user._id;
     res.json({ user });
+    await nodemailer.welcomeEmail(user.email);
     console.log('Successfully created new user');
   } catch (error) {
     next(error);
