@@ -15,6 +15,7 @@ import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
 // import TaskOwner from './views/TaskOwner';
+import TaskList from './components/TaskList'
 
 class App extends Component {
   state = {
@@ -70,6 +71,13 @@ class App extends Component {
               <ProtectedRoute
                 path="/task/create"
                 component={CreateTask}
+                authorized={user && user.role === 'taskowner'}
+                redirect="/sign-in"
+                exact
+              />
+              <ProtectedRoute
+                path="/task/:id"
+                component={TaskList}
                 authorized={user && user.role === 'taskowner'}
                 redirect="/sign-in"
                 exact

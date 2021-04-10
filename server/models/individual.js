@@ -7,7 +7,6 @@ const individualSchema = new mongoose.Schema({
   qualities: {
     description: {
       type: String,
-      required: true
     },
     skills: {
       type: [String]

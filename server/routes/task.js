@@ -12,7 +12,7 @@ const router = new express.Router();
 
 router.post(
   '/',
-  //fileUpload.array('pictures', 10),
+  // fileUpload.array('pictures', 10),
   async (req, res, next) => {
     //const pictures = req.files.map((file) => file.path);
     const {
@@ -23,6 +23,7 @@ router.post(
       hourOfWork,
       status
     } = req.body;
+    console.log(req.body);
     try {
       const task = await Task.create({
         name,

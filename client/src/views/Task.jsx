@@ -8,18 +8,18 @@ import { applyTask } from './../services/task';
 class Task extends Component {
   state = {
     task: null,
-    application
+    // application
   };
 
   async componentDidMount() {
-    const { task, application } = await loadTask(this.props.match.params.id);
-    this.setState({ task, application });
+    const { task } = await loadTask(this.props.match.params.id);
+    this.setState({ task });
   }
 
-  handleTaskApplication = async () => {
+  /* handleTaskApplication = async () => {
     const application = await applyTask(this.props.match.params.id);
     this.setState({ application });
-  };
+  }; */
 
   render() {
     const task = this.state.task;
@@ -39,13 +39,6 @@ class Task extends Component {
             <br />
             <h4>{task.location}</h4>
             <p>{task.price}</p>
-            <button
-              className="button"
-              disabled={this.state.application}
-              onClick={this.handleTaskApplication}
-            >
-              {(this.state.application && 'Applied!') || 'Apply for this Task'}
-            </button>
           </>
         )}
       </main>
