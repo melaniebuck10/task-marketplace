@@ -82,7 +82,7 @@ class SignUp extends Component {
                 id="description-input"
                 placeholder="What makes you awesome??"
                 name="description"
-                maxlength="155"
+                maxLength="155"
                 required
                 value={this.state.description}
                 onChange={this.handleInputChange}
