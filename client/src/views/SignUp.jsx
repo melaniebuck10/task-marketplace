@@ -7,26 +7,44 @@ class SignUp extends Component {
     email: '',
     password: '',
     role: '',
-    description: ''
+    description: '',
+    address: '',
+    phoneNumber: '',
   };
 
   handleFormSubmission = async (event) => {
     event.preventDefault();
-    const { name, email, password, role, description } = this.state;
-    const user = await signUp({ name, email, password, role, description });
+    const {
+      name,
+      email,
+      password,
+      role,
+      description,
+      address,
+      phoneNumber,
+    } = this.state;
+    const user = await signUp({
+      name,
+      email,
+      password,
+      role,
+      description,
+      address,
+      phoneNumber,
+    });
     this.props.onUserChange(user);
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   handleDisplay = (e) => {
     this.setState({
-      display: !this.state.display
+      display: !this.state.display,
     });
     console.log(this.state.display);
   };
@@ -85,6 +103,34 @@ class SignUp extends Component {
                 maxLength="155"
                 required
                 value={this.state.description}
+                onChange={this.handleInputChange}
+              />
+            </>
+          ) : (
+            ''
+          )}
+          {this.state.role === 'taskowner' ? (
+            <>
+              <label htmlFor="address-input">Your address:</label>
+              <input
+                id="address-input"
+                placeholder="Address.."
+                name="address"
+                maxLength="155"
+                type="address"
+                required
+                value={this.state.address}
+                onChange={this.handleInputChange}
+              />
+              <label htmlFor="phoneNumber-input">Phone number:</label>
+              <input
+                id="phoneNumber-input"
+                placeholder="Your phone number"
+                name="phoneNumber"
+                type="tel"
+                maxLength="10"
+                required
+                value={this.state.phoneNumber}
                 onChange={this.handleInputChange}
               />
             </>

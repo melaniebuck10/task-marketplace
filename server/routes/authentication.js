@@ -11,7 +11,15 @@ const nodemailer = require('./../nodemailer');
 const router = new Router();
 
 router.post('/sign-up', async (req, res, next) => {
-  const { name, email, password, role, description } = req.body;
+  const {
+    name,
+    email,
+    password,
+    role,
+    description,
+    address,
+    phoneNumber
+  } = req.body;
   console.log(req.body);
   try {
     const hash = await bcryptjs.hash(password, 10);
@@ -20,7 +28,9 @@ router.post('/sign-up', async (req, res, next) => {
       email,
       passwordHashAndSalt: hash,
       role,
-      description
+      description,
+      address,
+      phoneNumber
     });
     req.session.userId = user._id;
     res.json({ user });
