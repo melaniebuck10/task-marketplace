@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { loadTask } from './../services/task';
+import { loadTask } from '../services/task';
 // import { applyTask } from './../services/task';
 
-class Task extends Component {
+class SingleTask extends Component {
   state = {
     task: null,
     // application
   };
 
   async componentDidMount() {
-    const { task } = await loadTask(this.props.match.params.id);
-    this.setState({ task });
+    const task = await loadTask(this.props.match.params.id);
+    console.log(task);
+    this.setState({ task: task });
   }
 
   /* handleTaskApplication = async () => {
@@ -38,7 +39,7 @@ class Task extends Component {
               </Link>
             </span>
             <br />
-            <h4>{task.location}</h4>
+            {/* <h4>{task.location}</h4> */}
             <p>{task.price}</p>
           </>
         )}
@@ -47,4 +48,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default SingleTask;
