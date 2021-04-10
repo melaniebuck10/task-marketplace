@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { loadTask } from './../services/task';
+import { loadTask } from '../services/task';
 // import { applyTask } from './../services/task';
 
-class Task extends Component {
+class SingleTask extends Component {
   state = {
     task: null,
     // application
@@ -48,4 +48,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default SingleTask;

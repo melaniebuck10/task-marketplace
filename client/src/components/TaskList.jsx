@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-// import Task from './Task';
-import Task from './../views/Task';
+// import { Link } from 'react-router-dom';
+import Task from './Task';
+// import SingleTask from '../views/SingleTask';
 
 const TaskList = ({ tasks }) => {
   return (
