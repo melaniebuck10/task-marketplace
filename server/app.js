@@ -17,6 +17,7 @@ const authenticationRouter = require('./routes/authentication');
 const taskownerRouter = require('./routes/taskowner');
 const individualRouter = require('./routes/individual');
 const taskRouter = require('./routes/task');
+const messengerRouter = require('./routes/messenger');
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use('/authentication', authenticationRouter);
 app.use('/task', taskRouter);
 app.use('/individual', individualRouter);
 app.use('/taskowner', taskownerRouter);
+app.use('/messenger', messengerRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
