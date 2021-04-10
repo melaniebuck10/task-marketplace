@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { loadTask } from './../services/task';
-import { applyTask } from './../services/task';
+// import { applyTask } from './../services/task';
 
-// HAVE NOT FIGURED OUT WHY SUBMITTING THE FORM GIVES A 500 RESPONSE
 class Task extends Component {
   state = {
     task: null,
@@ -34,7 +33,9 @@ class Task extends Component {
             {task.description && <p>{task.description}</p>}
             <span>
               Created by{' '}
-              <Link to={`/taskowner/${task.taskowner._id}`}>{task.taskowner.name}</Link>
+              <Link to={`/taskowner/${task.taskowner._id}`}>
+                {task.taskowner.name}
+              </Link>
             </span>
             <br />
             <h4>{task.location}</h4>

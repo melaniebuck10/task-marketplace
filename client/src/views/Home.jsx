@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TaskList from '../components/TaskList';
 
-export class home extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Welcome to your favorite Tasks Marketplace</h1>
-            </div>
-        )
-    }
+class Home extends Component {
+  state = {
+    tasks: [],
+  };
+  render() {
+    return (
+      <div>
+        <h1>Welcome to your favorite Tasks Marketplace</h1>
+        <TaskList tasks={this.state.tasks} />
+      </div>
+    );
+  }
 }
 
-export default home
+export default Home;
