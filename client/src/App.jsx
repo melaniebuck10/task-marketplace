@@ -14,6 +14,7 @@ import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
+import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 // import TaskOwner from './views/TaskOwner';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
@@ -51,7 +52,7 @@ class App extends Component {
           <Navbar user={user} onSignOut={this.handleSignOut} />
           {this.state.loaded && (
             <Switch>
-              <Route path="/" component={Home} exact />
+              <Route path="/" component={HomeBeforeAuthentication} exact />
               <ProtectedRoute
                 path="/sign-in"
                 render={(props) => (
@@ -87,6 +88,13 @@ class App extends Component {
               <Route
                 path="/individual/:id"
                 component={IndividualProfile}
+                exact
+              />
+              <ProtectedRoute
+                path="/home"
+                component={Home}
+                authorized={user}
+                redirect="/"
                 exact
               />
               <Route path="/taskowner/:id" component={TaskOwner} exact />

@@ -35,7 +35,7 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const { individual } = this.state; 
+    const { individual } = this.state;
     return (
       <div>
         {individual && (
@@ -75,6 +75,8 @@ class IndividualProfile extends Component {
               </>
               )}
         <Rating>{this.props.rating}</Rating>
+
+        <button>Edit Profile</button>
       </div>
     );
   }

@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ user, onSignOut }) => {
   return (
     <nav className="navbar">
-      <Link to="/">
-        <strong>Tasks - MarketPlace</strong>
-      </Link>
       {user && (
         <>
+          <Link to="/home">
+            <strong>Tasks - MarketPlace</strong>
+          </Link>
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
@@ -34,6 +34,9 @@ const Navbar = ({ user, onSignOut }) => {
           <>
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
+            <Link to="/">
+              <strong>Tasks - Not visible</strong>
+            </Link>
           </>
         )}
       </div>
