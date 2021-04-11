@@ -77,6 +77,7 @@ router.post('/sign-in', (req, res, next) => {
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();
   res.json({});
+  console.log('session destroyed');
 });
 
 router.get('/verify', (req, res) => {

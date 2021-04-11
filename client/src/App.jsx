@@ -85,8 +85,9 @@ class App extends Component {
                 redirect="/sign-in"
                 exact
               />
-              <Route
+              <ProtectedRoute
                 path="/individual/:id"
+                authorized={user}
                 component={IndividualProfile}
                 exact
               />
