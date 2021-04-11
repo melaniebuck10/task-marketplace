@@ -7,8 +7,8 @@ import PictureSlider from './../components/PictureSlider';
 
 class SingleTask extends Component {
   state = {
-    task: null
-    // application
+    task: null,
+    application: null
   };
 
   async componentDidMount() {
@@ -17,10 +17,10 @@ class SingleTask extends Component {
     this.setState({ task: task });
   }
 
-  /* handleTaskApplication = async () => {
-    const application = await applyTask(this.props.match.params.id);
-    this.setState({ application });
-  }; */
+  //handleTaskApplication = async () => {
+  //const application = await applyTask(this.props.match.params.id);
+  //this.setState({ application });
+  //};
 
   render() {
     const task = this.state.task;
@@ -45,6 +45,7 @@ class SingleTask extends Component {
             <br />
             {/* <h4>{task.location}</h4> */}
             <p>{task.price} Eur</p>
+            <p>Status: {task.status}</p>
           </>
         )}
         <button>Edit Task</button>

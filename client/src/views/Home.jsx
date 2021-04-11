@@ -3,7 +3,7 @@ import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
 class Home extends Component {
   state = {
-    tasks: [],
+    tasks: []
   };
 
   async componentDidMount() {

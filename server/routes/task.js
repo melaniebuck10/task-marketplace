@@ -7,7 +7,7 @@ const Task = require('./../models/task');
 const Application = require('./../models/application');
 const routeGuard = require('./../middleware/route-guard');
 const fileUpload = require('./../middleware/file-upload');
-//const sendEmail = require('./../utilities/send-email');
+const applicationMail = require('./../utilities/application-email');
 const router = new express.Router();
 
 router.post(
@@ -71,27 +71,27 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// router.post('/:id/apply', routeGuard, async (req, res, next) => {
-//   try {
-//     const application = await Application.create({
-//       individual: req.user._id,
-//       task: req.params.id
-//     });
-//     const task = await Task.findById(req.params.id);
-//     const taskowner = await User.findById(task.taskowner);
-//     await sendEmail({
-//       receiver: taskowner.email,
-//       subject: `${req.user.name} applied to this task ${task.name}`,
-//       body: `
-//           <p>${req.user.name} applied to this task ${task.name}.</p>
-//           <p>${req.user.name}'s email is "${req.user.email}".</p>
-//         `
-//     });
-//     res.json({ application });
-//   } catch (error) {
-//     console.log(error);
-//     next(error);
-//   }
-// });
+router.post('/:id/apply', routeGuard, async (req, res, next) => {
+  try {
+    const application = await Application.create({
+      individual: req.user._id,
+      task: req.params.id
+    });
+    const task = await Task.findById(req.params.id);
+    const taskowner = await User.findById(task.taskowner);
+    await sendEmail({
+      receiver: taskowner.email,
+      subject: `${req.user.name} applied to this task ${task.name}`,
+      body: `
+           <p>${req.user.name} applied to this task ${task.name}.</p>
+           <p>${req.user.name}'s email is "${req.user.email}".</p>
+         `
+    });
+    res.json({ application });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
 
 module.exports = router;
