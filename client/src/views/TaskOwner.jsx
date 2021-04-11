@@ -20,13 +20,6 @@ class TaskOwner extends Component {
       <div>
         {taskowner && (
           <>
-<<<<<<< HEAD
-            <h1>Hello {taskowner.name}, here you can see your listings</h1>
-            <p>{taskowner.name}</p>
-            <p>{taskowner.phoneNumber}</p>
-            <p>{taskowner.email}</p>
-            <img src="{taskowner.profilePicture" alt="" />
-=======
             <h1>Hello {taskowner.name}, your personal page</h1>
             <div>
               {' '}
@@ -45,7 +38,6 @@ class TaskOwner extends Component {
                 {taskowner.email}
               </p>
             </div>
->>>>>>> 4e279f1025ba53d01901c5f3de029bcf9bfe15ee
 
             <TaskList tasks={tasks} />
           </>

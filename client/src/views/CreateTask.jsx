@@ -9,8 +9,8 @@ class CreateTask extends Component {
     price: '',
     hourOfWork: '',
     typeOfWork: '',
-    status: '',
-    pictures: ''
+    status: ''
+    //pictures: ''
   };
 
   handleFormSubmission = async (event) => {

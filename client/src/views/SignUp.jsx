@@ -9,7 +9,8 @@ class SignUp extends Component {
     role: '',
     description: '',
     address: '',
-    phoneNumber: ''
+    phoneNumber: '',
+    profilePicture: ''
   };
 
   handleFormSubmission = async (event) => {
@@ -83,9 +84,7 @@ class SignUp extends Component {
             id="input-profilePicture"
             type="file"
             name="profilePicture"
-            accept="image/png, image/jpeg"
             single
-            disable
             onChange={this.handleFileInputChange}
           />
             

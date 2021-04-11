@@ -6,44 +6,48 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const TaskOwner = require('./../models/taskowner');
-<<<<<<< HEAD
-const fileUpload = require('./../middleware/file-upload');
-=======
 const nodemailer = require('./../nodemailer');
->>>>>>> 4e279f1025ba53d01901c5f3de029bcf9bfe15ee
+const fileUpload = require('./../middleware/file-upload');
 
 const router = new Router();
 
-router.post('/sign-up', async (req, res, next) => {
-  const {
-    name,
-    email,
-    password,
-    role,
-    description,
-    address,
-    phoneNumber
-  } = req.body;
-  console.log(req.body);
-  try {
-    const hash = await bcryptjs.hash(password, 10);
-    const user = await User.create({
+router.post(
+  '/sign-up',
+  fileUpload.single('profilePicture'),
+  //console.log(fileUpload)
+  async (req, res, next) => {
+    const {
       name,
       email,
-      passwordHashAndSalt: hash,
+      password,
       role,
       description,
       address,
-      phoneNumber
-    });
-    req.session.userId = user._id;
-    res.json({ user });
-    await nodemailer.welcomeEmail(user.email);
-    console.log('Successfully created new user');
-  } catch (error) {
-    next(error);
+      phoneNumber,
+      profilePicture
+    } = req.body;
+    console.log(req.body);
+    try {
+      const hash = await bcryptjs.hash(password, 10);
+      const user = await User.create({
+        name,
+        email,
+        passwordHashAndSalt: hash,
+        role,
+        description,
+        address,
+        phoneNumber,
+        profilePicture
+      });
+      req.session.userId = user._id;
+      res.json({ user });
+      await nodemailer.welcomeEmail(user.email);
+      console.log('Successfully created new user');
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 router.post('/sign-in', (req, res, next) => {
   let user;

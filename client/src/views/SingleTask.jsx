@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { loadTask } from '../services/task';
+import PictureSlider from './../components/PictureSlider';
 // import { applyTask } from './../services/task';
 
 class SingleTask extends Component {
   state = {
-    task: null,
+    task: null
     // application
   };
 
@@ -31,6 +32,9 @@ class SingleTask extends Component {
               <title>Market Place - {task.name}</title>
             </Helmet>
             <h1>{task.name}</h1>
+            {!!task.pictures.length && (
+              <PictureSlider pictures={task.pictures} />
+            )}
             {task.description && <p>{task.description}</p>}
             <span>
               Created by{' '}
