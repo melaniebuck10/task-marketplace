@@ -12,10 +12,10 @@ const Navbar = ({ user, onSignOut }) => {
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
-
+{/* 
           {user.role === 'individual' && (
-            <Link to="/task/list">List of all Tasks</Link>
-          )}
+            <Link to="/task/list">Tasks applied by you</Link>
+          )} */}
         </>
       )}
       <div>
@@ -24,10 +24,10 @@ const Navbar = ({ user, onSignOut }) => {
             {user.profilePicture && (
               <img src={user.profilePicture} alt={user.name} />
             )}
-            <Link to={`/${user.role}/${user._id}`}>{user.name}</Link>
-            {user.role === 'individual' && (
-              <Link to="/qualities">Qualities</Link>
-            )}
+            <Link to={`/${user.role}/${user._id}`}>{user.name}'s Profile</Link>
+            {/* {user.role === 'individual' && (
+              <Link to="/individual/qualities">Qualities</Link>
+            )} */}
             <button onClick={onSignOut}>Sign Out</button>
           </>
         )) || (

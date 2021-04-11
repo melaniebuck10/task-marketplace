@@ -5,7 +5,9 @@ export const loadIndividual = async (id) => {
   return response.data.individual;
 };
 
-export const saveQualities = async (data) => {
-  const response = await api.patch('/individual/qualities', data);
-  return response.data.user;
-};
+// export const editProfile = async (id, data) => {
+//   const response = await api.patch(`http://localhost:3000/individual/${id}`, data);
+//   const body = response.data;
+//   const profile = body.profile;
+//   return profile;
+// };

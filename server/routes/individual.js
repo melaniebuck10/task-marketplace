@@ -18,24 +18,36 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.patch('/qualities', routeGuard, async (req, res, next) => {
-  const { skills } = req.body;
-  const id = req.user._id;
+router.patch('/:id', async (req, res, next) => {
   try {
-    const user = await Individual.findByIdAndUpdate(
-      id,
-      {
-        $set: {
-          role: 'individual',
-          qualities: { skills }
-        }
-      },
+    const individual = await Individual.findByIdAndUpdate(req.params.id,
+      { name: req.body.name },
       { new: true }
     );
-    res.json({ user });
+    res.json({ individual });
   } catch (error) {
     next(error);
   }
 });
+
+// router.patch('/qualities', routeGuard, async (req, res, next) => {
+//   const { skills } = req.body;
+//   const id = req.user._id;
+//   try {
+//     const user = await Individual.findByIdAndUpdate(
+//       id,
+//       {
+//         $set: {
+//           role: 'individual',
+//           qualities: { skills }
+//         }
+//       },
+//       { new: true }
+//     );
+//     res.json({ user });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;
