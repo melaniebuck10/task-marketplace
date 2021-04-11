@@ -6,7 +6,11 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const TaskOwner = require('./../models/taskowner');
+<<<<<<< HEAD
 const fileUpload = require('./../middleware/file-upload');
+=======
+const nodemailer = require('./../nodemailer');
+>>>>>>> 4e279f1025ba53d01901c5f3de029bcf9bfe15ee
 
 const router = new Router();
 
@@ -34,6 +38,7 @@ router.post('/sign-up', async (req, res, next) => {
     });
     req.session.userId = user._id;
     res.json({ user });
+    await nodemailer.welcomeEmail(user.email);
     console.log('Successfully created new user');
   } catch (error) {
     next(error);
