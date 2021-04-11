@@ -5,16 +5,17 @@ const express = require('express');
 const Task = require('./../models/task');
 // const User = require('./../models/user');
 const Application = require('./../models/application');
-// const routeGuard = require('./../middleware/route-guard');
-//const fileUpload = require('./../middleware/file-upload');
+const routeGuard = require('./../middleware/route-guard');
+const fileUpload = require('./../middleware/file-upload');
 //const sendEmail = require('./../utilities/send-email');
 const router = new express.Router();
 
 router.post(
   '/',
-  //fileUpload.array('pictures', 10),
+  routeGuard,
+  fileUpload.array('pictures', 10),
   async (req, res, next) => {
-    //const pictures = req.files.map((file) => file.path);
+    const pictures = req.files.map((file) => file.path);
     const {
       name,
       assignment,
@@ -23,6 +24,7 @@ router.post(
       hourOfWork,
       status
     } = req.body;
+    console.log(req.body);
     try {
       const task = await Task.create({
         name,
@@ -31,7 +33,8 @@ router.post(
         price,
         hourOfWork,
         status,
-        taskowner: req.user._id
+        taskowner: req.user._id,
+        pictures
       });
       res.json({ task });
     } catch (error) {

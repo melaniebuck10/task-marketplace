@@ -7,20 +7,49 @@ class SignUp extends Component {
     email: '',
     password: '',
     role: '',
+    description: '',
+    address: '',
+    phoneNumber: '',
+    profilePicture: ''
   };
 
   handleFormSubmission = async (event) => {
     event.preventDefault();
-    const { name, email, password, role } = this.state;
-    const user = await signUp({ name, email, password, role });
+    const {
+      name,
+      email,
+      password,
+      role,
+      description,
+      address,
+      phoneNumber,
+      profilePicture
+    } = this.state;
+    const user = await signUp({
+      name,
+      email,
+      password,
+      role,
+      description,
+      address,
+      phoneNumber,
+      profilePicture
+    });
     this.props.onUserChange(user);
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
+  };
+
+  handleDisplay = (e) => {
+    this.setState({
+      display: !this.state.display
+    });
+    console.log(this.state.display);
   };
 
   render() {
@@ -40,7 +69,6 @@ class SignUp extends Component {
             value={this.state.name}
             onChange={this.handleInputChange}
           />
-
           <label htmlFor="email-input">Email</label>
           <input
             id="email-input"
@@ -51,7 +79,15 @@ class SignUp extends Component {
             value={this.state.email}
             onChange={this.handleInputChange}
           />
-
+          <label htmlFor="input-profilePicture">Profile Picture</label>
+          <input
+            id="input-profilePicture"
+            type="file"
+            name="profilePicture"
+            single
+            onChange={this.handleFileInputChange}
+          />
+            
           <label htmlFor="role-input">
             Are you a Task Taker or a Task Owner?
           </label>
@@ -68,7 +104,50 @@ class SignUp extends Component {
             <option value="individual">Task Taker</option>
             <option value="taskowner">Task Owner</option>
           </select>
-
+          {this.state.role === 'individual' ? (
+            <>
+                <label htmlFor="description-input">Description </label>
+              <textarea
+                id="description-input"
+                placeholder="What makes you awesome??"
+                name="description"
+                maxLength="155"
+                required
+                value={this.state.description}
+                onChange={this.handleInputChange}
+              />
+            </>
+          ) : (
+            ''
+          )}
+          {this.state.role === 'taskowner' ? (
+            <>
+              <label htmlFor="address-input">Your address:</label>
+              <input
+                id="address-input"
+                placeholder="Address.."
+                name="address"
+                maxLength="155"
+                type="address"
+                required
+                value={this.state.address}
+                onChange={this.handleInputChange}
+              />
+              <label htmlFor="phoneNumber-input">Phone number:</label>
+              <input
+                id="phoneNumber-input"
+                placeholder="Your phone number"
+                name="phoneNumber"
+                type="tel"
+                maxLength="10"
+                required
+                value={this.state.phoneNumber}
+                onChange={this.handleInputChange}
+              />
+            </>
+          ) : (
+            ''
+          )}
           <label htmlFor="password-input">Password</label>
           <input
             id="password-input"
@@ -79,7 +158,6 @@ class SignUp extends Component {
             value={this.state.password}
             onChange={this.handleInputChange}
           />
-
           <button>Sign Up</button>
         </form>
       </main>

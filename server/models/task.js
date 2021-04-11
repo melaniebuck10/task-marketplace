@@ -29,7 +29,6 @@ const taskSchema = new mongoose.Schema(
       type: {
         type: String,
         default: 'Point',
-        required: true
       }
     },
     description: {

@@ -7,7 +7,8 @@ const Task = ({ task }) => {
       <div className="task__item__details">
         <h5>{task.name}</h5>
         <small>
-          {task.assignment} | {task.price} Eur |{' '}
+          {task.assignment === 'single_task' ? 'Single Task' : 'Project'} |{' '}
+          {task.price} Eur |{' '}
         </small>
         {task.description && <p>{task.description}</p>}
       </div>
