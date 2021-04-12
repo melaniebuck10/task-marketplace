@@ -5,9 +5,9 @@ export const loadIndividual = async (id) => {
   return response.data.individual;
 };
 
-// export const editProfile = async (id, data) => {
-//   const response = await api.patch(`http://localhost:3000/individual/${id}`, data);
-//   const body = response.data;
-//   const profile = body.profile;
-//   return profile;
-// };
+export const editProfileName = async (id, data) => {
+  const response = await api.patch(`http://localhost:3000/individual/${id}`, data);
+  const body = response.data;
+  const profileName = body.profileName;
+  return profileName;
+};

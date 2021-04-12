@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loadIndividual, editProfile } from '../services/individual';
+import { loadIndividual } from '../services/individual';
 import Rating from '../components/Rating';
 
 class IndividualProfile extends Component {
@@ -75,8 +75,6 @@ class IndividualProfile extends Component {
               </>
               )}
         <Rating>{this.props.rating}</Rating>
-
-        <button>Edit Profile</button>
       </div>
     );
   }
