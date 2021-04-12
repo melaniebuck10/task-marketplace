@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { loadTask } from '../services/task';
 import PictureSlider from './../components/PictureSlider';
-// import { applyTask } from './../services/task';
+import { applyTask } from './../services/task';
 
 class SingleTask extends Component {
   state = {
@@ -12,15 +12,15 @@ class SingleTask extends Component {
   };
 
   async componentDidMount() {
-    const task = await loadTask(this.props.match.params.id);
+    const { task, application } = await loadTask(this.props.match.params.id);
     console.log(task);
-    this.setState({ task: task });
+    this.setState({ task, application });
   }
 
-  //handleTaskApplication = async () => {
-  //const application = await applyTask(this.props.match.params.id);
-  //this.setState({ application });
-  //};
+  handleTaskApplication = async () => {
+  const application = await applyTask(this.props.match.params.id);
+  this.setState({ application });
+  };
 
   render() {
     const task = this.state.task;
@@ -48,7 +48,13 @@ class SingleTask extends Component {
             <p>Status: {task.status}</p>
           </>
         )}
-        <button>Edit Task</button>
+        <button
+            className="button"
+            disabled={this.state.application}
+            onClick={this.handleTaskApplication}
+          >
+            {(this.state.application && 'Applied!') || 'Apply for this task'}
+          </button>
       </main>
     );
   }
