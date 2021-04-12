@@ -85,17 +85,10 @@ class App extends Component {
                 redirect="/sign-in"
                 exact
               />
-              <Route
+              <ProtectedRoute
                 path="/individual/:id"
-                render={props => (
-                  <IndividualProfile
-                    {...props}
-                    user={user}
-                    onUserChange={this.handleUserChange}
-                  />
-                )}
-                authorized={user && user.role === 'individual'}
-                redirect="/sign-in"
+                authorized={user}
+                component={IndividualProfile}
                 exact
               />
               <ProtectedRoute
