@@ -6,13 +6,13 @@ const Navbar = ({ user, onSignOut }) => {
     <nav className="navbar">
       {user && (
         <>
-          <Link to="/home">
+          <Link to="/">
             <strong>Tasks - MarketPlace</strong>
           </Link>
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
-{/* 
+          {/* 
           {user.role === 'individual' && (
             <Link to="/task/list">Tasks applied by you</Link>
           )} */}
@@ -35,7 +35,7 @@ const Navbar = ({ user, onSignOut }) => {
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
             <Link to="/">
-              <strong>Tasks - Not visible</strong>
+              <strong>Tasks</strong>
             </Link>
           </>
         )}

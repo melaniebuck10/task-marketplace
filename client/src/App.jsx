@@ -14,7 +14,7 @@ import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
-import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
+// import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 // import TaskOwner from './views/TaskOwner';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
@@ -23,7 +23,7 @@ import Messenger from './views/Messenger';
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -52,7 +52,8 @@ class App extends Component {
           <Navbar user={user} onSignOut={this.handleSignOut} />
           {this.state.loaded && (
             <Switch>
-              <Route path="/" component={HomeBeforeAuthentication} exact />
+              <Route path="/" component={Home} exact />
+
               <ProtectedRoute
                 path="/sign-in"
                 render={(props) => (
@@ -91,13 +92,13 @@ class App extends Component {
                 component={IndividualProfile}
                 exact
               />
-              <ProtectedRoute
+              {/* <ProtectedRoute
                 path="/home"
                 component={Home}
                 authorized={user}
                 redirect="/"
                 exact
-              />
+              /> */}
               <Route path="/taskowner/:id" component={TaskOwner} exact />
               <Route path="/messenger" component={Messenger} exact />
               <Route path="/error" component={ErrorPage} />
