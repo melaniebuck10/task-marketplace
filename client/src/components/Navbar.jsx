@@ -12,7 +12,7 @@ const Navbar = ({ user, onSignOut }) => {
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
-{/* 
+          {/* 
           {user.role === 'individual' && (
             <Link to="/task/list">Tasks applied by you</Link>
           )} */}
@@ -32,6 +32,12 @@ const Navbar = ({ user, onSignOut }) => {
           </>
         )) || (
           <>
+<<<<<<< HEAD
+=======
+            <Link to="/">
+              <strong>Home</strong>
+            </Link>
+>>>>>>> 8f4c84796007fd86ed48fe978c28616a0f0c781b
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
           </>
