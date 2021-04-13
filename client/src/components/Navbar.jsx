@@ -35,7 +35,6 @@ const Navbar = ({ user, onSignOut }) => {
             <Link to="/">
               <strong>Home</strong>
             </Link>
-
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
           </>

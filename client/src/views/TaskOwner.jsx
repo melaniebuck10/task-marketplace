@@ -37,12 +37,12 @@ class TaskOwner extends Component {
                 <strong>Email address </strong>
                 {taskowner.email}
               </p>
-              <img src="{taskowner.profilePicture}" alt="" />
+              <img src={taskowner.profilePicture} alt="" />
             </div>
-            <div>
+            {/* <div>
               <h1>Tasks uploaded by you:</h1>
             <TaskList tasks={tasks} />
-            </div>
+            </div> */}
           </>
         )}
       </div>
