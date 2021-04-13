@@ -91,14 +91,14 @@ class App extends Component {
                 component={IndividualProfile}
                 exact
               />
-              {/* <ProtectedRoute
+              <ProtectedRoute
                 path="/home"
                 component={Home}
                 authorized={user}
                 redirect="/"
                 exact
               />
-              */}
+
               <ProtectedRoute
                 path="/taskowner/:id"
                 component={TaskOwner}
