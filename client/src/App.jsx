@@ -53,14 +53,13 @@ class App extends Component {
           {this.state.loaded && (
             <Switch>
               <Route path="/" component={Home} exact />
-
               <ProtectedRoute
                 path="/sign-in"
                 render={(props) => (
                   <SignIn {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/"
+                redirect="/home"
                 exact
               />
               <ProtectedRoute
@@ -69,7 +68,7 @@ class App extends Component {
                   <SignUp {...props} onUserChange={this.handleUserChange} />
                 )}
                 authorized={!user}
-                redirect="/"
+                redirect="/home"
                 exact
               />
               <ProtectedRoute
@@ -82,7 +81,7 @@ class App extends Component {
               <ProtectedRoute
                 path="/task/:id"
                 component={SingleTask}
-                authorized={user && user.role === 'taskowner'}
+                authorized={(user && user.role === 'taskowner') || 'individual'}
                 redirect="/sign-in"
                 exact
               />
@@ -98,8 +97,14 @@ class App extends Component {
                 authorized={user}
                 redirect="/"
                 exact
-              /> */}
-              <Route path="/taskowner/:id" component={TaskOwner} exact />
+              />
+              */}
+              <ProtectedRoute
+                path="/taskowner/:id"
+                component={TaskOwner}
+                authorized={user}
+                exact
+              />
               <Route path="/messenger" component={Messenger} exact />
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
