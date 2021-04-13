@@ -34,9 +34,6 @@ const Navbar = ({ user, onSignOut }) => {
           <>
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
-            <Link to="/">
-              <strong>Tasks - Not visible</strong>
-            </Link>
           </>
         )}
       </div>

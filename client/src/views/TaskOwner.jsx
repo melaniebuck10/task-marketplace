@@ -20,7 +20,7 @@ class TaskOwner extends Component {
       <div>
         {taskowner && (
           <>
-            <h1>Hello {taskowner.name}, your personal page</h1>
+            <h1>Hello, {taskowner.name}, this is your personal page</h1>
             <div>
               {' '}
               <h3>Your information</h3>
