@@ -52,7 +52,7 @@ router.get('/list', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', routeGuard, async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id).populate(
       'taskowner',

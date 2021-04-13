@@ -81,7 +81,7 @@ class App extends Component {
               <ProtectedRoute
                 path="/task/:id"
                 component={SingleTask}
-                authorized={(user && user.role === 'taskowner') || 'individual'}
+                authorized={user}
                 redirect="/sign-in"
                 exact
               />
