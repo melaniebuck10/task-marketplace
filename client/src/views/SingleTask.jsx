@@ -8,18 +8,22 @@ import { applyTask } from './../services/task';
 class SingleTask extends Component {
   state = {
     task: null,
-    application: null
+    application: null,
   };
 
   async componentDidMount() {
-    const { task, application } = await loadTask(this.props.match.params.id);
+    const task = await loadTask(this.props.match.params.id);
     console.log(task);
-    this.setState({ task, application });
+    this.setState({ task });
+    // I REMOVED THE BELOW CODE (APPLICATION) BECAUSE IT WAS BLOCKING THE SINGLE TASK FROM RENDERING. loadTask does not return the application.
+    // const { task, application } = await loadTask(this.props.match.params.id);
+    // console.log(task);
+    // this.setState({ task, application });
   }
 
   handleTaskApplication = async () => {
-  const application = await applyTask(this.props.match.params.id);
-  this.setState({ application });
+    const application = await applyTask(this.props.match.params.id);
+    this.setState({ application });
   };
 
   render() {
@@ -29,9 +33,9 @@ class SingleTask extends Component {
         {task && (
           <>
             <Helmet>
-              <title>Market Place - {task.name}</title>
+              <title>Market Place - {task.taskowner.name}</title>
             </Helmet>
-            <h1>{task.name}</h1>
+            <h1>{task.taskowner.name}</h1>
             {!!task.pictures.length && (
               <PictureSlider pictures={task.pictures} />
             )}
@@ -48,13 +52,6 @@ class SingleTask extends Component {
             <p>Status: {task.status}</p>
           </>
         )}
-        <button
-            className="button"
-            disabled={this.state.application}
-            onClick={this.handleTaskApplication}
-          >
-            {(this.state.application && 'Applied!') || 'Apply for this task'}
-          </button>
       </main>
     );
   }
