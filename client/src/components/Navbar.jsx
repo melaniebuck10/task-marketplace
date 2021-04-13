@@ -6,7 +6,7 @@ const Navbar = ({ user, onSignOut }) => {
     <nav className="navbar">
       {user && (
         <>
-          <Link to="/home">
+          <Link to="/">
             <strong>Tasks - MarketPlace</strong>
           </Link>
           {user.role === 'taskowner' && (

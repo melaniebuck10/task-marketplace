@@ -14,7 +14,7 @@ import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
-import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
+// import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 // import TaskOwner from './views/TaskOwner';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
@@ -23,7 +23,7 @@ import Messenger from './views/Messenger';
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -98,6 +98,7 @@ class App extends Component {
                 redirect="/"
                 exact
               />
+
               <ProtectedRoute
                 path="/taskowner/:id"
                 component={TaskOwner}
