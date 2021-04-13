@@ -32,16 +32,10 @@ const Navbar = ({ user, onSignOut }) => {
           </>
         )) || (
           <>
-<<<<<<< HEAD
-=======
             <Link to="/">
-<<<<<<< HEAD
-              <strong>Tasks</strong>
-=======
               <strong>Home</strong>
->>>>>>> 1542085b3a855a1d55119d499d1e7156b0875bca
             </Link>
->>>>>>> 8f4c84796007fd86ed48fe978c28616a0f0c781b
+
             <Link to="/sign-in">Sign In</Link>
             <Link to="/sign-up">Sign Up</Link>
           </>
