@@ -30,8 +30,7 @@ class IndividualProfile extends Component {
 
   handleFormSubmission = (event) => {
     event.preventDefault();
-    this.setState(this.state.newIndividualName);
-    this.setState({ editModeActive: false });
+   
   };
 
   render() {
@@ -56,8 +55,8 @@ class IndividualProfile extends Component {
                   value={
                     this.state.newIndividualName && this.state.newIndividualName
                   }
-                  onChange={(value) =>
-                    this.handleIndividualNameChange('name', value)
+                  onChange={(event) =>
+                    this.handleIndividualNameChange(event)
                   }
                 />
                 <button>🔒</button>
