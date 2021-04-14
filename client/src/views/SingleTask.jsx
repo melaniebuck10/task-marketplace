@@ -8,7 +8,7 @@ import { applyTask } from './../services/task';
 class SingleTask extends Component {
   state = {
     task: null,
-    application: null,
+    application: null
   };
 
   async componentDidMount() {
@@ -35,21 +35,38 @@ class SingleTask extends Component {
             <Helmet>
               <title>Market Place - {task.taskowner.name}</title>
             </Helmet>
-            <h1>{task.taskowner.name}</h1>
-            {!!task.pictures.length && (
-              <PictureSlider pictures={task.pictures} />
-            )}
-            {task.description && <p>{task.description}</p>}
-            <span>
-              Created by{' '}
-              <Link to={`/taskowner/${task.taskowner._id}`}>
-                {task.taskowner.name}
-              </Link>
-            </span>
             <br />
-            {/* <h4>{task.location}</h4> */}
-            <p>{task.price} Eur</p>
-            <p>Status: {task.status}</p>
+            <br />
+            <div className="task_design">
+              <div className="taskinput">
+                <h1>{task.name}</h1>
+                {!!task.pictures.length && (
+                  <PictureSlider pictures={task.pictures} />
+                )}
+                {task.description && (
+                  <p>
+                    <strong>Description:</strong> <br />
+                    {task.description}
+                  </p>
+                )}
+                <p>
+                  <strong>I am able to pay the following amount:</strong> <br />
+                  {task.price} Eur
+                </p>
+                <p>
+                  <strong>Status:</strong> <br />
+                  {task.status}
+                </p>{' '}
+                <br />
+                <br />
+                <span>
+                  Created by{' '}
+                  <Link to={`/taskowner/${task.taskowner._id}`}>
+                    {task.taskowner.name}
+                  </Link>
+                </span>
+              </div>
+            </div>
           </>
         )}
       </main>

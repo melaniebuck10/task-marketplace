@@ -30,53 +30,53 @@ class IndividualProfile extends Component {
 
   handleFormSubmission = (event) => {
     event.preventDefault();
-   
   };
 
   render() {
     const { individual } = this.state;
     return (
-      <div>
-        {individual && (
-          <>
-            <h1>Hello, {individual.name}, this is your profile.</h1>
-            {individual.profilePicture}
+      <main>
+        <div>
+          {individual && (
+            <>
+              <h1>Hello, {individual.name}, this is your profile.</h1>
+              {individual.profilePicture}
 
-            <h3>Your information</h3>
-            <p>
-              {' '}
-              <strong>Name: </strong>
-            </p>
-            {(this.state.editModeActive && (
-              <form onSubmit={this.handleFormSubmission}>
-                <input
-                  type="text"
-                  placeholder="Update your name"
-                  value={
-                    this.state.newIndividualName && this.state.newIndividualName
-                  }
-                  onChange={(event) =>
-                    this.handleIndividualNameChange(event)
-                  }
-                />
-                <button>🔒</button>
-              </form>
-            )) || (
-              <>
-                {individual.name}
-                <button onClick={this.toggleNameEditMode}>✏️</button>
-              </>
-            )}
+              <h3>Your information</h3>
+              <p>
+                {' '}
+                <strong>Name: </strong>
+              </p>
+              {(this.state.editModeActive && (
+                <form onSubmit={this.handleFormSubmission}>
+                  <input
+                    type="text"
+                    placeholder="Update your name"
+                    value={
+                      this.state.newIndividualName &&
+                      this.state.newIndividualName
+                    }
+                    onChange={(event) => this.handleIndividualNameChange(event)}
+                  />
+                  <button>🔒</button>
+                </form>
+              )) || (
+                <>
+                  {individual.name}
+                  <button onClick={this.toggleNameEditMode}>✏️</button>
+                </>
+              )}
 
-            <p>
-              {' '}
-              <strong>Email address: </strong>
-              {individual.email}
-            </p>
-          </>
-        )}
-        <Rating>{this.props.rating}</Rating>
-      </div>
+              <p>
+                {' '}
+                <strong>Email address: </strong>
+                {individual.email}
+              </p>
+            </>
+          )}
+          <Rating>{this.props.rating}</Rating>
+        </div>
+      </main>
     );
   }
 }

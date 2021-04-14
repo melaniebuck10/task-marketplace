@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-//import './PictureSlider.scss';
+import './PictureSlider.scss';
 
 class PictureSlider extends Component {
   state = {
@@ -22,8 +22,8 @@ class PictureSlider extends Component {
       <div className="picture-slider">
         <img src={pictures[this.state.index]} alt="A slider item" />
         <div className="picture-slider__controls">
-          <button onClick={() => this.navigate(-1)}>⬅️</button>
-          <button onClick={() => this.navigate(1)}>➡️</button>
+          <button onClick={() => this.navigate(-1)}>←</button>
+          <button onClick={() => this.navigate(1)}>→</button>
         </div>
       </div>
     );

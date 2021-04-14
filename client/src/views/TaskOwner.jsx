@@ -17,35 +17,41 @@ class TaskOwner extends Component {
   render() {
     const { taskowner, tasks } = this.state;
     return (
-      <div>
-        {taskowner && (
-          <>
-            <h1>Hello, {taskowner.name}, this is your personal page</h1>
-            <div>
-              {' '}
-              <h3>Your information</h3>
-              <p>
+      <main>
+        <div>
+          {taskowner && (
+            <>
+              <h1>Hello, {taskowner.name}, this is your personal page</h1>
+              <div>
                 {' '}
-                <strong>Name </strong> {taskowner.name}
-              </p>
-              <p>
-                {' '}
-                <strong>Phone number </strong> {taskowner.phoneNumber}
-              </p>
-              <p>
-                {' '}
-                <strong>Email address </strong>
-                {taskowner.email}
-              </p>
-              <img src={taskowner.profilePicture} alt="" />
-            </div>
-            {/* <div>
+                <br />
+                <br />
+                <h3>Your information</h3>
+                <p>
+                  {' '}
+                  <strong>Name </strong> {taskowner.name}
+                </p>
+                <p>
+                  {' '}
+                  <strong>Phone number </strong> {taskowner.phoneNumber}
+                </p>
+                <p>
+                  {' '}
+                  <strong>Email address </strong>
+                  {taskowner.email}
+                </p>
+                <img src={taskowner.profilePicture} alt="" /> <br />
+                <br />
+                <button>Edit my Profile</button>
+              </div>
+              {/* <div>
               <h1>Tasks uploaded by you:</h1>
             <TaskList tasks={tasks} />
             </div> */}
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      </main>
     );
   }
 }

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -19,11 +19,12 @@ import CreateTask from './views/CreateTask';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
 import Messenger from './views/Messenger';
+import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 
 class App extends Component {
   state = {
     user: null,
-    loaded: false,
+    loaded: false
   };
 
   async componentDidMount() {
@@ -52,7 +53,7 @@ class App extends Component {
           <Navbar user={user} onSignOut={this.handleSignOut} />
           {this.state.loaded && (
             <Switch>
-              <Route path="/" component={Home} exact />
+              <Route path="/" component={HomeBeforeAuthentication} exact />
               <ProtectedRoute
                 path="/sign-in"
                 render={(props) => (

@@ -114,18 +114,20 @@ class CreateTask extends Component {
             onChange={this.handleInputChange}
           />
 
-          <div className="col">
-            <label htmlFor="input-typeOfWork">Type of Work</label>
-            <select
-              id="input-typeOfWork"
-              name="typeOfWork"
-              value={this.state.typeOfWork}
-              onChange={this.handleInputChange}
-            >
-              <option value="">Non-specified</option>
-              <option value="physical">Physical</option>
-              <option value="administrative">Administrative</option>
-            </select>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="input-typeOfWork">Type of Work</label>
+              <select
+                id="input-typeOfWork"
+                name="typeOfWork"
+                value={this.state.typeOfWork}
+                onChange={this.handleInputChange}
+              >
+                <option value="">Non-specified</option>
+                <option value="physical">Physical</option>
+                <option value="administrative">Administrative</option>
+              </select>
+            </div>
           </div>
 
           <div className="row">
@@ -168,22 +170,24 @@ class CreateTask extends Component {
             onChange={this.handleFileInputChange}
           />
 
-          <div className="col">
-            <label htmlFor="input-status">Task Status</label>
-            <select
-              id="input-status"
-              name="status"
-              value={this.state.status}
-              onChange={this.handleInputChange}
-              required
-            >
-              <option value="" disabled>
-                Status
-              </option>
-              <option value="open">Open</option>
-              <option value="in_process">In Process</option>
-              <option value="closed">Closed</option>
-            </select>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="input-status">Task Status</label>
+              <select
+                id="input-status"
+                name="status"
+                value={this.state.status}
+                onChange={this.handleInputChange}
+                required
+              >
+                <option value="" disabled>
+                  Status
+                </option>
+                <option value="open">Open</option>
+                <option value="in_process">In Process</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
           </div>
 
           <button>List job</button>
