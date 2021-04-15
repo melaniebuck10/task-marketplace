@@ -22,6 +22,7 @@ class Home extends Component {
   render() {
     const { tasks, taskowner, individual } = this.state;
     return (
+      <main>
       // <div>
       //   <h1>Welcome to your favorite Tasks Marketplace</h1>
       //   <TaskList tasks={tasks} />
@@ -40,6 +41,7 @@ class Home extends Component {
         </>
         )}        
       </div>
+      </main>
     );
   }
 }

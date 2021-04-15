@@ -20,7 +20,7 @@ class PictureSlider extends Component {
     const { pictures } = this.props;
     return (
       <div className="picture-slider">
-        <img src={pictures[this.state.index]} alt="A slider item" />
+        <img src={pictures[this.state.index]} alt="A slider item" className="img_pictureslider"/>
         <div className="picture-slider__controls">
           <button onClick={() => this.navigate(-1)}>←</button>
           <button onClick={() => this.navigate(1)}>→</button>
