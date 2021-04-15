@@ -24,7 +24,7 @@ import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -94,7 +94,7 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/home"
-                component={Home}
+                render={(props) => <Home {...props} user={user} />}
                 authorized={user}
                 redirect="/"
                 exact
@@ -104,6 +104,7 @@ class App extends Component {
                 path="/taskowner/:id"
                 component={TaskOwner}
                 authorized={user}
+                redirect="/"
                 exact
               />
               <Route path="/messenger" component={Messenger} exact />
