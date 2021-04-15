@@ -14,7 +14,7 @@ const Navbar = ({ user, onSignOut }) => {
             <Link to="/task/create">Create a Task</Link>
           )}
           {user.role === 'taskowner' && (
-            <Link to="/taskowner/:id/list">Your Tasks</Link>
+            <Link to={`/taskowner/${user._id}/list`}>Your Tasks</Link>
           )}
           
           {user.role === 'individual' && (
