@@ -13,6 +13,9 @@ const Navbar = ({ user, onSignOut }) => {
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
+          {user.role === 'taskowner' && (
+            <Link to="/taskowner/:id/list">Your Tasks</Link>
+          )}
           {/* 
           {user.role === 'individual' && (
             <Link to="/task/list">Tasks applied by you</Link>
@@ -26,9 +29,6 @@ const Navbar = ({ user, onSignOut }) => {
               <img src={user.profilePicture} alt={user.name} />
             )}
             <Link to={`/${user.role}/${user._id}`}>{user.name}'s Profile</Link>
-            {/* {user.role === 'individual' && (
-              <Link to="/individual/qualities">Qualities</Link>
-            )} */}
             <button onClick={onSignOut}>Sign Out</button>
           </>
         )) || (

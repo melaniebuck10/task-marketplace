@@ -16,7 +16,7 @@ class HomeBeforeAuthentication extends Component {
     const { tasks } = this.state;
     return (
       <main>
-        <h1>Welcome there</h1>
+        <h1>Welcome to your favorite Tasks Marketplace</h1>
         <TaskList tasks={tasks} />
       </main>
     );
