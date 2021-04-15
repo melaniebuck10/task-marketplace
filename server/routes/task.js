@@ -77,16 +77,16 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
       individual: req.user._id,
       task: req.params.id
     });
-    const task = await Task.findById(req.params.id);
-    const taskowner = await User.findById(task.taskowner);
-    await sendEmail({
-      receiver: taskowner.email,
-      subject: `${req.user.name} applied to this task ${task.name}`,
-      body: `
-           <p>${req.user.name} applied to this task ${task.name}.</p>
-           <p>${req.user.name}'s email is "${req.user.email}".</p>
-         `
-    });
+    // const task = await Task.findById(req.params.id);
+    // const taskowner = await User.findById(task.taskowner);
+    // await sendEmail({
+    //   receiver: taskowner.email,
+    //   subject: `${req.user.name} applied to this task ${task.name}`,
+    //   body: `
+    //        <p>${req.user.name} applied to this task ${task.name}.</p>
+    //        <p>${req.user.name}'s email is "${req.user.email}".</p>
+    //      `
+    // });
     res.json({ application });
   } catch (error) {
     console.log(error);

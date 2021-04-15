@@ -6,17 +6,17 @@ const applicationSchema = new mongoose.Schema(
   {
     taskowner: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: 'User'
     },
     individual: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: 'User'
     },
     task: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
+      // required: true,
       ref: 'Task'
     },
     decision: {

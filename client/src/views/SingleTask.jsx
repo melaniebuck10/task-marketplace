@@ -8,7 +8,7 @@ import { applyTask } from './../services/task';
 class SingleTask extends Component {
   state = {
     task: null,
-    application: null,
+    application: null
   };
 
   async componentDidMount() {
@@ -22,6 +22,7 @@ class SingleTask extends Component {
   }
 
   handleTaskApplication = async () => {
+    console.log(this.props.match.params.id);
     const application = await applyTask(this.props.match.params.id);
     this.setState({ application });
   };
@@ -65,6 +66,14 @@ class SingleTask extends Component {
                   {task.taskowner.name}
                   {/* </Link> */}
                 </span>
+                <button
+                  className="button"
+                  disabled={this.state.application}
+                  // taskid={task._id}
+                  onClick={this.handleTaskApplication}
+                >
+                  {(this.state.application && 'Applied!') || 'Apply for Task'}
+                </button>
               </div>
             </div>
           </>
