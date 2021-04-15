@@ -8,12 +8,12 @@ import { applyTask } from './../services/task';
 class SingleTask extends Component {
   state = {
     task: null,
+    editModeActive: false,
     application: null
   };
 
   async componentDidMount() {
     const task = await loadTask(this.props.match.params.id);
-    console.log(task);
     this.setState({ task });
     // I REMOVED THE BELOW CODE (APPLICATION) BECAUSE IT WAS BLOCKING THE SINGLE TASK FROM RENDERING. loadTask does not return the application.
     // const { task, application } = await loadTask(this.props.match.params.id);
@@ -27,8 +27,17 @@ class SingleTask extends Component {
     this.setState({ application });
   };
 
+  toggleEditMode = () => {
+    this.setState({
+      editModeActive: true
+    });
+  };
+  handleFormSubmission = (event) => {
+    event.preventDefault();
+  };
   render() {
     const task = this.state.task;
+    const userId = this.props.user._id;
     return (
       <main>
         {task && (
@@ -50,31 +59,37 @@ class SingleTask extends Component {
                     {task.description}
                   </p>
                 )}
+                <strong>Type: </strong>
+                {(task.assignment === 'single_task' && 'Single Task') ||
+                  'Project'}
+                <p>Hours: {task.hoursOfWork}</p>
                 <p>
                   <strong>I am able to pay the following amount:</strong> <br />
                   {task.price} Eur
                 </p>
                 <p>
                   <strong>Status:</strong> <br />
-                  {task.status}
+                  {(task.status === 'open' && 'Open') ||
+                    (task.status === 'closed' && 'Closed') ||
+                    'In process'}
                 </p>{' '}
                 <br />
                 <br />
-                <span>
-                  Created by{' '}
-                  {/* <Link to={`/taskowner/${task.taskowner._id}`}> */}
-                  {task.taskowner.name}
-                  {/* </Link> */}
-                </span>
-                <button
-                  className="button"
-                  disabled={this.state.application}
-                  // taskid={task._id}
-                  onClick={this.handleTaskApplication}
-                >
-                  {(this.state.application && 'Applied!') || 'Apply for Task'}
-                </button>
+                {userId === task.taskowner._id && (
+                  <button
+                    onClick={this.toggleEditMode}
+                    style={{ backgroundColor: 'lightgreen' }}
+                  >
+                    Edit
+                  </button>
+                )}
               </div>
+              <span>
+                Created by{' '}
+                {/* <Link to={`/taskowner/${task.taskowner._id}`}> */}
+                {task.taskowner.name}
+                {/* </Link> */}
+              </span>
             </div>
           </>
         )}

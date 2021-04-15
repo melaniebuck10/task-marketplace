@@ -82,7 +82,7 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/task/:id"
-                component={SingleTask}
+                render={(props) => <SingleTask {...props} user={user} />}
                 authorized={user}
                 redirect="/sign-in"
                 exact
@@ -91,6 +91,7 @@ class App extends Component {
                 path="/individual/:id"
                 authorized={user}
                 component={IndividualProfile}
+                redirect="/"
                 exact
               />
               <ProtectedRoute

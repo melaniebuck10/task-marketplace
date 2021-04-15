@@ -18,7 +18,7 @@ export const loadTask = async (id) => {
 };
 
 export const editTask = async (id, data) => {
-  const response = await api.patch(`/task/${id}`, data);
+  const response = await api.patch(`/task/${id}/edit`, data);
   return response.data.task;
 };
 
