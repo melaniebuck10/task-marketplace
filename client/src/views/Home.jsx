@@ -8,17 +8,18 @@ class Home extends Component {
   state = {
     taskowner: null,
     individual: null,
-    tasks: []
+    tasks: [],
   };
 
   async componentDidMount() {
     const tasks = await listTasks();
     this.setState({ tasks: tasks });
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
-      this.props.match.params.id
+      this.props.user._id,
     );
     this.setState({ taskowner, tasks: tasksOfOwner });
   }
+  
   render() {
     const { tasks, taskowner, individual } = this.state;
     return (
