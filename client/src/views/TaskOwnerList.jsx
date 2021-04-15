@@ -5,26 +5,15 @@ import TaskList from '../components/TaskList';
 
 class TaskOwnerList extends Component {
   state = {
-<<<<<<< Updated upstream
-    tasksOfOwner: [],
-    tasks: []
-=======
     taskowner: null,
     tasks: [],
->>>>>>> Stashed changes
   };
 
   async componentDidMount() {
     // const tasks = await listTasks();
     // this.setState({ tasks: tasks });
-<<<<<<< Updated upstream
-    const { tasksOfOwner } = await loadTaskOwner(
-      this.props.match.params.id
-
-=======
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
       this.props.match.params.id,
->>>>>>> Stashed changes
     );
     this.setState({ tasks: tasksOfOwner });
   }
