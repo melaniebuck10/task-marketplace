@@ -16,7 +16,7 @@ import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
 // import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 // import TaskOwner from './views/TaskOwner';
-// import TaskList from './components/TaskList';
+import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
 import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
