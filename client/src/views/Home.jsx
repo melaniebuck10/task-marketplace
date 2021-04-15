@@ -22,24 +22,24 @@ class Home extends Component {
   render() {
     const { tasks, taskowner, individual } = this.state;
     return (
-      // <div>
-      //   <h1>Welcome to your favorite Tasks Marketplace</h1>
-      //   <TaskList tasks={tasks} />
-      // </div>
       <div>
-        {taskowner && (
-        <>
-        <h1>Here are the tasks uploaded by you</h1>
-        <Task tasks={tasks} />
-        </>
-        )}
-        {individual && (
-        <>
         <h1>Welcome to your favorite Tasks Marketplace</h1>
         <TaskList tasks={tasks} />
-        </>
-        )}        
       </div>
+      // <div>
+      //   {taskowner && (
+      //   <>
+      //   <h1>Here are the tasks uploaded by you</h1>
+      //   <Task tasks={tasks} />
+      //   </>
+      //   )}
+      //   {individual && (
+      //   <>
+      //   <h1>Welcome to your favorite Tasks Marketplace</h1>
+      //   <TaskList tasks={tasks} />
+      //   </>
+      //   )}        
+      // </div>
     );
   }
 }
