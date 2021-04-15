@@ -6,7 +6,7 @@ class IndividualProfile extends Component {
   state = {
     individual: null,
     editModeActive: false,
-    newIndividualName: ''
+    newIndividualName: '',
   };
 
   async componentDidMount() {
@@ -17,14 +17,14 @@ class IndividualProfile extends Component {
   toggleNameEditMode = () => {
     this.setState({
       editModeActive: true,
-      newIndividualName: this.props.name
+      newIndividualName: this.props.name,
     });
   };
 
   handleIndividualNameChange = (event) => {
     const value = event.target.value;
     this.setState({
-      newIndividualName: value
+      newIndividualName: value,
     });
   };
 

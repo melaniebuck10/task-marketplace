@@ -9,6 +9,7 @@ const routeGuard = require('./../middleware/route-guard');
 const fileUpload = require('./../middleware/file-upload');
 const applicationMail = require('./../utilities/application-email');
 const router = new express.Router();
+const User = require('./../models/user');
 
 router.post(
   '/',
@@ -21,7 +22,7 @@ router.post(
       assignment,
       description,
       price,
-      hourOfWork,
+      hoursOfWork,
       status
     } = req.body;
     console.log(req.body);
@@ -31,7 +32,7 @@ router.post(
         assignment,
         description,
         price,
-        hourOfWork,
+        hoursOfWork,
         status,
         taskowner: req.user._id,
         pictures
@@ -66,6 +67,35 @@ router.get('/:id', routeGuard, async (req, res, next) => {
       });
     }
     res.json({ task, application });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch('/:id/edit', routeGuard, async (req, res, next) => {
+  const {
+    name,
+    taskowner,
+    assignment,
+    description,
+    price,
+    hoursOfWork,
+    typeOfWork,
+    status
+  } = req.body;
+  const id = req.user._id;
+  try {
+    const task = await Task.findByIdAndUpdate(id, {
+      name,
+      taskowner,
+      assignment,
+      description,
+      price,
+      hoursOfWork,
+      typeOfWork,
+      status
+    });
+    res.json({ task });
   } catch (error) {
     next(error);
   }

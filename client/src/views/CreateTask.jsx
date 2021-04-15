@@ -7,9 +7,9 @@ class CreateTask extends Component {
     assignment: '',
     description: '',
     price: '',
-    hourOfWork: '',
+    hoursOfWork: '',
     typeOfWork: '',
-    status: ''
+    status: '',
     //pictures: ''
   };
 
@@ -20,20 +20,20 @@ class CreateTask extends Component {
       assignment,
       description,
       price,
-      hourOfWork,
+      hoursOfWork,
       typeOfWork,
       status,
-      pictures
+      pictures,
     } = this.state;
     const data = {
       name,
       assignment,
       description,
       price,
-      hourOfWork,
+      hoursOfWork,
       typeOfWork,
       status,
-      pictures
+      pictures,
     };
     const body = new FormData();
     for (let key in data) {
@@ -54,7 +54,7 @@ class CreateTask extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -63,7 +63,7 @@ class CreateTask extends Component {
     const arrayOfFiles = [];
     for (const file of files) arrayOfFiles.push(file);
     this.setState({
-      [name]: arrayOfFiles
+      [name]: arrayOfFiles,
     });
   };
 
@@ -148,15 +148,15 @@ class CreateTask extends Component {
             </div>
           </div>
 
-          <label htmlFor="input-hourOfWork">
+          <label htmlFor="input-hoursOfWork">
             Approximate amount of hours required to complete the job
           </label>
           <input
-            id="input-hourOfWork"
-            name="hourOfWork"
+            id="input-hoursOfWork"
+            name="hoursOfWork"
             type="number"
             placeholder="Amount Of Hours"
-            value={this.state.hourOfWork}
+            value={this.state.hoursOfWork}
             onChange={this.handleInputChange}
             required
           />

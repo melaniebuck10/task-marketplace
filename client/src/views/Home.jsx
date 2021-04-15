@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
 import { loadTaskOwner } from '../services/taskownerInfo';
-import Task from '../components/Task';
+// import Task from '../components/Task';
 
 class Home extends Component {
   state = {
@@ -19,9 +19,9 @@ class Home extends Component {
     );
     this.setState({ taskowner, tasks: tasksOfOwner });
   }
-  
+
   render() {
-    const { tasks, taskowner, individual } = this.state;
+    const { tasks } = this.state;
     return (
       <div>
         <h1>Welcome to your favorite Tasks Marketplace</h1>
