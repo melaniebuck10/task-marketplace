@@ -43,10 +43,6 @@ class TaskOwner extends Component {
                 <img src={taskowner.profilePicture} alt="" /> <br />
                 <br />
               </div>
-              {/* <div>
-              <h1>Tasks uploaded by you:</h1>
-            <TaskList tasks={tasks} />
-            </div> */}
             </>
           )}
         </div>

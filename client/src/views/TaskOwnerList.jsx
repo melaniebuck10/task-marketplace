@@ -5,25 +5,26 @@ import TaskList from '../components/TaskList';
 
 class TaskOwnerList extends Component {
   state = {
-    taskowner: null,
+    tasksOfOwner: null,
     tasks: []
   };
 
   async componentDidMount() {
     // const tasks = await listTasks();
     // this.setState({ tasks: tasks });
-    const { taskowner, tasksOfOwner } = await loadTaskOwner(
+    const { tasksOfOwner } = await loadTaskOwner(
       this.props.match.params.id
     );
-    this.setState({ taskowner, tasks: tasksOfOwner });
+    this.setState({ tasksOfOwner });
   }
 
   render() {
-    const { tasksOfOwner } = this.state;
+    // const { tasksOfOwner } = this.state;
     return (
         <div>
         <h1>Tasks uploaded by you</h1>
         {/* <TaskList tasksOfOwner={tasksOfOwner} /> */}
+        <h3>{this.props.tasksOfOwner}</h3>
       </div>
     );
   }
