@@ -18,6 +18,7 @@ import CreateTask from './views/CreateTask';
 // import TaskOwner from './views/TaskOwner';
 // import TaskList from './components/TaskList';
 import SingleTask from './views/SingleTask';
+import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 
@@ -99,10 +100,15 @@ class App extends Component {
                 redirect="/"
                 exact
               />
-
               <ProtectedRoute
                 path="/taskowner/:id"
                 component={TaskOwner}
+                authorized={user}
+                exact
+              />
+              <ProtectedRoute
+                path="/taskowner/:id/list"
+                component={TaskOwnerList}
                 authorized={user}
                 exact
               />

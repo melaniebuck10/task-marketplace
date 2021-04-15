@@ -19,6 +19,7 @@ class Home extends Component {
     );
     this.setState({ taskowner, tasks: tasksOfOwner });
   }
+  
   render() {
     const { tasks, taskowner, individual } = this.state;
     return (

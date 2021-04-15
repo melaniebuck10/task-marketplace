@@ -27,4 +27,13 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.get('/:id/list', async (req, res, next) => {
+  try {
+    const tasks = await Task.find().sort({ addedDate: -1 }).limit(20);
+    res.json({ tasks });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
