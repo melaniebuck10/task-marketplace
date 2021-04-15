@@ -8,7 +8,7 @@ import { applyTask } from './../services/task';
 class SingleTask extends Component {
   state = {
     task: null,
-    application: null
+    application: null,
   };
 
   async componentDidMount() {
@@ -61,9 +61,9 @@ class SingleTask extends Component {
                 <br />
                 <span>
                   Created by{' '}
-                  <Link to={`/taskowner/${task.taskowner._id}`}>
-                    {task.taskowner.name}
-                  </Link>
+                  {/* <Link to={`/taskowner/${task.taskowner._id}`}> */}
+                  {task.taskowner.name}
+                  {/* </Link> */}
                 </span>
               </div>
             </div>

@@ -103,7 +103,7 @@ class App extends Component {
               <ProtectedRoute
                 path="/taskowner/:id"
                 component={TaskOwner}
-                authorized={user}
+                authorized={user && user.role === 'taskowner'}
                 redirect="/"
                 exact
               />
