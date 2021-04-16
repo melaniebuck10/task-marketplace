@@ -35,8 +35,24 @@ class SingleTask extends Component {
   };
   handleFormSubmission = async (event) => {
     event.preventDefault();
-    const { name, description } = this.state;
-    this.handleTaskEdit(this.state.task._id, { name, description });
+    const {
+      name,
+      assignment,
+      description,
+      price,
+      hoursOfWork,
+      typeOfWork,
+      status,
+    } = this.state;
+    this.handleTaskEdit(this.state.task._id, {
+      name,
+      assignment,
+      description,
+      price,
+      hoursOfWork,
+      typeOfWork,
+      status,
+    });
     this.setState({ editModeActive: false });
     this.props.history.push(`/task/${this.state.task._id}`);
   };
@@ -82,6 +98,59 @@ class SingleTask extends Component {
               value={this.state.description && this.state.description}
               onChange={this.handleInputChange}
             />
+            <label htmlFor="input-assignment">Type of Assignment</label>
+            <select
+              id="input-assignment"
+              name="assignment"
+              value={this.state.assignment}
+              onChange={this.handleInputChange}
+              required
+            >
+              <option value="" disabled>
+                Assignment
+              </option>
+              <option value="single_task">Single Task</option>
+              <option value="project">Project</option>
+            </select>
+            <label htmlFor="input-price">Price in EUR</label>
+            <input
+              type="number"
+              placeholder={task.price}
+              name="price"
+              value={this.state.price && this.state.price}
+              onChange={this.handleInputChange}
+            />
+            <label htmlFor="input-hoursOfWork">Hours</label>
+            <input
+              type="number"
+              placeholder={task.hoursOfWork}
+              name="hoursOfWork"
+              value={this.state.hoursOfWork && this.state.hoursOfWork}
+              onChange={this.handleInputChange}
+            />
+            <label htmlFor="input-typeOfWork">Type of work</label>
+            <input
+              type="text"
+              placeholder={task.typeOfWork}
+              name="typeOfWork"
+              value={this.state.typeOfWork && this.state.typeOfWork}
+              onChange={this.handleInputChange}
+            />
+            <label htmlFor="input-status">Status</label>
+            <select
+              id="input-status"
+              name="status"
+              value={this.state.status}
+              onChange={this.handleInputChange}
+              required
+            >
+              <option value="" disabled>
+                Status
+              </option>
+              <option value="open">Open</option>
+              <option value="in_process">In Process</option>
+              <option value="closed">Closed</option>
+            </select>
             <button>Save</button>
           </form>
         )) || (
