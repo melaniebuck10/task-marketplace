@@ -4,6 +4,7 @@ const express = require('express');
 const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const routeGuard = require('./../middleware/route-guard');
+const Task = require('./../models/task');
 
 const router = new express.Router();
 
@@ -30,24 +31,15 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
-// router.patch('/qualities', routeGuard, async (req, res, next) => {
-//   const { skills } = req.body;
-//   const id = req.user._id;
-//   try {
-//     const user = await Individual.findByIdAndUpdate(
-//       id,
-//       {
-//         $set: {
-//           role: 'individual',
-//           qualities: { skills }
-//         }
-//       },
-//       { new: true }
-//     );
-//     res.json({ user });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.get('/:id/applications', async (req, res, next) => {
+  try {
+    const tasks = await Task.find().sort({ addedDate: -1 }).limit(20);
+    res.json({ tasks });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 
 module.exports = router;

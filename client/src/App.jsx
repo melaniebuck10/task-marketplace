@@ -1,11 +1,13 @@
 import './App.scss';
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-import { signOut, verify } from './services/authentication';
+import ProtectedRoute from './components/ProtectedRoute';
+import TaskList from './components/TaskList';
 import Navbar from './components/Navbar';
+
+import { signOut, verify } from './services/authentication';
 
 import Home from './views/Home';
 import SignIn from './views/SignIn';
@@ -14,9 +16,7 @@ import IndividualProfile from './views/IndividualProfile';
 import ErrorPage from './views/ErrorPage';
 import TaskOwner from './views/TaskOwner';
 import CreateTask from './views/CreateTask';
-// import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
-// import TaskOwner from './views/TaskOwner';
-import TaskList from './components/TaskList';
+import IndividualApplicationList from './views/IndividualApplicationList';
 import SingleTask from './views/SingleTask';
 import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
@@ -92,6 +92,12 @@ class App extends Component {
                 authorized={user}
                 component={IndividualProfile}
                 redirect="/"
+                exact
+              />
+              <ProtectedRoute
+                path="/individual/:id/applications"
+                component={IndividualApplicationList}
+                authorized={user}
                 exact
               />
               <ProtectedRoute

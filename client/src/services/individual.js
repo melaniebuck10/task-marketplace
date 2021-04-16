@@ -11,3 +11,9 @@ export const editProfileName = async (id, data) => {
   const profileName = body.profileName;
   return profileName;
 };
+
+export const loadTasksAppliedIndividual = async (id) => {
+  const response = await api.get(`/individual/${id}`);
+  const { individual, tasksApplied } = response.data;
+  return { individual, tasksApplied };
+};

@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { loadTaskOwner } from '../services/taskownerInfo';
-// import { listTasks } from '../services/task';
 import TaskList from '../components/TaskList';
 
 class TaskOwnerList extends Component {
@@ -10,8 +9,6 @@ class TaskOwnerList extends Component {
   };
 
   async componentDidMount() {
-    // const tasks = await listTasks();
-    // this.setState({ tasks: tasks });
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
       this.props.match.params.id,
     );
@@ -28,5 +25,7 @@ class TaskOwnerList extends Component {
     );
   }
 }
+
+// Still have to add the conditional in case no task was uploaded by the user
 
 export default TaskOwnerList;
