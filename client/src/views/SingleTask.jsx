@@ -4,6 +4,7 @@ import Applicants from './../components/Applicants';
 import { editTask, loadTask } from '../services/task';
 import PictureSlider from './../components/PictureSlider';
 import { applyTask } from './../services/task';
+import EditTaskForm from '../components/EditTaskForm';
 
 class SingleTask extends Component {
   state = {
@@ -15,10 +16,10 @@ class SingleTask extends Component {
     price: '',
     hoursOfWork: '',
     typeOfWork: '',
-    status: ''
+    status: '',
+    assignment: '',
   };
-  // const { task, application } = await loadTask(this.props.match.params.id);
-  // this.setState({ task, name: task.name, application });
+
   async componentDidMount() {
     const { task, application } = await loadTask(this.props.match.params.id);
     this.setState({
@@ -30,7 +31,7 @@ class SingleTask extends Component {
       price: task.price,
       hoursOfWork: task.hoursOfWork,
       typeOfWork: task.typeOfWork,
-      status: task.status
+      status: task.status,
     });
   }
 
@@ -42,7 +43,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
   handleFormSubmission = async (event) => {
@@ -54,7 +55,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     } = this.state;
 
     // console.log(data);
@@ -65,7 +66,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     });
 
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -77,13 +78,13 @@ class SingleTask extends Component {
 
     this.setState({
       task: task.task,
-      editModeActive: false
+      editModeActive: false,
     });
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
   render() {
@@ -99,83 +100,11 @@ class SingleTask extends Component {
           )}
 
           {(this.state.editModeActive && (
-            <form onSubmit={this.handleFormSubmission}>
-              <label htmlFor="input-name">Task name</label>
-              <input
-                type="text"
-                placeholder={task.name}
-                name="name"
-                value={this.state.name && this.state.name}
-                onChange={this.handleInputChange}
-              />
-              <label htmlFor="input-description">Description</label>
-              <input
-                type="text"
-                placeholder={task.description}
-                name="description"
-                value={this.state.description && this.state.description}
-                onChange={this.handleInputChange}
-              />
-              <label htmlFor="input-assignment">Type of Assignment</label>
-              <select
-                id="input-assignment"
-                name="assignment"
-                value={this.state.assignment}
-                onChange={this.handleInputChange}
-                required
-              >
-                <option value="" disabled>
-                  Type of task
-                </option>
-                <option value="single_task">Single Task</option>
-                <option value="project">Project</option>
-              </select>
-              <label htmlFor="input-price">Price in EUR</label>
-              <input
-                type="number"
-                placeholder={task.price}
-                name="price"
-                value={this.state.price && this.state.price}
-                onChange={this.handleInputChange}
-              />
-              <label htmlFor="input-hoursOfWork">Hours</label>
-              <input
-                type="number"
-                placeholder={task.hoursOfWork}
-                name="hoursOfWork"
-                value={this.state.hoursOfWork && this.state.hoursOfWork}
-                onChange={this.handleInputChange}
-              />
-              <label htmlFor="input-typeOfWork">Type of Work</label>
-              <select
-                id="input-typeOfWork"
-                name="typeOfWork"
-                value={this.state.typeOfWork}
-                onChange={this.handleInputChange}
-              >
-                <option value="" disabled>
-                  Type of Work
-                </option>
-                <option value="physical">Physical</option>
-                <option value="administrative">Administrative</option>
-              </select>
-              <label htmlFor="input-status">Status</label>
-              <select
-                id="input-status"
-                name="status"
-                value={this.state.status}
-                onChange={this.handleInputChange}
-                required
-              >
-                <option value="" disabled>
-                  Status
-                </option>
-                <option value="open">Open</option>
-                <option value="in_process">In Process</option>
-                <option value="closed">Closed</option>
-              </select>
-              <button>Save</button>
-            </form>
+            <EditTaskForm
+              values={this.state}
+              onChange={this.handleInputChange}
+              handleFormSubmit={this.handleFormSubmission}
+            />
           )) || (
             <>
               {task && (
