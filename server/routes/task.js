@@ -23,6 +23,7 @@ router.post(
       description,
       price,
       hoursOfWork,
+      typeOfWork,
       status
     } = req.body;
     console.log(req.body);
@@ -33,6 +34,7 @@ router.post(
         description,
         price,
         hoursOfWork,
+        typeOfWork,
         status,
         taskowner: req.user._id,
         pictures
