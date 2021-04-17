@@ -47,7 +47,7 @@ router.get('/:id/myapplications', async (req, res, next) => {
   try {
     const applications = await Applications.find({
       individual: { $eq: req.params.id }
-    });
+    }).populate('task');
     console.log(applications);
     res.json({ applications });
   } catch (error) {
