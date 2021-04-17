@@ -107,7 +107,8 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
   try {
     const application = await Application.create({
       individual: req.user._id,
-      task: req.params.id
+      task: req.params.id,
+      decision: 'pending'
     });
     // const task = await Task.findById(req.params.id);
     // const taskowner = await User.findById(task.taskowner);
