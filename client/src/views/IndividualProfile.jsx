@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { loadIndividual } from '../services/individual';
 import Rating from '../components/Rating';
+import CreateReview from '../components/CreateReview';
 
 class IndividualProfile extends Component {
   state = {
@@ -74,7 +75,11 @@ class IndividualProfile extends Component {
               </p>
             </>
           )}
-          <Rating>{this.props.rating}</Rating>
+          <div>
+          <h2>Rating:</h2>
+          <Rating individual={this.props.match.params.id} />
+          </div>
+          <CreateReview />
         </div>
       </main>
     );
