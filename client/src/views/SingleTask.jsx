@@ -14,14 +14,16 @@ class SingleTask extends Component {
     price: '',
     hoursOfWork: '',
     typeOfWork: '',
-    status: '',
+    status: ''
   };
   // const { task, application } = await loadTask(this.props.match.params.id);
   // this.setState({ task, name: task.name, application });
   async componentDidMount() {
-    const task = await loadTask(this.props.match.params.id);
+
+    const {task, application} = await loadTask(this.props.match.params.id);
     this.setState({
       task,
+      application,
       // loading this here otherwise on Edit if user did not provide updated text and saved, then they were null
       name: task.name,
       description: task.description,
@@ -30,6 +32,7 @@ class SingleTask extends Component {
       typeOfWork: task.typeOfWork,
       status: task.status,
     });
+
   }
 
   handleTaskApplication = async () => {
@@ -40,7 +43,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true,
+      editModeActive: true
     });
   };
   handleFormSubmission = async (event) => {
@@ -52,7 +55,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     } = this.state;
 
     // console.log(data);
@@ -63,7 +66,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     });
 
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -73,14 +76,16 @@ class SingleTask extends Component {
     let task = await editTask(id, data);
     task = await loadTask(this.props.match.params.id);
     this.setState({
+
       task: task,
       editModeActive: false,
+
     });
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
   render() {

@@ -1,26 +1,33 @@
 import { Component } from 'react';
-import { loadTasksAppliedIndividual } from '../services/individual';
+import { loadAppliedTasks } from '../services/individual';
 import TaskList from '../components/TaskList';
 
 class IndividualApplicationList extends Component {
   state = {
     individual: null,
-    tasks: [],
+    applications: []
   };
 
   async componentDidMount() {
-    const { individual, tasksApplied } = await loadTasksAppliedIndividual(
-      this.props.match.params.id,
-    );
-    this.setState({ tasks: tasksApplied });
+    const appliedTasks = await loadAppliedTasks(this.props.match.params.id);
+    console.log('APPLIED TASKS', appliedTasks);
+    this.setState({ applications: appliedTasks.data.applications });
   }
 
   render() {
-    const { tasks } = this.state;
+    const { applications } = this.state;
     return (
       <div>
         <h1>Tasks applied by you</h1>
-        <TaskList tasks={tasks} />
+        {applications &&
+          applications.map((application) => {
+            return (
+              <div key={application._id}>
+                <div>{application.task.name}</div>
+                <div>{application.decision}</div>
+              </div>
+            );
+          })}
       </div>
     );
   }

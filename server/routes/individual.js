@@ -5,6 +5,7 @@ const User = require('./../models/user');
 const Individual = require('./../models/individual');
 const routeGuard = require('./../middleware/route-guard');
 const Task = require('./../models/task');
+const Applications = require('./../models/application');
 
 const router = new express.Router();
 
@@ -21,7 +22,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.patch('/:id', async (req, res, next) => {
   try {
-    const individual = await Individual.findByIdAndUpdate(req.params.id,
+    const individual = await Individual.findByIdAndUpdate(
+      req.params.id,
       { name: req.body.name },
       { new: true }
     );
@@ -34,12 +36,23 @@ router.patch('/:id', async (req, res, next) => {
 router.get('/:id/applications', async (req, res, next) => {
   try {
     const tasks = await Task.find().sort({ addedDate: -1 }).limit(20);
+    console.log(tasks);
     res.json({ tasks });
   } catch (error) {
     next(error);
   }
 });
 
-
+router.get('/:id/myapplications', async (req, res, next) => {
+  try {
+    const applications = await Applications.find({
+      individual: { $eq: req.params.id }
+    }).populate('task');
+    console.log(applications);
+    res.json({ applications });
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
