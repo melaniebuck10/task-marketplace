@@ -1,12 +1,40 @@
 import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
+import { createRating, loadRating, listRatings, loadRatingIndividual } from '../services/rating';
+import CreateReview from './CreateReview';
+ 
+class Rating extends React.Component {
+  state = {
+    rating: 1
+  }
 
- const Rating = ({ children }) => {
-   return (
-     <div>
-       {'★'.repeat(Math.round(children))}
-       {'☆'.repeat(5 - Math.round(children))}
-     </div>
-   );
- };
+      async componentDidMount() {
+      const rating = await loadRating(
+        this.props.individual,
+      );
+      this.setState({ rating });
+    }
+ 
+  // onStarClick(nextValue, prevValue, name) {
+  //   const newReview = await createRating( );
+  //   this.setState({rating: nextValue});
+  // }
+ 
+  render() {
+    const { rating } = this.state;
+    
+    return (                
+      <div>
+        <StarRatingComponent 
+          name="rate1" 
+          starCount={5}
+          value={rating}
+          //onStarClick={this.onStarClick.bind(this)}
+        />
+      </div>
+    );
+  }
+}
 
- export default Rating;
+export default Rating;
+
