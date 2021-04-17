@@ -14,12 +14,12 @@ class SingleTask extends Component {
     price: '',
     hoursOfWork: '',
     typeOfWork: '',
-    status: '',
+    status: ''
   };
 
   async componentDidMount() {
-    const task = await loadTask(this.props.match.params.id);
-    this.setState({ task, name: task.name });
+    const { task, application } = await loadTask(this.props.match.params.id);
+    this.setState({ task, name: task.name, application });
   }
 
   handleTaskApplication = async () => {
@@ -30,7 +30,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true,
+      editModeActive: true
     });
   };
   handleFormSubmission = async (event) => {
@@ -42,7 +42,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     } = this.state;
     this.handleTaskEdit(this.state.task._id, {
       name,
@@ -51,7 +51,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     });
     this.setState({ editModeActive: false });
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -60,13 +60,13 @@ class SingleTask extends Component {
   handleTaskEdit = async (id, data) => {
     const task = await editTask(id, { data });
     this.setState({
-      task: task,
+      task: task
     });
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
   render() {

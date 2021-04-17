@@ -13,8 +13,9 @@ export const listTasks = async () => {
 export const loadTask = async (id) => {
   const response = await api.get(`/task/${id}`);
   const task = response.data.task;
-  // const application = response.data.application;
-  return task;
+  const application = response.data.application;
+  console.log(application);
+  return { task, application };
 };
 
 export const editTask = async (id, data) => {
