@@ -198,6 +198,14 @@ class SingleTask extends Component {
                     )}
                   </div>
                   <span>Created by {task.taskowner.name}</span>
+                  <button
+                   className="button"
+                   disabled={this.state.application}
+                   // taskid={task._id}
+                   onClick={this.handleTaskApplication}
+                 >
+                   {(this.state.application && 'Applied!') || 'Apply for Task'}
+                 </button>
                 </div>
               </>
             )}
