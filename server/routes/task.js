@@ -77,7 +77,6 @@ router.get('/:id', routeGuard, async (req, res, next) => {
 router.patch('/:id/edit', routeGuard, async (req, res, next) => {
   const {
     name,
-    taskowner,
     assignment,
     description,
     price,
@@ -85,11 +84,11 @@ router.patch('/:id/edit', routeGuard, async (req, res, next) => {
     typeOfWork,
     status
   } = req.body;
-  const id = req.user._id;
+  console.log(req.body);
+  const id = req.params.id;
   try {
     const task = await Task.findByIdAndUpdate(id, {
       name,
-      taskowner,
       assignment,
       description,
       price,
@@ -107,7 +106,8 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
   try {
     const application = await Application.create({
       individual: req.user._id,
-      task: req.params.id
+      task: req.params.id,
+      decision: 'pending'
     });
     // const task = await Task.findById(req.params.id);
     // const taskowner = await User.findById(task.taskowner);

@@ -25,7 +25,7 @@ import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 class App extends Component {
   state = {
     user: null,
-    loaded: false,
+    loaded: false
   };
 
   async componentDidMount() {
@@ -95,7 +95,7 @@ class App extends Component {
                 exact
               />
               <ProtectedRoute
-                path="/individual/:id/applications"
+                path="/individual/:id/myapplications"
                 component={IndividualApplicationList}
                 authorized={user}
                 exact
