@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { loadTaskApplicants } from './../services/taskownerInfo';
 
 class Applicants extends Component {
   state = {
@@ -7,13 +8,23 @@ class Applicants extends Component {
   };
 
   async componentDidMount() {
-    const appliedTasks = await loadAppliedTasks(this.props.match.params.id);
-    console.log(appliedTasks);
-    this.setState({ tasks: appliedTasks });
+    console.log('taskId', this.props.taskId);
+    const applicants = await loadTaskApplicants(this.props.taskId);
+    console.log('APPLICANTS', applicants);
+    this.setState({ applicants });
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        {this.state.applicants.map((applicant) => (
+          <div key={applicant._id}>
+            <li>{applicant.individual.name}</li>
+            <button>Assign task</button>
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 
