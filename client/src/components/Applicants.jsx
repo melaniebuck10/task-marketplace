@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { loadTaskApplicants } from './../services/taskownerInfo';
 
 class Applicants extends Component {
   state = {
@@ -7,13 +8,20 @@ class Applicants extends Component {
   };
 
   async componentDidMount() {
-    const appliedTasks = await loadAppliedTasks(this.props.match.params.id);
-    console.log(appliedTasks);
-    this.setState({ tasks: appliedTasks });
+    //   ID RETRIEVAL ISSUE WITH PROPS
+    const applicants = await loadTaskApplicants('6078787b1562695cb045068b');
+    console.log('APPLICANTS', applicants);
+    this.setState({ applicants });
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        {this.state.applicants.map((applicant) => (
+          <li key={applicant._id}>{applicant.individual.name}</li>
+        ))}
+      </div>
+    );
   }
 }
 
