@@ -5,16 +5,13 @@ export const loadIndividual = async (id) => {
   return response.data.individual;
 };
 
-export const editProfileName = async (id, data) => {
+export const editProfile = async (id, data) => {
   const response = await api.patch(
     `http://localhost:3000/individual/${id}`,
     data
   );
-  const body = response.data;
-  const profileName = body.profileName;
-  return profileName;
+  return response.data.profile;
 };
-
 export const loadTasksAppliedIndividual = async (id) => {
   const response = await api.get(`/individual/${id}`);
   const { individual, tasksApplied } = response.data;

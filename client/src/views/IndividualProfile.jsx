@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { loadIndividual } from '../services/individual';
+import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
 
@@ -7,34 +7,49 @@ class IndividualProfile extends Component {
   state = {
     individual: null,
     editModeActive: false,
-    newIndividualName: '',
+    name: ''
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
-    this.setState({ individual });
+    this.setState({
+      individual,
+      name: individual.name
+    });
   }
 
   toggleNameEditMode = () => {
     this.setState({
-      editModeActive: true,
-      newIndividualName: this.props.name,
+      editModeActive: true
     });
   };
 
-  handleIndividualNameChange = (event) => {
-    const value = event.target.value;
-    this.setState({
-      newIndividualName: value,
-    });
-  };
-
-  handleFormSubmission = (event) => {
+  handleFormSubmission = async (event) => {
     event.preventDefault();
+    const name = this.state;
+
+    await this.handleProfileEdit(this.state.individual._id, name);
+    this.props.history.push(`/individual/${this.state.individual._id}`);
+  };
+
+  handleProfileEdit = async (id, data) => {
+    let profile = await editProfile(id, data);
+    profile = await loadIndividual(this.props.match.params.id);
+
+    this.setState({
+      name: profile.name,
+      editModeActive: false
+    });
+  };
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
   };
 
   render() {
-    const { individual } = this.state;
+    const individual = this.state;
     return (
       <main>
         <div>
@@ -53,21 +68,18 @@ class IndividualProfile extends Component {
                   <input
                     type="text"
                     placeholder="Update your name"
-                    value={
-                      this.state.newIndividualName &&
-                      this.state.newIndividualName
-                    }
-                    onChange={(event) => this.handleIndividualNameChange(event)}
+                    name="name"
+                    value={this.state.name && this.state.name}
+                    onChange={this.handleInputChange}
                   />
-                  <button>🔒</button>
+                  <button>Save</button>
                 </form>
               )) || (
                 <>
                   {individual.name}
-                  <button onClick={this.toggleNameEditMode}>✏️</button>
+                  <button onClick={this.toggleNameEditMode}>✏</button>
                 </>
               )}
-
               <p>
                 {' '}
                 <strong>Email address: </strong>
@@ -76,8 +88,8 @@ class IndividualProfile extends Component {
             </>
           )}
           <div>
-          <h2>Rating:</h2>
-          <Rating individual={this.props.match.params.id} />
+            <h2>Rating:</h2>
+            <Rating individual={this.props.match.params.id} />
           </div>
           <CreateReview />
         </div>
