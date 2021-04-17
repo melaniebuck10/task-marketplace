@@ -16,10 +16,23 @@ class SingleTask extends Component {
     typeOfWork: '',
     status: ''
   };
-
+  // const { task, application } = await loadTask(this.props.match.params.id);
+  // this.setState({ task, name: task.name, application });
   async componentDidMount() {
-    const { task, application } = await loadTask(this.props.match.params.id);
-    this.setState({ task, name: task.name, application });
+
+    const {task, application} = await loadTask(this.props.match.params.id);
+    this.setState({
+      task,
+      application,
+      // loading this here otherwise on Edit if user did not provide updated text and saved, then they were null
+      name: task.name,
+      description: task.description,
+      price: task.price,
+      hoursOfWork: task.hoursOfWork,
+      typeOfWork: task.typeOfWork,
+      status: task.status,
+    });
+
   }
 
   handleTaskApplication = async () => {
@@ -44,7 +57,9 @@ class SingleTask extends Component {
       typeOfWork,
       status
     } = this.state;
-    this.handleTaskEdit(this.state.task._id, {
+
+    // console.log(data);
+    await this.handleTaskEdit(this.state.task._id, {
       name,
       assignment,
       description,
@@ -53,14 +68,18 @@ class SingleTask extends Component {
       typeOfWork,
       status
     });
-    this.setState({ editModeActive: false });
+
     this.props.history.push(`/task/${this.state.task._id}`);
   };
 
   handleTaskEdit = async (id, data) => {
-    const task = await editTask(id, { data });
+    let task = await editTask(id, data);
+    task = await loadTask(this.props.match.params.id);
     this.setState({
-      task: task
+
+      task: task,
+      editModeActive: false,
+
     });
   };
   handleInputChange = (event) => {
@@ -107,7 +126,7 @@ class SingleTask extends Component {
               required
             >
               <option value="" disabled>
-                Assignment
+                Type of task
               </option>
               <option value="single_task">Single Task</option>
               <option value="project">Project</option>
@@ -135,7 +154,9 @@ class SingleTask extends Component {
               value={this.state.typeOfWork}
               onChange={this.handleInputChange}
             >
-              <option value="" disabled></option>
+              <option value="" disabled>
+                Type of Work
+              </option>
               <option value="physical">Physical</option>
               <option value="administrative">Administrative</option>
             </select>
@@ -174,10 +195,16 @@ class SingleTask extends Component {
                         {task.description}
                       </p>
                     )}
-                    <strong>Type: </strong>
+                    <strong>Type of Task: </strong>
                     {(task.assignment === 'single_task' && 'Single Task') ||
                       'Project'}
-                    <p>Hours: {task.hoursOfWork}</p>
+                    <br />
+                    <strong>Type of work: </strong>
+                    {(task.typeOfWork === 'physical' && 'Physical') ||
+                      'Administrative'}
+                    <p>
+                      <strong> Hours:</strong> {task.hoursOfWork}
+                    </p>
                     <p>
                       <strong>I am able to pay the following amount:</strong>{' '}
                       <br />
