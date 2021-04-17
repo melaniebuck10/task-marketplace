@@ -8,8 +8,8 @@ class Applicants extends Component {
   };
 
   async componentDidMount() {
-    //   ID RETRIEVAL ISSUE WITH PROPS
-    const applicants = await loadTaskApplicants('6078787b1562695cb045068b');
+    console.log('taskId', this.props.taskId);
+    const applicants = await loadTaskApplicants(this.props.taskId);
     console.log('APPLICANTS', applicants);
     this.setState({ applicants });
   }
@@ -18,7 +18,10 @@ class Applicants extends Component {
     return (
       <div>
         {this.state.applicants.map((applicant) => (
-          <li key={applicant._id}>{applicant.individual.name}</li>
+          <div key={applicant._id}>
+            <li>{applicant.individual.name}</li>
+            <button>Assign task</button>
+          </div>
         ))}
       </div>
     );

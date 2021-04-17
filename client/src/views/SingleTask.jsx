@@ -247,9 +247,9 @@ class SingleTask extends Component {
             </>
           )}
         </div>
-        {this.props.user && this.props.user.role === 'taskowner' && (
-          <Applicants />
-        )}
+        {this.props.user &&
+          this.props.user.role === 'taskowner' &&
+          this.state.task && <Applicants taskId={this.state.task._id} />}
       </main>
     );
   }
