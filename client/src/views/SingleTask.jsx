@@ -11,15 +11,15 @@ class SingleTask extends Component {
     application: null,
     name: '',
     description: '',
+    price: '',
+    hoursOfWork: '',
+    typeOfWork: '',
+    status: '',
   };
 
   async componentDidMount() {
     const task = await loadTask(this.props.match.params.id);
     this.setState({ task, name: task.name });
-    // I REMOVED THE BELOW CODE (APPLICATION) BECAUSE IT WAS BLOCKING THE SINGLE TASK FROM RENDERING. loadTask does not return the application.
-    // const { task, application } = await loadTask(this.props.match.params.id);
-    // console.log(task);
-    // this.setState({ task, application });
   }
 
   handleTaskApplication = async () => {
@@ -128,14 +128,17 @@ class SingleTask extends Component {
               value={this.state.hoursOfWork && this.state.hoursOfWork}
               onChange={this.handleInputChange}
             />
-            <label htmlFor="input-typeOfWork">Type of work</label>
-            <input
-              type="text"
-              placeholder={task.typeOfWork}
+            <label htmlFor="input-typeOfWork">Type of Work</label>
+            <select
+              id="input-typeOfWork"
               name="typeOfWork"
-              value={this.state.typeOfWork && this.state.typeOfWork}
+              value={this.state.typeOfWork}
               onChange={this.handleInputChange}
-            />
+            >
+              <option value="" disabled></option>
+              <option value="physical">Physical</option>
+              <option value="administrative">Administrative</option>
+            </select>
             <label htmlFor="input-status">Status</label>
             <select
               id="input-status"
@@ -188,24 +191,28 @@ class SingleTask extends Component {
                     </p>{' '}
                     <br />
                     <br />
-                    {userId === task.taskowner._id && (
+                    <span>Created by {task.taskowner.name}</span>
+                    <div>
+                      {userId === task.taskowner._id && (
+                        <button
+                          className="button"
+                          onClick={this.toggleEditMode}
+                        >
+                          Edit
+                        </button>
+                      )}
+
                       <button
-                        onClick={this.toggleEditMode}
-                        style={{ backgroundColor: 'lightgreen' }}
+                        className="button"
+                        disabled={this.state.application}
+                        // taskid={task._id}
+                        onClick={this.handleTaskApplication}
                       >
-                        Edit
+                        {(this.state.application && 'Applied!') ||
+                          'Apply for Task'}
                       </button>
-                    )}
+                    </div>
                   </div>
-                  <span>Created by {task.taskowner.name}</span>
-                  <button
-                   className="button"
-                   disabled={this.state.application}
-                   // taskid={task._id}
-                   onClick={this.handleTaskApplication}
-                 >
-                   {(this.state.application && 'Applied!') || 'Apply for Task'}
-                 </button>
                 </div>
               </>
             )}
