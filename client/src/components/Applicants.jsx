@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { loadTaskApplicants } from './../services/taskownerInfo';
+import { assignTask } from './../services/task';
 
 class Applicants extends Component {
   state = {
@@ -14,13 +15,22 @@ class Applicants extends Component {
     this.setState({ applicants });
   }
 
+  handleAssignment = async () => {
+    // Update the task status from open to in process
+    const updatedTask = await assignTask(this.props.taskId, {
+      status: 'in_process'
+    });
+    console.log('UPDATED TASK', updatedTask);
+    this.props.handleTask(updatedTask);
+  };
+
   render() {
     return (
       <div>
         {this.state.applicants.map((applicant) => (
           <div key={applicant._id}>
             <li>{applicant.individual.name}</li>
-            <button>Assign task</button>
+            <button onClick={this.handleAssignment}>Assign task</button>
           </div>
         ))}
       </div>

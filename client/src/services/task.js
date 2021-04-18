@@ -31,3 +31,9 @@ export const applyTask = async (id) => {
   const response = await api.post(`/task/${id}/apply`);
   return response.data.application;
 };
+
+export const assignTask = async (id, data) => {
+  const response = await api.patch(`/task/${id}/assignTask`, data);
+  console.log('RESPONSE', response);
+  return response.data.assignedTask;
+};

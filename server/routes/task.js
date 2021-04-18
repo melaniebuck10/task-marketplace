@@ -120,6 +120,21 @@ router.patch('/:id/edit', routeGuard, async (req, res, next) => {
   }
 });
 
+router.patch('/:id/assignTask', routeGuard, async (req, res, next) => {
+  const id = req.params.id;
+  const data = req.body;
+  try {
+    // Update the task status from open to in_process
+    const assignedTask = await Task.findByIdAndUpdate(id, data, {
+      new: true
+    }).populate('taskowner');
+    console.log('assignedTask', assignedTask);
+    res.json({ assignedTask });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/:id/apply', routeGuard, async (req, res, next) => {
   try {
     const application = await Application.create({
