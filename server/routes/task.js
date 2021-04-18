@@ -128,7 +128,6 @@ router.patch('/:id/assignTask', routeGuard, async (req, res, next) => {
     const assignedTask = await Task.findByIdAndUpdate(id, data, {
       new: true
     }).populate('taskowner');
-    console.log('assignedTask', assignedTask);
     res.json({ assignedTask });
   } catch (error) {
     next(error);

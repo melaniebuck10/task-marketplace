@@ -15,22 +15,32 @@ class Applicants extends Component {
     this.setState({ applicants });
   }
 
-  handleAssignment = async () => {
+  handleAssignment = async (index) => {
     // Update the task status from open to in process
     const updatedTask = await assignTask(this.props.taskId, {
       status: 'in_process'
     });
-    console.log('UPDATED TASK', updatedTask);
     this.props.handleTask(updatedTask);
+    // Approving one candidate, rejecting all others
+    let applicants = [...this.state.applicants];
+    applicants.map((applicant) => (applicant.decision = 'rejected'));
+    applicants[index].decision = 'approved';
+    this.setState({
+      applicants: applicants
+    });
+    // Updating the DB applications
+    
   };
 
   render() {
     return (
       <div>
-        {this.state.applicants.map((applicant) => (
+        {this.state.applicants.map((applicant, index) => (
           <div key={applicant._id}>
             <li>{applicant.individual.name}</li>
-            <button onClick={this.handleAssignment}>Assign task</button>
+            <button onClick={(e) => this.handleAssignment(index)}>
+              Assign task
+            </button>
           </div>
         ))}
       </div>
