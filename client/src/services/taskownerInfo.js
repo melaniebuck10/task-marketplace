@@ -6,6 +6,14 @@ export const loadTaskOwner = async (id) => {
   return { taskowner, tasksOfOwner };
 };
 
+export const editProfile = async (id, data) => {
+  const response = await api.patch(
+    `http://localhost:3000/taskowner/${id}`,
+    data
+  );
+  return response.data.profile;
+};
+
 export const loadTaskApplicants = async (id) => {
   const response = await api.get(`task/${id}/getapplications`);
   console.log('RESPONSE', response);

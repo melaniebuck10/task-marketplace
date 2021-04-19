@@ -27,6 +27,23 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.patch('/:id/edit', async (req, res, next) => {
+  const {
+    name,
+    phoneNumber
+  } = req.body;
+  const id = req.params.id;
+  try {
+    const taskowner = await Taskowner.findByIdAndUpdate(id, {
+    name,
+    phoneNumber
+    });
+    res.json({ taskowner });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id/list', async (req, res, next) => {
   try {
     const tasks = await Task.find().sort({ addedDate: -1 }).limit(20);

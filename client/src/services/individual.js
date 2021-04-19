@@ -12,6 +12,7 @@ export const editProfile = async (id, data) => {
   );
   return response.data.profile;
 };
+
 export const loadTasksAppliedIndividual = async (id) => {
   const response = await api.get(`/individual/${id}`);
   const { individual, tasksApplied } = response.data;
