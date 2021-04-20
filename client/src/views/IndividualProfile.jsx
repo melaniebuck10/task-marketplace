@@ -8,7 +8,7 @@ class IndividualProfile extends Component {
     individual: null,
     editModeActive: false,
     name: '',
-    email: ''
+    email: '',
   };
 
   async componentDidMount() {
@@ -16,13 +16,13 @@ class IndividualProfile extends Component {
     this.setState({
       individual,
       name: individual.name,
-      email: individual.email
+      email: individual.email,
     });
   }
 
   toggleNameEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
 
@@ -41,14 +41,14 @@ class IndividualProfile extends Component {
     this.setState({
       // name: profile.name,
       individual: individual,
-      editModeActive: false
+      editModeActive: false,
     });
     this.props.onUserChange(individual);
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -61,12 +61,11 @@ class IndividualProfile extends Component {
           {individual && (
             <>
               <h1>Hello, {individual.name}, this is your profile.</h1>
-              {individual.profilePicture}
               <h3>Your information</h3>
               <p>
                 {' '}
                 <strong>Name: </strong>
-                </p>
+              </p>
               {(this.state.editModeActive && (
                 <form onSubmit={this.handleFormSubmission}>
                   <input
@@ -75,7 +74,7 @@ class IndividualProfile extends Component {
                     name="name"
                     value={this.state.name && this.state.name}
                     onChange={this.handleInputChange}
-                    />
+                  />
                   <button>Save</button>
                 </form>
               )) || (
