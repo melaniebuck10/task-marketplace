@@ -20,7 +20,7 @@ const Navbar = ({ user, onSignOut }) => {
           {user.role === 'individual' && (
             <Link to={`/individual/${user._id}/myapplications`}>
               Your applications
-            </Link>
+              </Link>
           )}
         </>
       )}

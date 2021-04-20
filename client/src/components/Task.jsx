@@ -12,6 +12,7 @@ const Task = ({ task }) => {
         </small>
         {task.description && <p>{task.description}</p>}
       </div>
+      <p>{task.status}</p>
     </div>
   );
 };

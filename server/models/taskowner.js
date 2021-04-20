@@ -8,7 +8,7 @@ const taskownerSchema = new mongoose.Schema({
     type: String
   },
   phoneNumber: {
-    type: Number
+    type: String
   }
 });
 

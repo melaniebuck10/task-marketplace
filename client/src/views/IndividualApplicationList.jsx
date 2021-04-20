@@ -37,15 +37,11 @@ class IndividualApplicationList extends Component {
                 <div>{application.decision}</div>
                 {application.decision === 'approved' ? (
                   <Link to={`/task/${application.task._id}/approvedtask`}>
-                    View more details!
+                    View more details!<br/>
                   </Link>
                 ) : (
                   ''
-                )}
-                <Link to={`/task/${application.task._id}`}>
-                  {application.task.name}
-                </Link>
-                <p>{application.decision}</p>
+                )} <br/>
               </div>
             );
           })}

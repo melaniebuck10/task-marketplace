@@ -13,7 +13,9 @@ class ApprovedApplication extends Component {
   }
   render() {
     console.log(this.props.match);
-    return <div></div>;
+    return <div>
+      
+    </div>;
   }
 }
 
