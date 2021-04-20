@@ -35,13 +35,15 @@ class IndividualProfile extends Component {
   };
 
   handleProfileEdit = async (id, data) => {
-    let profile = await editProfile(id, data);
-    profile = await loadIndividual(this.props.match.params.id);
+    let individual = await editProfile(id, data);
+    // profile = await loadIndividual(this.props.match.params.id);
 
     this.setState({
-      name: profile.name,
+      // name: profile.name,
+      individual: individual,
       editModeActive: false
     });
+    this.props.onUserChange(individual);
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -51,7 +53,8 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const individual = this.state;
+    const { individual } = this.state;
+    const userId = this.props.user._id;
     return (
       <main>
         <div>
@@ -63,7 +66,7 @@ class IndividualProfile extends Component {
               <p>
                 {' '}
                 <strong>Name: </strong>
-              </p>
+                </p>
               {(this.state.editModeActive && (
                 <form onSubmit={this.handleFormSubmission}>
                   <input
@@ -72,13 +75,15 @@ class IndividualProfile extends Component {
                     name="name"
                     value={this.state.name && this.state.name}
                     onChange={this.handleInputChange}
-                  />
+                    />
                   <button>Save</button>
                 </form>
               )) || (
                 <>
                   {individual.name}
-                  <button onClick={this.toggleNameEditMode}>✏</button>
+                  {userId === individual._id && (
+                    <button onClick={this.toggleNameEditMode}>✏️</button>
+                  )}
                 </>
               )}
               <p>

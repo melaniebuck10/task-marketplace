@@ -10,7 +10,7 @@ export const editProfile = async (id, data) => {
     `http://localhost:3000/individual/${id}`,
     data
   );
-  return response.data.profile;
+  return response.data.individual;
 };
 
 export const loadTasksAppliedIndividual = async (id) => {
