@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { loadTaskApplicants } from './../services/taskownerInfo';
-import { assignTask } from './../services/task';
+import { assignTask, updatedApplications } from './../services/task';
 
 class Applicants extends Component {
   state = {
@@ -29,7 +29,11 @@ class Applicants extends Component {
       applicants: applicants
     });
     // Updating the DB applications
-    
+    const applicantsUpdated = await updatedApplications(
+      this.props.taskId,
+      this.state.applicants
+    );
+    console.log(applicantsUpdated);
   };
 
   render() {

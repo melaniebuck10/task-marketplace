@@ -20,8 +20,3 @@ export const loadTaskApplicants = async (id) => {
   return response.data.applicants;
 };
 
-// TO BE FINETUNED
-// export const updateApplications = async (id) => {
-//   const response = await api.get(`task/${id}/updateApplications`);
-//   return reponse.data.applications;
-// };

@@ -80,13 +80,22 @@ router.get('/:id', routeGuard, async (req, res, next) => {
 
 router.get('/:id/getapplications', routeGuard, async (req, res, next) => {
   try {
-    console.log('PARAMS', req.params.id);
     const applicants = await Application.find({
       task: { $eq: req.params.id },
       decision: { $eq: 'pending' }
     }).populate('individual');
     console.log('APPLICANTS', applicants);
     res.json({ applicants });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.patch(':id/updateapplications', routeGuard, async (req, res, next) => {
+  try {
+    console.log('PARAMS', req.params.id);
+    console.log('REQ BODY', req.body);
+    res.json({ foo: 'bar' });
   } catch (error) {
     next(error);
   }
