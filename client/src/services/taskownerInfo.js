@@ -11,7 +11,7 @@ export const editProfile = async (id, data) => {
     `http://localhost:3000/taskowner/${id}/edit`,
     data
   );
-  return response.data.profile;
+  return response.data.taskowner;
 };
 
 export const loadTaskApplicants = async (id) => {

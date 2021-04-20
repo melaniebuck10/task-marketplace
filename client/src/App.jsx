@@ -90,7 +90,14 @@ class App extends Component {
               <ProtectedRoute
                 path="/individual/:id"
                 authorized={user}
-                component={IndividualProfile}
+                // component={IndividualProfile}
+                render={(props) => (
+                  <IndividualProfile
+                    {...props}
+                    user={this.state.user}
+                    onUserChange={this.handleUserChange}
+                  />
+                )}
                 redirect="/"
                 exact
               />
@@ -109,7 +116,13 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/taskowner/:id"
-                component={TaskOwner}
+                render={(props) => (
+                  <TaskOwner
+                    {...props}
+                    user={this.state.user}
+                    onUserChange={this.handleUserChange}
+                  />
+                )}
                 authorized={user && user.role === 'taskowner'}
                 redirect="/"
                 exact

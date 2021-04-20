@@ -28,16 +28,17 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.patch('/:id/edit', async (req, res, next) => {
-  const {
-    name,
-    phoneNumber
-  } = req.body;
+  const { name, phoneNumber } = req.body;
   const id = req.params.id;
   try {
-    const taskowner = await Taskowner.findByIdAndUpdate(id, {
-    name,
-    phoneNumber
-    });
+    const taskowner = await Taskowner.findByIdAndUpdate(
+      id,
+      {
+        name,
+        phoneNumber
+      },
+      { new: true }
+    );
     res.json({ taskowner });
   } catch (error) {
     next(error);
