@@ -81,8 +81,7 @@ router.get('/:id', routeGuard, async (req, res, next) => {
 router.get('/:id/getapplications', routeGuard, async (req, res, next) => {
   try {
     const applicants = await Application.find({
-      task: { $eq: req.params.id },
-      decision: { $eq: 'pending' }
+      task: { $eq: req.params.id }
     }).populate('individual');
     console.log('APPLICANTS', applicants);
     res.json({ applicants });
@@ -91,12 +90,39 @@ router.get('/:id/getapplications', routeGuard, async (req, res, next) => {
   }
 });
 
-router.patch(':id/updateapplications', routeGuard, async (req, res, next) => {
+router.patch('/:id/updateapplications', routeGuard, async (req, res, next) => {
   try {
     console.log('PARAMS', req.params.id);
     console.log('REQ BODY', req.body);
-    res.json({ foo: 'bar' });
+    const body = req.body;
+    const approvedApplication = body.filter(
+      (application) => application.decision === 'approved'
+    )[0];
+    const rejectedApplications = body.filter(
+      (application) => application.decision !== 'approved'
+    );
+    const responseForApprovedApplication = await Application.findByIdAndUpdate(
+      approvedApplication._id,
+      { decision: 'approved' },
+      { new: true }
+    );
+    console.log('Approved', responseForApprovedApplication);
+    const responseForRejectedApplications = await Application.updateMany(
+      {
+        task: { $eq: req.params.id },
+        _id: { $ne: approvedApplication._id }
+      },
+      {
+        decision: 'rejected'
+      }
+    );
+    console.log('REJECTED', responseForRejectedApplications);
+    res.json({
+      approved: responseForApprovedApplication,
+      rejected: responseForRejectedApplications
+    });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });

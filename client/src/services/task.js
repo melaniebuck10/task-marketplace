@@ -39,7 +39,7 @@ export const assignTask = async (id, data) => {
 };
 
 export const updatedApplications = async (id, data) => {
-  const response = await api.patch(`task/${id}/updateapplications`);
+  const response = await api.patch(`task/${id}/updateapplications`, data);
   console.log('RESPONSE', response);
   return response.data;
 };

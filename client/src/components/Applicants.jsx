@@ -42,6 +42,7 @@ class Applicants extends Component {
         {this.state.applicants.map((applicant, index) => (
           <div key={applicant._id}>
             <li>{applicant.individual.name}</li>
+            <li>{applicant.decision}</li>
             <button onClick={(e) => this.handleAssignment(index)}>
               Assign task
             </button>
