@@ -193,4 +193,18 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
   }
 });
 
+router.get(`/:id/approvedtask`, routeGuard, async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id).populate(
+      'taskowner',
+      'name'
+    );
+    console.log('TASK', task);
+    res.json({ task });
+  } catch (error) {
+    console.log('ERROR', error);
+    next(error);
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { loadAppliedTasks } from '../services/individual';
+import { Link } from 'react-router-dom';
 //import TaskList from '../components/TaskList';
 
 class IndividualApplicationList extends Component {
@@ -25,6 +26,13 @@ class IndividualApplicationList extends Component {
               <div key={application._id}>
                 <div>{application.task.name}</div>
                 <div>{application.decision}</div>
+                {application.decision === 'approved' ? (
+                  <Link to={`/task/${application.task._id}/approvedtask`}                  >
+                    View more details!
+                  </Link>
+                ) : (
+                  ''
+                )}
               </div>
             );
           })}

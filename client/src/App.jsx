@@ -21,6 +21,7 @@ import SingleTask from './views/SingleTask';
 import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
+import ApprovedApplication from './views/ApprovedApplication';
 
 class App extends Component {
   state = {
@@ -102,8 +103,16 @@ class App extends Component {
                 exact
               />
               <ProtectedRoute
+                path="/task/:id/approvedtask"
+                component={ApprovedApplication}
+                authorized={user}
+              />
+
+              <ProtectedRoute
                 path="/individual/:id/myapplications"
-                component={IndividualApplicationList}
+                render={(props) => (
+                  <IndividualApplicationList {...props} user={user} />
+                )}
                 authorized={user}
                 exact
               />
