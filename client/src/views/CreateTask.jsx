@@ -112,6 +112,7 @@ class CreateTask extends Component {
             placeholder="Description"
             value={this.state.description}
             onChange={this.handleInputChange}
+            required
           />
 
           <div className="row">
@@ -122,6 +123,7 @@ class CreateTask extends Component {
                 name="typeOfWork"
                 value={this.state.typeOfWork}
                 onChange={this.handleInputChange}
+                required
               >
                 <option value="">Non-specified</option>
                 <option value="physical">Physical</option>

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { loadAppliedTasks } from '../services/individual';
-//import TaskList from '../components/TaskList';
+import { Link } from 'react-router-dom';
+import Task from '../components/Task';
 
 class IndividualApplicationList extends Component {
   state = {
@@ -16,15 +17,23 @@ class IndividualApplicationList extends Component {
 
   render() {
     const { applications } = this.state;
+
     return (
       <div>
         <h1>Tasks applied by you</h1>
         {applications &&
           applications.map((application) => {
+            // {this.props.tasks.map((task) => (
+            //   <div key={application._id}>
+            //     <Link to={`/task/${task._id}`}>
+            //       <Task task={task} />
+            //     </Link>
+            //   </div>
+            // ))}
             return (
               <div key={application._id}>
-                <div>{application.task.name}</div>
-                <div>{application.decision}</div>
+                <Link to={`/task/${application.task._id}`}>{application.task.name}</Link>
+                <p>{application.decision}</p>
               </div>
             );
           })}
@@ -32,7 +41,5 @@ class IndividualApplicationList extends Component {
     );
   }
 }
-
-// Still have to add the conditional in case no task was applied by the user
 
 export default IndividualApplicationList;
