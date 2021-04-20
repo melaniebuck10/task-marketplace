@@ -1,7 +1,8 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
-import { createRating, loadRating, listRatings, loadRatingIndividual } from '../services/rating';
-import CreateReview from './CreateReview';
+import { loadRating, } from '../services/rating';
+//createRating, listRatings, loadRatingIndividual --> to be added to above when used
+//import CreateReview from './CreateReview';
  
 class Rating extends React.Component {
   state = {

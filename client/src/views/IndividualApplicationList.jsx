@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { loadAppliedTasks } from '../services/individual';
-import TaskList from '../components/TaskList';
+//import TaskList from '../components/TaskList';
 
 class IndividualApplicationList extends Component {
   state = {
