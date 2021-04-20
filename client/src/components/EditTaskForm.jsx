@@ -79,9 +79,7 @@ export default class EditTaskForm extends Component {
             id="input-status"
             name="status"
             value={status}
-            // onChange={this.props.handleInputChange}
-            onChange={(event) => this.props.handleInputChange(event)}
-            // event)=>this.inputChangedHandler(event)
+            onChange={(event) => this.props.onChange(event)}
             required
           >
             <option value="" disabled>
