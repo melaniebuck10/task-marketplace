@@ -27,7 +27,7 @@ const Navbar = ({ user, onSignOut }) => {
       <div>
         {(user && (
           <>
-            {user.profilePicture && (
+            {(user.profilePicture && (
               <Link className="img__wrap" to={`/${user.role}/${user._id}`}>
                 <img
                   className="img__img"
@@ -37,6 +37,10 @@ const Navbar = ({ user, onSignOut }) => {
                 <p className="img__description">
                   <span>Your profile</span>{' '}
                 </p>
+              </Link>
+            )) || (
+              <Link to={`/${user.role}/${user._id}`}>
+                {user.name}'s Profile
               </Link>
             )}
             <button onClick={onSignOut}>Sign Out</button>
