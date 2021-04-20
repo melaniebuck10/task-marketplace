@@ -5,14 +5,14 @@ import TaskList from '../components/TaskList';
 class TaskOwnerList extends Component {
   state = {
     taskowner: null,
-    tasks: [],
+    tasks: []
   };
 
   async componentDidMount() {
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
-      this.props.match.params.id,
+      this.props.match.params.id
     );
-    this.setState({ tasks: tasksOfOwner });
+    this.setState({ tasks: tasksOfOwner, taskowner });
   }
 
   render() {

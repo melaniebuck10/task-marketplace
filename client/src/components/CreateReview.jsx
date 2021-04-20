@@ -1,5 +1,6 @@
 import React from 'react';
-import { createRating, loadRating, listRatings, loadRatingIndividual } from '../services/rating';
+import { createRating } from '../services/rating';
+// loadRating, listRatings, loadRatingIndividual  --> to be added to above once used
 import Rating from './Rating';
 
 class CreateReview extends React.Component {

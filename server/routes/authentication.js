@@ -14,7 +14,6 @@ const router = new Router();
 router.post(
   '/sign-up',
   fileUpload.single('profilePicture'),
-  //console.log(fileUpload)
   async (req, res, next) => {
     const {
       name,
@@ -23,9 +22,13 @@ router.post(
       role,
       description,
       address,
-      phoneNumber,
-      profilePicture
+      phoneNumber
     } = req.body;
+    let profilePicture;
+    if (req.file) {
+      profilePicture = req.file.path;
+    }
+    console.log(req.file);
     console.log(req.body);
     try {
       const hash = await bcryptjs.hash(password, 10);

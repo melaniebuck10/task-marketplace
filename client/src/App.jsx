@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import ProtectedRoute from './components/ProtectedRoute';
-import TaskList from './components/TaskList';
+//import TaskList from './components/TaskList';
 import Navbar from './components/Navbar';
 
 import { signOut, verify } from './services/authentication';
