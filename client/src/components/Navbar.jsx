@@ -18,7 +18,9 @@ const Navbar = ({ user, onSignOut }) => {
           )}
 
           {user.role === 'individual' && (
-            <Link to={`/individual/${user._id}/myapplications`}>Your applications</Link>
+            <Link to={`/individual/${user._id}/myapplications`}>
+              Your applications
+            </Link>
           )}
         </>
       )}
@@ -26,9 +28,17 @@ const Navbar = ({ user, onSignOut }) => {
         {(user && (
           <>
             {user.profilePicture && (
-              <img src={user.profilePicture} alt={user.name} />
+              <Link className="img__wrap" to={`/${user.role}/${user._id}`}>
+                <img
+                  className="img__img"
+                  src={user.profilePicture}
+                  alt={user.name}
+                />
+                <p className="img__description">
+                  <span>Your profile</span>{' '}
+                </p>
+              </Link>
             )}
-            <Link to={`/${user.role}/${user._id}`}>{user.name}'s Profile</Link>
             <button onClick={onSignOut}>Sign Out</button>
           </>
         )) || (
