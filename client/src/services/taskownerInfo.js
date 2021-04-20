@@ -8,7 +8,7 @@ export const loadTaskOwner = async (id) => {
 
 export const editProfile = async (id, data) => {
   const response = await api.patch(
-    `http://localhost:3000/taskowner/${id}`,
+    `http://localhost:3000/taskowner/${id}/edit`,
     data
   );
   return response.data.profile;

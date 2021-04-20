@@ -7,14 +7,16 @@ class IndividualProfile extends Component {
   state = {
     individual: null,
     editModeActive: false,
-    name: ''
+    name: '',
+    email: ''
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
     this.setState({
       individual,
-      name: individual.name
+      name: individual.name,
+      email: individual.email
     });
   }
 
@@ -57,7 +59,6 @@ class IndividualProfile extends Component {
             <>
               <h1>Hello, {individual.name}, this is your profile.</h1>
               {individual.profilePicture}
-
               <h3>Your information</h3>
               <p>
                 {' '}

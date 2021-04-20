@@ -7,7 +7,8 @@ class TaskOwner extends Component {
     tasks: [],
     editModeActive: false,
     name: '',
-    phoneNumber: ''
+    phoneNumber: '',
+    email: ''
   };
 
   async componentDidMount() {
@@ -18,7 +19,8 @@ class TaskOwner extends Component {
       taskowner, 
       tasks: tasksOfOwner,
       name: taskowner.name,
-      phoneNumber: taskowner.phoneNumber
+      phoneNumber: taskowner.phoneNumber,
+      email: taskowner.email
     });
   }
 
@@ -111,9 +113,7 @@ class TaskOwner extends Component {
                 {/* {this.props.user._id === taskowner._id && ( */}
                   <button
                   className="button"
-                  onClick={this.toggleEditMode}>
-                  Edit
-                </button>
+                  onClick={this.toggleEditMode}>Edit</button>
                 {/* )} */}
                 </>
                 )}
