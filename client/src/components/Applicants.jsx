@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { loadTaskApplicants } from './../services/taskownerInfo';
 import { assignTask, updatedApplications } from './../services/task';
+import { Link } from 'react-router-dom';
 
 class Applicants extends Component {
   state = {
@@ -42,10 +43,23 @@ class Applicants extends Component {
         {this.state.applicants.map((applicant, index) => (
           <div key={applicant._id}>
             <li>{applicant.individual.name}</li>
-            <li>{applicant.decision}</li>
-            <button onClick={(e) => this.handleAssignment(index)}>
-              Assign task
-            </button>
+            <li>
+              {applicant.decision === 'approved' ? (
+                <Link to={`/task/${this.props.taskId}/approvedtask`}>
+                  Communicate with the task taker!
+                </Link>
+              ) : (
+                applicant.decision
+              )}
+            </li>
+            {applicant.decision === 'approved' ||
+            applicant.decision === 'rejected' ? (
+              ''
+            ) : (
+              <button onClick={(e) => this.handleAssignment(index)}>
+                Assign task
+              </button>
+            )}
           </div>
         ))}
       </div>

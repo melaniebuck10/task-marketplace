@@ -162,7 +162,9 @@ router.patch('/:id/assignTask', routeGuard, async (req, res, next) => {
     // Update the task status from open to in_process
     const assignedTask = await Task.findByIdAndUpdate(id, data, {
       new: true
-    }).populate('taskowner');
+    })
+      .sort({ decision: -1 })
+      .populate('taskowner');
     res.json({ assignedTask });
   } catch (error) {
     next(error);
