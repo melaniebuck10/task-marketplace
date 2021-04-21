@@ -104,7 +104,9 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/task/:id/approvedtask"
-                component={ApprovedApplication}
+                render={(props) => (
+                  <ApprovedApplication {...props} user={user} />
+                )}
                 authorized={user}
               />
 

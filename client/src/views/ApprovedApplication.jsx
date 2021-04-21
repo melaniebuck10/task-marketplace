@@ -1,21 +1,24 @@
 import { Component } from 'react';
-import { listTasks } from './../services/task';
+import { listTasks, loadTask } from './../services/task';
 
 class ApprovedApplication extends Component {
   state = {
-    tasks: []
+    task: null
   };
 
   async componentDidMount() {
-    // WORK IN PROGRESS
-    const tasks = await listTasks();
-    this.setState({ tasks: tasks });
+    //display taskowner info
+    //dipslay task info
+    //display individual info
+    const response = await loadTask(this.props.match.params.id);
+    console.log('TASK', response.task);
+    this.setState({
+      task: response.task
+    });
   }
   render() {
-    console.log(this.props.match);
-    return <div>
-      
-    </div>;
+    console.log('PROPS ', this.props.user);
+    return <div>{this.state.task && this.state.task.status}</div>;
   }
 }
 
