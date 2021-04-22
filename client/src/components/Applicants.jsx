@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Applicants extends Component {
   state = {
     applicants: [],
-    tasks: null // 6075cefed4b7f53a2c72ec08
+    tasks: null, // 6075cefed4b7f53a2c72ec08
   };
 
   async componentDidMount() {
@@ -19,7 +19,7 @@ class Applicants extends Component {
   handleAssignment = async (index) => {
     // Update the task status from open to in process
     const updatedTask = await assignTask(this.props.taskId, {
-      status: 'in_process'
+      status: 'in_process',
     });
     this.props.handleTask(updatedTask);
     // Approving one candidate, rejecting all others
@@ -27,12 +27,12 @@ class Applicants extends Component {
     applicants.map((applicant) => (applicant.decision = 'rejected'));
     applicants[index].decision = 'approved';
     this.setState({
-      applicants: applicants
+      applicants: applicants,
     });
     // Updating the DB applications
     const applicantsUpdated = await updatedApplications(
       this.props.taskId,
-      this.state.applicants
+      this.state.applicants,
     );
     console.log(applicantsUpdated);
   };
@@ -42,7 +42,11 @@ class Applicants extends Component {
       <div>
         {this.state.applicants.map((applicant, index) => (
           <div key={applicant._id}>
-            <li>{applicant.individual.name}</li>
+            <Link to={`/individual/${applicant.individual._id}`}>
+              {' '}
+              <li>{applicant.individual.name}</li>
+            </Link>
+
             <li>
               {applicant.decision === 'approved' ? (
                 <Link to={`/task/${this.props.taskId}/approvedtask`}>

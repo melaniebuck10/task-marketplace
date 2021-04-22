@@ -6,7 +6,7 @@ const User = require('./user');
 const individualSchema = new mongoose.Schema({
   description: {
     type: String
-  }, 
+  },
   rating: {
     type: Number
   }
