@@ -10,7 +10,8 @@ class HomeBeforeAuthentication extends Component {
 
   async componentDidMount() {
     const tasks = await listTasks();
-    this.setState({ tasks: tasks });
+    const openTasks = tasks.filter((task) => task.status === 'open');
+    this.setState({ tasks: openTasks });
   }
 
   render() {

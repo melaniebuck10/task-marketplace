@@ -6,7 +6,7 @@ import Task from './Task';
 class TaskList extends Component {
   render() {
     return (
-      <main>
+      <div>
         <div className="task__list">
           {this.props.tasks.map((task) => (
             <div key={task._id}>
@@ -16,14 +16,9 @@ class TaskList extends Component {
             </div>
           ))}
         </div>
-      </main>
+      </div>
     );
   }
 }
 
 export default TaskList;
-
-//line 13 {task.status === 'open' ? (
-//line 17  ) : ('')}
-
-// would be to filter but does not work
