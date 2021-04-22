@@ -9,6 +9,7 @@ class IndividualProfile extends Component {
     editModeActive: false,
     name: '',
     email: '',
+    description: '',
   };
 
   async componentDidMount() {
@@ -17,10 +18,11 @@ class IndividualProfile extends Component {
       individual,
       name: individual.name,
       email: individual.email,
+      description: individual.description,
     });
   }
 
-  toggleNameEditMode = () => {
+  toggleEditMode = () => {
     this.setState({
       editModeActive: true,
     });
@@ -28,9 +30,14 @@ class IndividualProfile extends Component {
 
   handleFormSubmission = async (event) => {
     event.preventDefault();
-    const name = this.state;
+    const { name, description, email } = this.state;
 
-    await this.handleProfileEdit(this.state.individual._id, name);
+    await this.handleProfileEdit(this.state.individual._id, {
+      name,
+      description,
+      email,
+    });
+
     this.props.history.push(`/individual/${this.state.individual._id}`);
   };
 
@@ -53,7 +60,7 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const { individual } = this.state;
+    const { individual, name, email, description } = this.state;
     const userId = this.props.user._id;
     return (
       <main>
@@ -61,35 +68,65 @@ class IndividualProfile extends Component {
           {individual && (
             <>
               <h1>Hello, {individual.name}, this is your profile.</h1>
-              <h3>Your information</h3>
-              <p>
-                {' '}
-                <strong>Name: </strong>
-              </p>
+
               {(this.state.editModeActive && (
                 <form onSubmit={this.handleFormSubmission}>
+                  <label htmlFor="name-input">Name:</label>
                   <input
+                    id="name-input"
                     type="text"
                     placeholder="Update your name"
                     name="name"
-                    value={this.state.name && this.state.name}
+                    value={name && name}
+                    onChange={this.handleInputChange}
+                  />
+                  <label htmlFor="description-input">Description:</label>
+                  <textarea
+                    id="description-input"
+                    type="text"
+                    placeholder="Update your description"
+                    name="description"
+                    value={description && description}
+                    onChange={this.handleInputChange}
+                  />
+                  <label htmlFor="email-input">Email address:</label>
+                  <input
+                    id="email-input"
+                    type="email"
+                    placeholder="Change your email address"
+                    name="email"
+                    value={email && email}
                     onChange={this.handleInputChange}
                   />
                   <button>Save</button>
                 </form>
               )) || (
                 <>
+                  <h3>Your information</h3>
+                  <p>
+                    {' '}
+                    <strong>Name: </strong>
+                  </p>
                   {individual.name}
-                  {userId === individual._id && (
-                    <button onClick={this.toggleNameEditMode}>✏️</button>
-                  )}
+                  <p>
+                    {' '}
+                    <strong>Description: </strong>
+                  </p>
+                  {individual.description}
+                  <p>
+                    {' '}
+                    <strong>Email address: </strong>
+                  </p>
+                  {individual.email}
+                  <div>
+                    {userId === individual._id && (
+                      <button className="button" onClick={this.toggleEditMode}>
+                        Edit
+                      </button>
+                    )}
+                  </div>
                 </>
               )}
-              <p>
-                {' '}
-                <strong>Email address: </strong>
-                {individual.email}
-              </p>
             </>
           )}
           <div>
