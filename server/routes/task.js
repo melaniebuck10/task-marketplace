@@ -155,6 +155,22 @@ router.patch('/:id/edit', routeGuard, async (req, res, next) => {
   }
 });
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const applications = await Application.find({
+      task: { $eq: req.params.id }
+    });
+    console.log(applications);
+    const toDeleteIds = applications.map((applicant) => applicant._id); // [id1, id2, id3]
+    console.log('TO DELETE', toDeleteIds);
+    await Application.deleteMany({ _id: { $in: toDeleteIds } });
+    await Task.findByIdAndDelete(req.params.id);
+    res.json({});
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.patch('/:id/assignTask', routeGuard, async (req, res, next) => {
   const id = req.params.id;
   const data = req.body;
