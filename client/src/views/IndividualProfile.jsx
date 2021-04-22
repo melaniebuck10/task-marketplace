@@ -67,8 +67,6 @@ class IndividualProfile extends Component {
         <div>
           {individual && (
             <>
-              <h1>Hello, {individual.name}, this is your profile.</h1>
-
               {(this.state.editModeActive && (
                 <form onSubmit={this.handleFormSubmission}>
                   <label htmlFor="name-input">Name:</label>
@@ -102,7 +100,21 @@ class IndividualProfile extends Component {
                 </form>
               )) || (
                 <>
-                  <h3>Your information</h3>
+                  {/* only display info below to the owner of the profile - taskower can also see the individual profile */}
+                  {(userId === individual._id && (
+                    <>
+                      <h1>Hello, {individual.name}, this is your profile.</h1>
+                      <h3>Your information</h3>
+                    </>
+                  )) || (
+                    /* or display below copy if the person viewing is not 
+                    the owner of the profile, in this case the 
+                    taskowner viewing applicant information
+                    */
+                    <>
+                      <h2>Applican'ts information</h2>
+                    </>
+                  )}
                   <p>
                     {' '}
                     <strong>Name: </strong>
@@ -118,6 +130,7 @@ class IndividualProfile extends Component {
                     <strong>Email address: </strong>
                   </p>
                   {individual.email}
+
                   <div>
                     {userId === individual._id && (
                       <button className="button" onClick={this.toggleEditMode}>
