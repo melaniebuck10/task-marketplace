@@ -19,6 +19,7 @@ class PictureSlider extends Component {
   render() {
     const { pictures } = this.props;
     return (
+      <main>
       <div className="picture-slider">
         <img src={pictures[this.state.index]} alt="A slider item" className="img_pictureslider"/>
         <div className="picture-slider__controls">
@@ -26,6 +27,7 @@ class PictureSlider extends Component {
           <button onClick={() => this.navigate(1)}>→</button>
         </div>
       </div>
+      </main>
     );
   }
 }

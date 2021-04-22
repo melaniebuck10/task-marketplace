@@ -20,6 +20,7 @@ class IndividualApplicationList extends Component {
     const { applications } = this.state;
 
     return (
+      <main>
       <div>
         <h1>Tasks applied by you</h1>
         {applications &&
@@ -49,6 +50,7 @@ class IndividualApplicationList extends Component {
             );
           })}
       </div>
+      </main>
     );
   }
 }

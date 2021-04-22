@@ -19,6 +19,7 @@ class TaskOwnerList extends Component {
   render() {
     const { tasks } = this.state;
     return (
+      <main>
       <div>
         {(tasks && tasks.length && (
           <>
@@ -35,6 +36,7 @@ class TaskOwnerList extends Component {
           </>
         )}
       </div>
+      </main>
     );
   }
 }

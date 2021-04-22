@@ -13,6 +13,7 @@ export default class EditTaskForm extends Component {
       assignment,
     } = this.props.values;
     return (
+      <main>
       <div>
         <form onSubmit={this.props.handleFormSubmit}>
           <label htmlFor="input-name">Task name</label>
@@ -92,6 +93,7 @@ export default class EditTaskForm extends Component {
           <button>Save</button>
         </form>
       </div>
+      </main>
     );
   }
 }

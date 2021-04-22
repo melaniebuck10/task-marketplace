@@ -23,6 +23,7 @@ class ApprovedApplication extends Component {
     const task = this.state.task;
     const user = this.props.user;
     return (
+      <main>
       <div>
         {this.state.task && (
           <div>
@@ -50,6 +51,7 @@ class ApprovedApplication extends Component {
           </div>
         )}
       </div>
+      </main>
     );
   }
 }

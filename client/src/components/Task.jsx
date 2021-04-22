@@ -1,5 +1,8 @@
+import './Task.scss';
+
 const Task = ({ task }) => {
   return (
+    <main>
     <div>
       {(!!task.pictures.length && (
         <img src={task.pictures[0]} alt={task.name} />
@@ -16,6 +19,7 @@ const Task = ({ task }) => {
         {(task.status === 'in_process' && 'In Process') || 'Open' || 'Closed'}
       </p>
     </div>
+    </main>
   );
 };
 

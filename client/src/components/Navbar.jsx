@@ -1,15 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.scss';
+import logoimage from './../pictures/getstuffdone.png';
 
 const Navbar = ({ user, onSignOut }) => {
   return (
     <nav className="navbar">
+      <Link to="/">
+            <img className="logoimage" src={logoimage} alt="logo" />
+          </Link>
       {user && (
         <>
-          <Link to="/">
-            <strong>Tasks - MarketPlace</strong>
-          </Link>
           {user.role === 'taskowner' && (
             <Link to="/task/create">Create a Task</Link>
           )}
@@ -20,7 +21,7 @@ const Navbar = ({ user, onSignOut }) => {
           {user.role === 'individual' && (
             <Link to={`/individual/${user._id}/myapplications`}>
               Your applications
-              </Link>
+            </Link>
           )}
         </>
       )}
