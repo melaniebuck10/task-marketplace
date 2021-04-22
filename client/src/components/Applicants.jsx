@@ -42,12 +42,10 @@ class Applicants extends Component {
       <div>
         {this.state.applicants.map((applicant, index) => (
           <div key={applicant._id}>
-            {(
-              <Link to={`/individual/${applicant.individual._id}`}>
-                {' '}
-                <li>{applicant.individual.name}</li>
-              </Link>
-            ) || <li>{applicant.individual.name}</li>}
+            <Link to={`/individual/${applicant.individual._id}`}>
+              {' '}
+              <li>{applicant.individual.name}</li>
+            </Link>
 
             <li>
               {applicant.decision === 'approved' ? (
