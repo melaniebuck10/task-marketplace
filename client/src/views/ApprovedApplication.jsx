@@ -1,27 +1,31 @@
 import { Component } from 'react';
 import { listTasks, loadTask } from './../services/task';
-import { loadIndividual } from './../services/individual';
+import { loadTaskApplicants } from './../services/taskownerInfo';
 
 class ApprovedApplication extends Component {
   state = {
-    task: null
+    task: null,
+    approvedApplication: null
   };
 
   async componentDidMount() {
-    //display taskowner info
-    //dipslay task info
-    //display individual info
     const response = await loadTask(this.props.match.params.id);
-    // const individual = await loadIndividual(individual:id)
-    console.log('TASK', response.task);
+    const applicationsResponse = await loadTaskApplicants(
+      this.props.match.params.id
+    );
+    const approvedIndividual = applicationsResponse.filter(
+      (application) => application.decision === 'approved'
+    )[0];
+    console.log('approvedIndividual', approvedIndividual);
     this.setState({
-      task: response.task
+      task: response.task,
+      approvedApplication: approvedIndividual
     });
   }
   render() {
-    console.log('PROPS ', this.props.user);
     const task = this.state.task;
-    const user = this.props.user;
+    const approvedApplication = this.state.approvedApplication;
+    console.log('INDIVIDUAL', approvedApplication);
     return (
       <main>
       <div>
@@ -34,20 +38,27 @@ class ApprovedApplication extends Component {
             </div>
             <div>
               <div>
-                <h2>{user.role}</h2>
-                <h2>{user.description}</h2>
-                <div>{user.name}</div>
-                <div>{user.email}</div>
-                <div>{user.phoneNumber}</div>
-                <div>{user._id}</div>
-              </div>
-              <div>
                 <h2>{task.taskowner.role}</h2>
-                <div>{task.taskowner.name}</div>
-                <div>{task.taskowner.email}</div>
-                <div>{task.taskowner.phoneNumber}</div>
+                <div>{task.taskowner.profilePicture}</div>
+                <div>
+                  <h2>Contact Info</h2>
+                  <div>{task.taskowner.name}</div>
+                  <div>Email: {task.taskowner.email}</div>
+                  <div>Phone: {task.taskowner.phoneNumber}</div>
+                </div>
+                <div>Location: {task.taskowner.address}</div>
               </div>
             </div>
+          </div>
+        )}
+        {this.state.approvedApplication && (
+          <div>
+            <h2>{approvedApplication.individual.role}</h2>
+            <div>{approvedApplication.individual.profilePicture}</div>
+            <div>{approvedApplication.individual.name}</div>
+            <p>{approvedApplication.individual.description}</p>
+            <div>{approvedApplication.individual.email}</div>
+            <div>{approvedApplication.individual.phoneNumber}</div>
           </div>
         )}
       </div>

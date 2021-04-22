@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Applicants from './../components/Applicants';
-import { editTask, loadTask } from '../services/task';
+import { deleteTask, editTask, loadTask } from '../services/task';
 import PictureSlider from './../components/PictureSlider';
 import { applyTask } from './../services/task';
 import EditTaskForm from '../components/EditTaskForm';
@@ -95,6 +95,13 @@ class SingleTask extends Component {
       [name]: value,
     });
   };
+
+  handleTaskDeletion = async () => {
+    const id = this.state.task._id;
+    await deleteTask(id);
+    this.props.history.push(`/taskowner/${this.state.task.taskowner._id}/list`);
+  };
+
   render() {
     const task = this.state.task;
     const userId = this.props.user._id;
@@ -157,12 +164,21 @@ class SingleTask extends Component {
                       <span>Created by {task.taskowner.name}</span>
                       <div>
                         {userId === task.taskowner._id && (
-                          <button
-                            className="button"
-                            onClick={this.toggleEditMode}
-                          >
-                            Edit
-                          </button>
+                          <>
+                            <button
+                              className="button"
+                              onClick={this.toggleEditMode}
+                            >
+                              Edit
+                            </button>
+
+                            <button
+                              className="button"
+                              onClick={this.handleTaskDeletion}
+                            >
+                              Delete
+                            </button>
+                          </>
                         )}
                         {this.props.user &&
                           this.props.user.role === 'individual' && (
