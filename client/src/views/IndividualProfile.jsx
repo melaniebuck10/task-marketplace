@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
+// import { listRatings } from '../services/rating';
 
 class IndividualProfile extends Component {
   state = {
@@ -10,15 +11,18 @@ class IndividualProfile extends Component {
     name: '',
     email: '',
     description: ''
+    // ratings: ''
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
+    // const ratings = await listRatings();
     this.setState({
       individual,
       name: individual.name,
       email: individual.email,
       description: individual.description
+      // ratings: ratings
     });
   }
 
@@ -43,10 +47,8 @@ class IndividualProfile extends Component {
 
   handleProfileEdit = async (id, data) => {
     let individual = await editProfile(id, data);
-    // profile = await loadIndividual(this.props.match.params.id);
 
     this.setState({
-      // name: profile.name,
       individual: individual,
       editModeActive: false
     });
@@ -57,6 +59,10 @@ class IndividualProfile extends Component {
     this.setState({
       [name]: value
     });
+  };
+
+  handleReviewCreation = (review) => {
+    // this.props.history.push(`/rating/${review._id}`);
   };
 
   render() {
@@ -140,10 +146,12 @@ class IndividualProfile extends Component {
             </>
           )}
           <div>
-            <h2>Rating:</h2>
             <Rating individual={this.props.match.params.id} />
           </div>
-          <CreateReview />
+          <CreateReview
+            individual={this.props.match.params.id}
+            onReviewCreation={this.handleReviewCreation}
+          />
         </div>
       </main>
     );

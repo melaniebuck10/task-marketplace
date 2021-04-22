@@ -51,7 +51,7 @@ button,
 select,
 textarea {
   padding: 1em;
-  border: 0;
+  border: 1;
   margin-bottom: 1em;
   border-radius: 0;
   background-color: transparent;
@@ -89,15 +89,7 @@ button {
   margin-top: 1em;
 }
 
-.task__list {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -0.5em;
-  .task__item {
-    margin-right: 0.5em;
-    margin-left: 0.5em;
-  }
-}
+
 main {
   & > header {
     margin: 2em 0;
@@ -121,12 +113,14 @@ main {
   margin: 0 0.5em;
 }
 
-.task_design {
-  border: 0.1em;
-  border-style: solid;
+.average-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.taskinput {
-  margin-top: 5em;
-  margin-left: 5em;
+.create-review {
+  display: block;
+  align-items: flex-start;
+  justify-content: left;
 }

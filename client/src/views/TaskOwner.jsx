@@ -45,11 +45,8 @@ class TaskOwner extends Component {
 
   handleProfileEdit = async (id, data) => {
     let taskowner = await editProfile(id, data);
-    // profile = await loadTaskOwner(this.props.match.params.id);
 
     this.setState({
-      // name: profile.name,
-      // phoneNumber: profile.phoneNumber,
       taskowner: taskowner,
       editModeActive: false
     });

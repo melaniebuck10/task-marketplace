@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
-//import './PictureSlider.scss';
+import './homepage.scss';
 
 class HomeBeforeAuthentication extends Component {
   state = {

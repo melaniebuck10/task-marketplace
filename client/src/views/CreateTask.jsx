@@ -47,7 +47,6 @@ class CreateTask extends Component {
       }
     }
     const task = await createTask(body);
-    //const task = await createTask(data);
     this.props.history.push(`/task/${task._id}`);
   };
 

@@ -25,13 +25,6 @@ class IndividualApplicationList extends Component {
         <h1>Tasks applied by you</h1>
         {applications &&
           applications.map((application) => {
-            // {this.props.tasks.map((task) => (
-            //   <div key={application._id}>
-            //     <Link to={`/task/${task._id}`}>
-            //       <Task task={task} />
-            //     </Link>
-            //   </div>
-            // ))}
             return (
               <div key={application._id}>
                 <div>{application.task.name}</div>
