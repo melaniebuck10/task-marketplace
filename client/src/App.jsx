@@ -22,6 +22,7 @@ import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 import ApprovedApplication from './views/ApprovedApplication';
+import CreateReview from './components/CreateReview';
 
 class App extends Component {
   state = {
@@ -100,6 +101,19 @@ class App extends Component {
                   />
                 )}
                 redirect="/"
+                exact
+              />
+              <ProtectedRoute
+                path="/rating/create"
+                authorized={user && user.role === 'taskowner'}
+                render={(props) => (
+                  <CreateReview
+                    {...props}
+                    user={this.state.user}
+                    onUserChange={this.handleUserChange}
+                  />
+                )} 
+                redirect="/sign-in"
                 exact
               />
               <ProtectedRoute

@@ -7,36 +7,29 @@ const routeGuard = require('./../middleware/route-guard');
 const router = new express.Router();
 const Rating = require('./../models/rating');
 
-router.post(
-  '/',
-  routeGuard,
-  async (req, res, next) => {
-    const {
+router.post('/create', routeGuard, async (req, res, next) => {
+  const { individual, rating, review } = req.body;
+  try {
+    const ratingDocument = await Rating.create({
+      individual,
       rating,
       review
-    } = req.body;
-    console.log(req.body);
-    try {
-      const rating = await Rating.create({
-        rating,
-        review,
-      });
-      res.json({ rating, review });
-    } catch (error) {
-      next(error);
-    }
+    });
+    res.json({ rating: ratingDocument });
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 router.get('/:id', async (req, res, next) => {
-    const id = req.params.id;
-    try {
-      const rating = await Rating.findById(id);
-      res.json({ rating });
-    } catch (error) {
-      next(error);
-    }
-  });
+  const id = req.params.id;
+  try {
+    const ratings = await Rating.find({ individual: id });
+    res.json({ ratings });
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.get('/list', async (req, res, next) => {
   try {
@@ -46,6 +39,5 @@ router.get('/list', async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = router;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
+// import { listRatings } from '../services/rating';
 
 class IndividualProfile extends Component {
   state = {
@@ -9,22 +10,25 @@ class IndividualProfile extends Component {
     editModeActive: false,
     name: '',
     email: '',
-    description: '',
+    description: ''
+    // ratings: ''
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
+    // const ratings = await listRatings();
     this.setState({
       individual,
       name: individual.name,
       email: individual.email,
-      description: individual.description,
+      description: individual.description
+      // ratings: ratings
     });
   }
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true,
+      editModeActive: true
     });
   };
 
@@ -35,7 +39,7 @@ class IndividualProfile extends Component {
     await this.handleProfileEdit(this.state.individual._id, {
       name,
       description,
-      email,
+      email
     });
 
     this.props.history.push(`/individual/${this.state.individual._id}`);
@@ -43,20 +47,22 @@ class IndividualProfile extends Component {
 
   handleProfileEdit = async (id, data) => {
     let individual = await editProfile(id, data);
-    // profile = await loadIndividual(this.props.match.params.id);
 
     this.setState({
-      // name: profile.name,
       individual: individual,
-      editModeActive: false,
+      editModeActive: false
     });
     this.props.onUserChange(individual);
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
+  };
+
+  handleReviewCreation = (review) => {
+    // this.props.history.push(`/rating/${review._id}`);
   };
 
   render() {
@@ -143,10 +149,12 @@ class IndividualProfile extends Component {
             </>
           )}
           <div>
-            <h2>Rating:</h2>
             <Rating individual={this.props.match.params.id} />
           </div>
-          <CreateReview />
+          <CreateReview
+            individual={this.props.match.params.id}
+            onReviewCreation={this.handleReviewCreation}
+          />
         </div>
       </main>
     );
