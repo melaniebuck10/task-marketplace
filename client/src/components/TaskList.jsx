@@ -6,7 +6,6 @@ import Task from './Task';
 class TaskList extends Component {
   render() {
     return (
-      <main>
         <div>
           {this.props.tasks.map((task) => (
             <div key={task._id}>
@@ -16,7 +15,6 @@ class TaskList extends Component {
             </div>
           ))}
         </div>
-      </main>
     );
   }
 }

@@ -12,7 +12,8 @@ class Home extends Component {
 
   async componentDidMount() {
     const tasks = await listTasks();
-    this.setState({ tasks: tasks });
+    const openTasks = tasks.filter((task) => task.status === 'open');
+    this.setState({ tasks: openTasks });
   }
 
   render() {
@@ -20,8 +21,8 @@ class Home extends Component {
     return (
       <main>
         <div className="homepage">
-        <h1>#GetStuffDone - a marketplace to share common work</h1>
-        <h3>Check out all the open tasks and get started!</h3>
+          <h1>#GetStuffDone - a marketplace to share common work</h1>
+          <h3>Check out all the open tasks and get started!</h3>
         </div>
         <TaskList tasks={tasks} />
       </main>
