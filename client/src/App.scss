@@ -112,3 +112,15 @@ main {
   flex: 1;
   margin: 0 0.5em;
 }
+
+.average-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-review {
+  display: block;
+  align-items: flex-start;
+  justify-content: left;
+}

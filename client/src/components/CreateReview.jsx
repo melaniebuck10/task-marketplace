@@ -1,100 +1,86 @@
 import React from 'react';
 import { createRating } from '../services/rating';
 // loadRating, listRatings, loadRatingIndividual  --> to be added to above once used
-import Rating from './Rating';
+// import Rating from './Rating';
+import StarRatingComponent from 'react-star-rating-component';
 
 class CreateReview extends React.Component {
-    state = {
-        rating: '',
-        review: '',
-        editModeActive: false,
-    };
+  state = {
+    rating: 1,
+    review: '',
+    editModeActive: false
+  };
 
-    toggleTaskEditMode = () => {
-      this.setState({
-        editModeActive: true,
-        // newTaskTitle: this.props.task.title
-      });
-    };
+  toggleTaskEditMode = () => {
+    this.setState({
+      editModeActive: true
+    });
+  };
 
-    handleFormSubmission = async (event) => {
-        event.preventDefault();
-        const {
-          rating,
-          review,
-        } = this.state;
-        const data = {
-          rating,
-          review
-        };
-        const body = new FormData();
-        for (let key in data) {
-          const value = data[key];
-          if (value instanceof Array) {
-            for (let item of value) {
-              body.append(key, item);
-            }
-          } else {
-            body.append(key, value);
-          }
-        }
-        const newReview = await createRating(body);
-        // this.props.history.push(`/rating/${newReview._id}`);
-        this.props.history.push(`/individual/${newReview._id}`);
-        this.setState({ editModeActive: false });
-      };
+  handleFormSubmission = async (event) => {
+    event.preventDefault();
+    const { rating, review } = this.state;
+    const individual = this.props.individual;
+    const data = { individual, rating, review };
 
-      handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value,
-        });
-      };
+    const newReview = await createRating(data);
 
+    this.setState({
+      rating: rating,
+      review: review,
+      editModeActive: false
+    });
 
-    // async componentDidMount() {
-    //   const rating = await listRatings(
-    //     this.props.match.params.id,
-    //   );
-    //   this.setState({ rating: ratingOfIndividual });
-    // }
-   
-    onStarClick(nextValue, prevValue, name) {
-      this.setState({rating: nextValue});
-    }
-   
-    render() {
-      const { rating } = this.state;
-      return (                
-        <main>
+    this.props.onReviewCreation(newReview);
+  };
+
+  handleInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleStarClick = (nextValue, prevValue, name) => {
+    this.setState({ rating: nextValue });
+  };
+
+  render() {
+    const { rating } = this.state;
+    // const userId = this.props.user._id;
+    return (
+      <main class="create-review">
         {(this.state.editModeActive && (
-        <form onSubmit={this.handleFormSubmission}>
-          <h2>Your overall experience</h2>
-          <Rating 
-          name="rate1" 
-          starCount={5}
-          value={rating}
-          onStarClick={this.onStarClick.bind(this)}
-          />
+          <form onSubmit={this.handleFormSubmission}>
+            <h2>Your overall experience</h2>
+            <StarRatingComponent
+              name="create-review-rating-input"
+              starCount={5}
+              value={rating}
+              onStarClick={this.handleStarClick}
+            />
 
-          <label htmlFor="input-review">Leave here your review</label>
-          <textarea
-            id="input-review"
-            name="review"
-            placeholder="Leave here your review about this person..."
-            value={this.state.name}
-            onChange={this.handleInputChange}
-            required
-          />
-          <button>Submit review</button>
-        </form>
-          )) || (
-          <button onClick={this.toggleTaskEditMode}><strong>Click here to leave your review</strong></button>
-          )}
-        </main>
-      );
-    }
+            <label htmlFor="input-review">Leave here your review</label>
+            <textarea
+              id="input-review"
+              name="review"
+              placeholder="Leave here your review about this person..."
+              value={this.state.review}
+              onChange={this.handleInputChange}
+              minLength="50"
+              required
+            />
+            <button>Submit review</button>
+          </form>
+        )) || (
+          // {userId === taskowner && (
+          <button onClick={this.toggleTaskEditMode}>
+            <strong>Click here to leave your review</strong>
+          </button>
+        )}
+      </main>
+    );
   }
-
+}
 
 export default CreateReview;
