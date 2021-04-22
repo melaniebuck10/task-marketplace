@@ -58,8 +58,7 @@ router.get('/list', async (req, res, next) => {
 router.get('/:id', routeGuard, async (req, res, next) => {
   try {
     const task = await Task.findById(req.params.id).populate(
-      'taskowner',
-      'name'
+      'taskowner'
     );
     let application = null;
     if (req.user) {
@@ -150,6 +149,22 @@ router.patch('/:id/edit', routeGuard, async (req, res, next) => {
       status
     });
     res.json({ task });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const applications = await Application.find({
+      task: { $eq: req.params.id }
+    });
+    console.log(applications);
+    const toDeleteIds = applications.map((applicant) => applicant._id); // [id1, id2, id3]
+    console.log('TO DELETE', toDeleteIds);
+    await Application.deleteMany({ _id: { $in: toDeleteIds } });
+    await Task.findByIdAndDelete(req.params.id);
+    res.json({});
   } catch (error) {
     next(error);
   }

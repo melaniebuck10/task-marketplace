@@ -12,7 +12,8 @@ export class Messenger extends Component {
     this.setState({ messages: messages.data.text });
   }
   render() {
-    return <div>{this.state.messages}</div>;
+    return 
+    <main><div>{this.state.messages}</div></main>;
   }
 }
 

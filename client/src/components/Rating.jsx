@@ -36,18 +36,19 @@ class Rating extends React.Component {
 
   render() {
     const { rating } = this.state;
-    return (
-      <div class="average-rating">
-        <h2>Rating:</h2>
-        <br />
-        <StarRatingComponent
-          name="rate1"
+    
+    return ( 
+      <main>               
+      <div>
+        <StarRatingComponent 
+          name="rate1" 
           starCount={5}
           value={this.state.averageScore}
           // onChange={(event) => this.props.onChange(event)}
           // onStarClick={this.onStarClick.bind(this)}
         />
       </div>
+      </main>
     );
   }
 }

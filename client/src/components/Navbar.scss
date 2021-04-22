@@ -1,10 +1,18 @@
 .navbar {
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 3em;
+  border-bottom: 3px solid rgb(166, 216, 178);
+  .logoimage {
+    height: 6em;
+    width: 7em;
+    border-radius: 0%;
+    box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+  }
+  
   img {
-    width: 2em;
-    height: 2em;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
     box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
     margin-right: 1em;
@@ -54,3 +62,4 @@
   visibility: visible;
   opacity: 1;
 }
+

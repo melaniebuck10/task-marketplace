@@ -3,6 +3,7 @@ import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
 //import { loadTaskOwner } from '../services/taskownerInfo';
 // import Task from '../components/Task';
+import './homepage.scss';
 
 class Home extends Component {
   state = {
@@ -18,7 +19,10 @@ class Home extends Component {
     const { tasks } = this.state;
     return (
       <main>
-        <h1>Welcome to your favorite Tasks Marketplace</h1>
+        <div className="homepage">
+        <h1>#GetStuffDone - a marketplace to share common work</h1>
+        <h3>Check out all the open tasks and get started!</h3>
+        </div>
         <TaskList tasks={tasks} />
       </main>
     );
