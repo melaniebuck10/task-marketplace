@@ -14,7 +14,7 @@ export const loadTask = async (id) => {
   const response = await api.get(`/task/${id}`);
   const task = response.data.task;
   const application = response.data.application;
-  console.log(application);
+  console.log('APPLICATION', application);
   return { task, application };
 };
 
