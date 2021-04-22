@@ -1,16 +1,17 @@
 import { Component } from 'react';
 import { loadTaskOwner } from '../services/taskownerInfo';
 import TaskList from '../components/TaskList';
+import { Link } from 'react-router-dom';
 
 class TaskOwnerList extends Component {
   state = {
     taskowner: null,
-    tasks: []
+    tasks: [],
   };
 
   async componentDidMount() {
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
-      this.props.match.params.id
+      this.props.match.params.id,
     );
     this.setState({ tasks: tasksOfOwner, taskowner });
   }
@@ -19,13 +20,23 @@ class TaskOwnerList extends Component {
     const { tasks } = this.state;
     return (
       <div>
-        <h1>Tasks uploaded by you</h1>
-        <TaskList tasks={tasks} />
+        {(tasks && tasks.length && (
+          <>
+            <h1>Tasks uploaded by you</h1>
+
+            <TaskList tasks={tasks} />
+          </>
+        )) || (
+          <>
+            <p>You have not created any tasks yet!</p>
+            <button className="button">
+              <Link to="/task/create"> Create a task!</Link>
+            </button>
+          </>
+        )}
       </div>
     );
   }
 }
-
-// Still have to add the conditional in case no task was uploaded by the user
 
 export default TaskOwnerList;

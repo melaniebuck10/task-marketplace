@@ -22,3 +22,8 @@ class TaskList extends Component {
 }
 
 export default TaskList;
+
+//line 13 {task.status === 'open' ? (
+//line 17  ) : ('')}
+
+// would be to filter but does not work

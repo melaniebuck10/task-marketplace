@@ -21,10 +21,20 @@ router.get('/:id', async (req, res, next) => {
 });
 
 router.patch('/:id', async (req, res, next) => {
+  const {
+    name,
+
+    description,
+    email
+  } = req.body;
   try {
     const individual = await Individual.findByIdAndUpdate(
       req.params.id,
-      { name: req.body.name },
+      {
+        name,
+        description,
+        email
+      },
       { new: true }
     );
     res.json({ individual });

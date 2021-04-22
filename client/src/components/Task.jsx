@@ -12,6 +12,9 @@ const Task = ({ task }) => {
         </small>
         {task.description && <p>{task.description}</p>}
       </div>
+      <p>
+        {(task.status === 'in_process' && 'In Process') || 'Open' || 'Closed'}
+      </p>
     </div>
   );
 };

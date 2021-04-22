@@ -17,7 +17,7 @@ class SingleTask extends Component {
     hoursOfWork: '',
     typeOfWork: '',
     status: '',
-    assignment: ''
+    assignment: '',
   };
 
   async componentDidMount() {
@@ -31,7 +31,7 @@ class SingleTask extends Component {
       price: task.price,
       hoursOfWork: task.hoursOfWork,
       typeOfWork: task.typeOfWork,
-      status: task.status
+      status: task.status,
     });
   }
 
@@ -43,7 +43,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
   handleFormSubmission = async (event) => {
@@ -55,7 +55,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     } = this.state;
 
     // console.log(data);
@@ -66,7 +66,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     });
 
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -78,21 +78,21 @@ class SingleTask extends Component {
 
     this.setState({
       task: task.task,
-      editModeActive: false
+      editModeActive: false,
     });
   };
 
   handleAssignment = (updatedTask) => {
     console.log('UPDATED TASK COMP', updatedTask);
     this.setState({
-      task: updatedTask
+      task: updatedTask,
     });
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
   render() {
@@ -185,7 +185,10 @@ class SingleTask extends Component {
         </div>
         {this.props.user &&
           this.props.user.role === 'taskowner' &&
-          this.state.task && (
+          this.state.task &&
+          /*Only taskowners should see 
+          the applicant's information  */
+          userId === task.taskowner._id && (
             <Applicants
               taskId={this.state.task._id}
               handleTask={this.handleAssignment}

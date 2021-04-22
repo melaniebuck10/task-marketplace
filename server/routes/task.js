@@ -162,7 +162,9 @@ router.patch('/:id/assignTask', routeGuard, async (req, res, next) => {
     // Update the task status from open to in_process
     const assignedTask = await Task.findByIdAndUpdate(id, data, {
       new: true
-    }).populate('taskowner');
+    })
+      .sort({ decision: -1 })
+      .populate('taskowner');
     res.json({ assignedTask });
   } catch (error) {
     next(error);
@@ -189,6 +191,20 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
     res.json({ application });
   } catch (error) {
     console.log(error);
+    next(error);
+  }
+});
+
+router.get(`/:id/approvedtask`, routeGuard, async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id).populate(
+      'taskowner',
+      'name'
+    );
+    console.log('TASK', task);
+    res.json({ task });
+  } catch (error) {
+    console.log('ERROR', error);
     next(error);
   }
 });
