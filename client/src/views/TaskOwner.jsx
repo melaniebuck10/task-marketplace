@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { loadTaskOwner, editProfile } from '../services/taskownerInfo';
+import './TaskOwner.scss';
+import settingsImage from './../pictures/gear-options-setup-comments-settings-wheel.png';
 
 class TaskOwner extends Component {
   state = {
@@ -68,7 +70,7 @@ class TaskOwner extends Component {
       <main>
         <div>
           {taskowner && (
-            <>
+            <div>
               {(this.state.editModeActive && (
                 <form onSubmit={this.handleFormSubmission}>
                   <label htmlFor="input-name">Name</label>
@@ -90,35 +92,44 @@ class TaskOwner extends Component {
                   <button>Save</button>
                 </form>
               )) || (
-                <>
-                  <h1>Hello, {taskowner.name}, this is your personal page</h1>
-                  <br />
-                  <h3>Your information</h3>
-                  <p>
-                    {' '}
-                    <strong>Name: </strong>
-                    {taskowner.name}
-                  </p>
-                  <p>
-                    {' '}
-                    <strong>Phone number: </strong>
-                    {taskowner.phoneNumber}
-                  </p>
-                  <p>
-                    {' '}
-                    <strong>Email address: </strong>
-                    {taskowner.email}
-                  </p>
-                  <img src={taskowner.profilePicture} alt="" />
-                  <br />
-                  {userId === taskowner._id && (
-                    <button className="button" onClick={this.toggleEditMode}>
-                      Edit
-                    </button>
-                  )}
-                </>
+                <div>
+                  <div className="profileTop">
+                    <h1 className="title">PROFILE</h1>
+                    {userId === taskowner._id && (
+                      <button
+                        className="settingButton"
+                        onClick={this.toggleEditMode}
+                      >
+                        <img
+                          className="settingsImage"
+                          src={settingsImage}
+                          alt="logo"
+                        />
+                      </button>
+                    )}
+                  </div>
+                  <div className="taskOwner">
+                    {(taskowner.profilePicture && (
+                      <img src={taskowner.profilePicture} />
+                    )) || <div className="standinProfilePic"></div>}
+                    <div>
+                      <p>
+                        <strong>Name: </strong>
+                        {taskowner.name}
+                      </p>
+                      <p>
+                        <strong>Phone number: </strong>
+                        {taskowner.phoneNumber}
+                      </p>
+                      <p>
+                        <strong>Email address: </strong>
+                        {taskowner.email}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               )}
-            </>
+            </div>
           )}
         </div>
       </main>
