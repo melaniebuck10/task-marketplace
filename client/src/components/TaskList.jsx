@@ -7,7 +7,7 @@ class TaskList extends Component {
   render() {
     return (
       <main>
-        <div>
+        <div className="task__list">
           {this.props.tasks.map((task) => (
             <div key={task._id}>
               <Link to={`/task/${task._id}`}>

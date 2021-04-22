@@ -99,14 +99,13 @@ class SingleTask extends Component {
     const task = this.state.task;
     const userId = this.props.user._id;
     return (
-      <main>
+      <main className="page-single-task">
         <div>
           {task && (
             <Helmet>
               <title>Market Place - {task.taskowner.name}</title>
             </Helmet>
           )}
-
           {(this.state.editModeActive && (
             <EditTaskForm
               values={this.state}
