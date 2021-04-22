@@ -1,5 +1,5 @@
-.task {
-    width: 12em;
+.task__item {
+    width: 18em;
     border-radius: 0.75em;
     overflow: hidden;
     box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
@@ -34,5 +34,5 @@
   }
   
   .task__standin-picture {
-    background-color: rgb(255, 243, 175);
+    background-color:rgb(166, 216, 178);
   }
