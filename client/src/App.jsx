@@ -126,6 +126,13 @@ class App extends Component {
                 )}
                 authorized={user}
               />
+              <ProtectedRoute
+                path="/messenger"
+                render={(props) => (
+                  <Messenger {...props} user={user} />
+                )}
+                authorized={user}
+              />
 
               <ProtectedRoute
                 path="/individual/:id/myapplications"

@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { loadTaskApplicants } from './../services/taskownerInfo';
 import { assignTask, updatedApplications } from './../services/task';
 import { Link } from 'react-router-dom';
+import './Applicants.scss';
 
 class Applicants extends Component {
   state = {
@@ -40,7 +41,8 @@ class Applicants extends Component {
   render() {
     return (
       <main>
-        <div>
+        <div className="applicantinfo">
+          <div><h3>Check out your applicants</h3></div>
           {this.state.applicants.map((applicant, index) => (
             <div key={applicant._id}>
               <Link to={`/individual/${applicant.individual._id}`}>
