@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+//import React, { Component } from 'react';
 import { loadMessages } from '../services/messenger';
 
 export class Messenger extends Component {
