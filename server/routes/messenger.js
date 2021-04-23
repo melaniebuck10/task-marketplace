@@ -31,7 +31,7 @@ router.get('/', routeGuard, (req, res, next) => {
              ]
            }
          ]
-       }         .populate('senderId')
+       })        .populate('senderId')
          .populate('receiverId');
      })
     .then((messages) => {
