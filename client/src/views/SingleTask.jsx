@@ -5,6 +5,7 @@ import { deleteTask, editTask, loadTask } from '../services/task';
 import PictureSlider from './../components/PictureSlider';
 import { applyTask } from './../services/task';
 import EditTaskForm from '../components/EditTaskForm';
+import './SingleTask.scss';
 
 class SingleTask extends Component {
   state = {
@@ -17,7 +18,7 @@ class SingleTask extends Component {
     hoursOfWork: '',
     typeOfWork: '',
     status: '',
-    assignment: '',
+    assignment: ''
   };
 
   async componentDidMount() {
@@ -31,7 +32,7 @@ class SingleTask extends Component {
       price: task.price,
       hoursOfWork: task.hoursOfWork,
       typeOfWork: task.typeOfWork,
-      status: task.status,
+      status: task.status
     });
   }
 
@@ -43,7 +44,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true,
+      editModeActive: true
     });
   };
   handleFormSubmission = async (event) => {
@@ -55,7 +56,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     } = this.state;
 
     // console.log(data);
@@ -66,7 +67,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status,
+      status
     });
 
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -78,21 +79,21 @@ class SingleTask extends Component {
 
     this.setState({
       task: task.task,
-      editModeActive: false,
+      editModeActive: false
     });
   };
 
   handleAssignment = (updatedTask) => {
     console.log('UPDATED TASK COMP', updatedTask);
     this.setState({
-      task: updatedTask,
+      task: updatedTask
     });
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value,
+      [name]: value
     });
   };
 
@@ -106,8 +107,8 @@ class SingleTask extends Component {
     const task = this.state.task;
     const userId = this.props.user._id;
     return (
-      <main className="page-single-task">
-        <div>
+      <main>
+        <>
           {task && (
             <Helmet>
               <title>Market Place - {task.taskowner.name}</title>
@@ -122,18 +123,16 @@ class SingleTask extends Component {
           )) || (
             <>
               {task && (
-                <>
-                  <br />
-                  <br />
+                <div className="singletaskalign">
                   <div className="task_design">
                     <div className="taskinput">
-                      <h1>{task.name}</h1>
                       {!!task.pictures.length && (
                         <PictureSlider pictures={task.pictures} />
                       )}
+                      <h1>{task.name}</h1>
                       {task.description && (
                         <p>
-                          <strong>Description:</strong> <br />
+                          <strong>Short description of the task:</strong> <br />
                           {task.description}
                         </p>
                       )}
@@ -145,7 +144,7 @@ class SingleTask extends Component {
                       {(task.typeOfWork === 'physical' && 'Physical') ||
                         'Administrative'}
                       <p>
-                        <strong> Hours:</strong> {task.hoursOfWork}
+                        <strong> Amount of hours required:</strong> {task.hoursOfWork}
                       </p>
                       <p>
                         <strong>I am able to pay the following amount:</strong>{' '}
@@ -194,11 +193,11 @@ class SingleTask extends Component {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </>
           )}
-        </div>
+        </>
         {this.props.user &&
           this.props.user.role === 'taskowner' &&
           this.state.task &&

@@ -123,17 +123,14 @@ class IndividualProfile extends Component {
                     </>
                   )}
                   <p>
-                    {' '}
                     <strong>Name: </strong>
                   </p>
                   {individual.name}
                   <p>
-                    {' '}
                     <strong>Description: </strong>
                   </p>
                   {individual.description}
                   <p>
-                    {' '}
                     <strong>Email address: </strong>
                   </p>
                   {individual.email}

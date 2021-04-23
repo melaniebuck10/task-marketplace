@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Task from './Task';
+//import { loadTask, applyTask } from './../services/task';
+import './Task.scss';
 
 class TaskList extends Component {
   render() {
     return (
-      <main>
-        <div className="task__list">
+      <div className="taskalign">
           {this.props.tasks.map((task) => (
             <div key={task._id}>
               <Link to={`/task/${task._id}`}>
@@ -14,15 +15,9 @@ class TaskList extends Component {
               </Link>
             </div>
           ))}
-        </div>
-      </main>
+      </div>
     );
   }
 }
 
 export default TaskList;
-
-//line 13 {task.status === 'open' ? (
-//line 17  ) : ('')}
-
-// would be to filter but does not work

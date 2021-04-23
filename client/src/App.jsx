@@ -112,7 +112,7 @@ class App extends Component {
                     user={this.state.user}
                     onUserChange={this.handleUserChange}
                   />
-                )} 
+                )}
                 redirect="/sign-in"
                 exact
               />

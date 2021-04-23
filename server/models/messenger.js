@@ -4,18 +4,26 @@ const mongoose = require('mongoose');
 
 const messengerSchema = new mongoose.Schema(
   {
-    taskowner: {
-      type: mongoose.Schema.Types.ObjectId,
+    senderId: {
+      type: mongoose.Types.ObjectId,
       required: true,
-      ref: 'User'
+      ref: 'User',
+      trim: true
     },
-    individual: {
-      type: mongoose.Schema.Types.ObjectId,
+    receivedId: {
+      type: mongoose.Types.ObjectId,
       required: true,
-      ref: 'User'
+      ref: 'User',
+      trim: true
     },
     messageBody: {
-      type: String
+      type: String,
+      trim: true,
+      required: true
+    },
+    sender:{
+      type: Boolean,
+      default:false
     }
   },
   {
