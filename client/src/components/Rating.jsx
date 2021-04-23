@@ -1,8 +1,6 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import { loadRating } from '../services/rating';
-//createRating, listRatings, loadRatingIndividual --> to be added to above when used
-//import CreateReview from './CreateReview';
 
 class Rating extends React.Component {
   state = {
@@ -29,23 +27,17 @@ class Rating extends React.Component {
     });
   };
 
-  // onStarClick(nextValue, prevValue, name) {
-  //   const newReview = await createRating( );
-  //   this.setState({rating: nextValue});
-  // }
-
   render() {
     const { rating } = this.state;
     
     return ( 
       <main>               
       <div>
+        <h3>Rating:</h3>
         <StarRatingComponent 
           name="rate1" 
           starCount={5}
           value={this.state.averageScore}
-          // onChange={(event) => this.props.onChange(event)}
-          // onStarClick={this.onStarClick.bind(this)}
         />
       </div>
       </main>

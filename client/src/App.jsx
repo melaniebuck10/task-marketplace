@@ -23,6 +23,7 @@ import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 import ApprovedApplication from './views/ApprovedApplication';
 import CreateReview from './components/CreateReview';
+import ReviewList from './components/ReviewList';
 
 class App extends Component {
   state = {
@@ -92,7 +93,6 @@ class App extends Component {
               <ProtectedRoute
                 path="/individual/:id"
                 authorized={user}
-                // component={IndividualProfile}
                 render={(props) => (
                   <IndividualProfile
                     {...props}

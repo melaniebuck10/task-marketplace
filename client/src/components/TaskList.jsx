@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Task from './Task';
-//import { loadTask, applyTask } from './../services/task';
 
 class TaskList extends Component {
   render() {

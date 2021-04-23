@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
-// import { listRatings } from '../services/rating';
+import { listRatings } from '../services/rating';
+import ReviewList from '../components/ReviewList';
 
 class IndividualProfile extends Component {
   state = {
@@ -11,18 +12,18 @@ class IndividualProfile extends Component {
     name: '',
     email: '',
     description: ''
-    // ratings: ''
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
-    // const ratings = await listRatings();
+    // const review = await listRatings();
+
     this.setState({
       individual,
       name: individual.name,
       email: individual.email,
-      description: individual.description
-      // ratings: ratings
+      description: individual.description,
+      // review: review
     });
   }
 
@@ -155,6 +156,9 @@ class IndividualProfile extends Component {
             individual={this.props.match.params.id}
             onReviewCreation={this.handleReviewCreation}
           />
+          <div>
+            <ReviewList individual={this.props.match.params.id} />
+          </div>
         </div>
       </main>
     );

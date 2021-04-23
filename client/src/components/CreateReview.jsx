@@ -3,13 +3,19 @@ import { createRating } from '../services/rating';
 // loadRating, listRatings, loadRatingIndividual  --> to be added to above once used
 // import Rating from './Rating';
 import StarRatingComponent from 'react-star-rating-component';
+import { listRatings } from '../services/rating';
 
 class CreateReview extends React.Component {
   state = {
     rating: 1,
-    review: '',
+    review: [],
     editModeActive: false
   };
+
+  async componentDidMount() {
+    const review = await listRatings();
+    this.setState({ review: review });
+}
 
   toggleTaskEditMode = () => {
     this.setState({

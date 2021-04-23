@@ -4,6 +4,11 @@ const mongoose = require('mongoose');
 
 const ratingSchema = new mongoose.Schema(
   {
+    taskowner: {
+      type: mongoose.Schema.Types.ObjectId,
+      // required: true,
+      ref: 'User'
+    },
     individual: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
