@@ -35,7 +35,7 @@ class Rating extends React.Component {
   // }
 
   render() {
-    const { rating } = this.state;
+ //   const { rating } = this.state;
     
     return ( 
       <main>               

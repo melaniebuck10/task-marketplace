@@ -9,7 +9,7 @@
     border-radius: 0%;
     box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
   }
-  
+
   img {
     width: 3em;
     height: 3em;
@@ -27,7 +27,7 @@
     }
   }
   button {
-    margin-bottom: 0;
+    margin-top: 1em 0;
   }
   & > div {
     margin-left: auto;
@@ -62,4 +62,3 @@
   visibility: visible;
   opacity: 1;
 }
-

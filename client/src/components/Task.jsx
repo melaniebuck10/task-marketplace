@@ -1,8 +1,7 @@
 import './Task.scss';
 
-const Task = ({ task, size = 'medium' }) => {
+const Task = ({ task }) => {
   return (
-      <div className="taskalign">
         <div className="task__item">
           {(!!task.pictures.length && (
             <img src={task.pictures[0]} alt={task.name} />
@@ -26,7 +25,6 @@ const Task = ({ task, size = 'medium' }) => {
               <p>Have a look at it and apply for it!</p>
             </small>
           </div>
-        </div>
       </div>
   );
 };

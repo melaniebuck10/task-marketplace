@@ -107,7 +107,7 @@ class TaskOwner extends Component {
                   </div>
                   <div className="taskOwner">
                     {(taskowner.profilePicture && (
-                      <img src={taskowner.profilePicture} />
+                      <img src={taskowner.profilePicture} alt="" />
                     )) || <div className="standinProfilePic"></div>}
                     <div>
                       <p>

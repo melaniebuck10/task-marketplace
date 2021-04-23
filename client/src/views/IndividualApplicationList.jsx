@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { loadAppliedTasks } from '../services/individual';
 import { Link } from 'react-router-dom';
-import TaskList from '../components/TaskList';
-import Task from '../components/Task';
+//import TaskList from '../components/TaskList';
+//import Task from '../components/Task';
 
 class IndividualApplicationList extends Component {
   state = {

@@ -13,7 +13,7 @@ export class Messenger extends Component {
   }
   render() {
     return 
-    <main><div>{this.state.messages}</div></main>;
+//    <main><div>{this.state.messages}</div></main>;
   }
 }
 

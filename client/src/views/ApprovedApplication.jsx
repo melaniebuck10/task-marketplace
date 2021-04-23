@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { listTasks, loadTask } from './../services/task';
+import { loadTask } from './../services/task';
 import { loadTaskApplicants } from './../services/taskownerInfo';
 
 class ApprovedApplication extends Component {

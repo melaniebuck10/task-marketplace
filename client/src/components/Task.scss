@@ -1,8 +1,3 @@
-.taskalign {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
 .task__item {
   width: 18em;
   border-radius: 0.75em;
@@ -25,8 +20,9 @@
   width: 16em;
   margin: 0 auto;
   img,
-  .pet__standin-picture {
+  .task__standin-picture {
     height: 14em;
+    border-radius: 0%;
   }
 }
 
@@ -40,4 +36,10 @@
 
 .task__standin-picture {
   background-color: rgb(166, 216, 178);
+}
+
+.taskalign{
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
 }

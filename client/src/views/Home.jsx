@@ -20,10 +20,10 @@ class Home extends Component {
     const { tasks } = this.state;
     return (
       <main>
-        <div className="homepage">
+        <span className="homepage">
           <h1>#GetStuffDone - a marketplace to share common work</h1>
           <h3>Check out all the open tasks and get started!</h3>
-        </div>
+        </span>
         <TaskList tasks={tasks} />
       </main>
     );
