@@ -1,0 +1,14 @@
+@import './../styles/variables.scss';
+
+.footer {
+  height: 5em;
+  width: 100%;
+  position: absolute;
+  bottom: -1em;
+  background-color: $color-primary;
+  p {
+    padding: 0 0.5em 0 0.5em;
+    text-align: center;
+    height: 1em;
+  }
+}

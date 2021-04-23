@@ -5,7 +5,6 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 import ProtectedRoute from './components/ProtectedRoute';
 //import TaskList from './components/TaskList';
-import Navbar from './components/Navbar';
 
 import { signOut, verify } from './services/authentication';
 
@@ -24,11 +23,13 @@ import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 import ApprovedApplication from './views/ApprovedApplication';
 import CreateReview from './components/CreateReview';
 import ReviewList from './components/ReviewList';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 class App extends Component {
   state = {
     user: null,
-    loaded: false
+    loaded: false,
   };
 
   async componentDidMount() {
@@ -54,7 +55,8 @@ class App extends Component {
           <Helmet>
             <title>Tasks - MarketPlace</title>
           </Helmet>
-          <Navbar user={user} onSignOut={this.handleSignOut} />
+          <Header user={user} onSignOut={this.handleSignOut} />
+          <Footer />
           {this.state.loaded && (
             <Switch>
               <Route path="/" component={HomeBeforeAuthentication} exact />
@@ -103,6 +105,7 @@ class App extends Component {
                 redirect="/"
                 exact
               />
+
               <ProtectedRoute
                 path="/rating/create"
                 authorized={user && user.role === 'taskowner'}
@@ -159,6 +162,7 @@ class App extends Component {
                 exact
               />
               <Route path="/messenger" component={Messenger} exact />
+
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />
             </Switch>

@@ -1,8 +1,10 @@
+@import './../styles/variables.scss';
+
 .settingsImage {
   width: 8em;
   height: 8em;
   border-radius: 50%;
-  box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+  box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
   margin-right: 1em;
 }
 

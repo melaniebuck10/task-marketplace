@@ -1,20 +1,22 @@
+@import './../styles/variables.scss';
+
 .navbar {
   display: flex;
   align-items: center;
   margin-bottom: 3em;
-  border-bottom: 3px solid rgb(166, 216, 178);
+  border-bottom: 3px solid $color-primary;
   .logoimage {
     height: 6em;
     width: 7em;
     border-radius: 0%;
-    box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+    box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
   }
 
   img {
     width: 3em;
     height: 3em;
     border-radius: 50%;
-    box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+    box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
     margin-right: 1em;
   }
   a,
@@ -45,9 +47,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  margin-left: 32px;
-  // background: rgba(29, 106, 154, 0.72);
-  background: rgba(231, 133, 150, 0.38);
+  margin-left: 4em;
+  background: rgba(167, 217, 179, 0.42);
   color: rgb(2, 1, 1);
   visibility: hidden;
   opacity: 0;

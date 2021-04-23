@@ -57,9 +57,7 @@ router.get('/list', async (req, res, next) => {
 
 router.get('/:id', routeGuard, async (req, res, next) => {
   try {
-    const task = await Task.findById(req.params.id).populate(
-      'taskowner'
-    );
+    const task = await Task.findById(req.params.id).populate('taskowner');
     let application = null;
     if (req.user) {
       application = await Application.findOne({

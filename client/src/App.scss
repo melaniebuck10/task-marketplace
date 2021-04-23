@@ -1,3 +1,5 @@
+@import './styles/variables.scss';
+
 * {
   box-sizing: border-box;
 }
@@ -5,8 +7,13 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(240,239,245);
-background: linear-gradient(90deg, rgba(240,239,245,1) 0%, rgba(241,241,244,1) 35%, rgba(238,245,246,1) 100%);
+  background: rgb(240, 239, 245);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 239, 245, 1) 0%,
+    rgba(241, 241, 244, 1) 35%,
+    rgba(238, 245, 246, 1) 100%
+  );
 }
 
 body {
@@ -72,7 +79,7 @@ label {
 input,
 select,
 textarea {
-  box-shadow: 0.125em 0 0.75em -0.25em hsl(220, 30%, 75%);
+  box-shadow: 0.125em 0 0.75em -0.25em $color-shadow;
   border-radius: 0.25em;
 }
 
@@ -83,14 +90,13 @@ button {
 .button {
   padding: 0.75em 1em;
   border-radius: 0.5em;
-  background-color: rgb(166, 216, 178);
+  background-color: $color-primary;
   color: white;
   border: 0;
 
   margin-right: 1em;
   margin-top: 1em;
 }
-
 
 main {
   & > header {

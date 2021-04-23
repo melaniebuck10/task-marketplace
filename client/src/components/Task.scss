@@ -1,8 +1,10 @@
+@import './../styles/variables.scss';
+
 .task__item {
   width: 18em;
   border-radius: 0.75em;
   overflow: hidden;
-  box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+  box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
   margin-bottom: 1em;
   margin-top: 3em;
   img,
@@ -35,11 +37,11 @@
 }
 
 .task__standin-picture {
-  background-color: rgb(166, 216, 178);
+  background-color: $color-primary;
 }
 
-.taskalign{
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
+.taskalign {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

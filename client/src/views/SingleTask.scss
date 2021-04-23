@@ -1,3 +1,5 @@
+@import './../styles/variables.scss';
+
 .singletaskalign {
   display: flex;
   justify-content: center;
@@ -7,7 +9,7 @@
   width: 25em;
   border-radius: 0.75em;
   overflow: hidden;
-  box-shadow: 0 0.125em 0.75em -0.5em hsl(220, 30%, 75%);
+  box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
   margin-bottom: 1em;
 }
 
