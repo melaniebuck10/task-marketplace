@@ -2,6 +2,7 @@
 
 .taskalign_application {
   margin-top: 2em;
+  padding-top: 1em;
 }
 .application_item {
   margin: 0.25em;
@@ -18,6 +19,19 @@
   text-align: center;
 }
 
+
+
 .link:hover {
   text-decoration: underline;
+}
+
+.task__item {
+
+  // h3 {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   padding-top: 35px;
+  // }
+
 }

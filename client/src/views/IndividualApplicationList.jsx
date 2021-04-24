@@ -35,7 +35,7 @@ class IndividualApplicationList extends Component {
                       <strong>{application.task.name}</strong>
                     </p>
                     <p>
-                      <strong>Decision</strong>
+                      <strong>Decision: </strong>
 
                       {(application.decision === 'approved' && ' Approved') ||
                         (application.decision === 'rejected' && ' Rejected') ||
@@ -44,7 +44,7 @@ class IndividualApplicationList extends Component {
                     <p>
                       {application.decision === 'approved' ? (
                         <>
-                          <strong>Status</strong>
+                          <strong>Status: </strong>
                           {(application.task.status === 'in_process' &&
                             ' In process') ||
                             (application.task.status === 'open' && ' Open') ||

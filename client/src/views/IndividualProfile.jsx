@@ -112,7 +112,6 @@ class IndividualProfile extends Component {
                   {(userId === individual._id && (
                     <>
                       <div className="profileTop">
-                        <h1>Hello, {individual.name}, this is your profile.</h1>
                         {userId === individual._id && (
                           <button
                             className="settingButton"
@@ -134,12 +133,6 @@ class IndividualProfile extends Component {
                     */
                     <>
                       <h2>{individual.name}'s information</h2>
-                      <div>
-                        <CreateReview
-                          individual={this.props.match.params.id}
-                          onReviewCreation={this.handleReviewCreation}
-                        />
-                      </div>
                     </>
                   )}
                   <div className="individual">
@@ -166,17 +159,15 @@ class IndividualProfile extends Component {
                       <br />
                       <Rating individual={this.props.match.params.id} />
                     </div>
-                    {/* <div className="list-reviews"> */}
-                    {/* <h2>{individual.name}'s reviews:</h2>
-                    <ReviewList reviews={reviews} individual={this.props.match.params.id} /> */}
-                    {/* </div> */}
                   </div>
-                  <div className="create-review">
+                    {(userId !== individual._id && (
+                      <div className="create-review">
                       <CreateReview
                         individual={this.props.match.params.id}
                         onReviewCreation={this.handleReviewCreation}
                       />
-                  </div>
+                    </div>
+                    ))}
                 </>
               )}
             </>
