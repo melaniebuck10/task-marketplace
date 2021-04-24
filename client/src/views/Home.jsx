@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
-//import { loadTaskOwner } from '../services/taskownerInfo';
-// import Task from '../components/Task';
 import './Homepage.scss';
 
 class Home extends Component {

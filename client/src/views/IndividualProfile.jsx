@@ -9,11 +9,11 @@ import './Profile.scss';
 class IndividualProfile extends Component {
   state = {
     individual: null,
-    taskowner: null,
     editModeActive: false,
     name: '',
     email: '',
-    description: ''
+    description: '',
+    reviews: []
   };
 
   async componentDidMount() {
@@ -69,7 +69,7 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const { individual, taskowner, name, email, description } = this.state;
+    const { individual, reviews, name, email, description } = this.state;
     const userId = this.props.user._id;
     return (
       <main>
@@ -148,7 +148,11 @@ class IndividualProfile extends Component {
                     <strong>Email address: </strong>
                   </p>
                   {individual.email}
-
+                  <br/>
+                  <div class="list-reviews">
+                    <h2>{individual.name}'s reviews:</h2>
+                    <ReviewList reviews={reviews} individual={this.props.match.params.id} />
+                  </div>
                   <div>
                     {userId === individual._id && (
                       <button className="button" onClick={this.toggleEditMode}>
@@ -160,9 +164,6 @@ class IndividualProfile extends Component {
               )}
             </>
           )}
-          <div>
-            <ReviewList individual={this.props.match.params.id} />
-          </div>
         </div>
       </main>
     );
