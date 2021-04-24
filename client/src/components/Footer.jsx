@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <p>
         <small>
-          &copy;2021 Programming & Design by Dardannya Satente, Melanie Buck,
+          &copy;2021 Programming & Design by Dardannya Patente, Melanie Buck,
           Steven Verlinden & Smaragda Kalogeropoulou.
         </small>
       </p>

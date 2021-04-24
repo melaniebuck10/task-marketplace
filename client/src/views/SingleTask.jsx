@@ -144,7 +144,8 @@ class SingleTask extends Component {
                       {(task.typeOfWork === 'physical' && 'Physical') ||
                         'Administrative'}
                       <p>
-                        <strong> Amount of hours required:</strong> {task.hoursOfWork}
+                        <strong> Amount of hours required:</strong>{' '}
+                        {task.hoursOfWork}
                       </p>
                       <p>
                         <strong>I am able to pay the following amount:</strong>{' '}

@@ -53,12 +53,11 @@ class CreateReview extends React.Component {
 
   render() {
     const { rating } = this.state;
-    // const userId = this.props.user._id;
     return (
       <main class="create-review">
         {(this.state.editModeActive && (
           <form onSubmit={this.handleFormSubmission}>
-            <h2>Your overall experience</h2>
+            <h3>Your overall experience</h3>
             <StarRatingComponent
               name="create-review-rating-input"
               starCount={5}
@@ -79,7 +78,6 @@ class CreateReview extends React.Component {
             <button>Submit review</button>
           </form>
         )) || (
-          // {userId === taskowner && (
           <button onClick={this.toggleTaskEditMode}>
             <strong>Click here to leave your review</strong>
           </button>

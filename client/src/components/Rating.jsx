@@ -33,7 +33,6 @@ class Rating extends React.Component {
     return ( 
       <main>               
       <div>
-        <h3>Rating:</h3>
         <StarRatingComponent 
           name="rate1" 
           starCount={5}

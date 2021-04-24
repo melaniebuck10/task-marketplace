@@ -4,10 +4,12 @@ import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
 import { listRatings } from '../services/rating';
 import ReviewList from '../components/ReviewList';
+import './Profile.scss';
 
 class IndividualProfile extends Component {
   state = {
     individual: null,
+    taskowner: null,
     editModeActive: false,
     name: '',
     email: '',
@@ -67,7 +69,7 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const { individual, name, email, description } = this.state;
+    const { individual, taskowner, name, email, description } = this.state;
     const userId = this.props.user._id;
     return (
       <main>
@@ -112,6 +114,10 @@ class IndividualProfile extends Component {
                     <>
                       <h1>Hello, {individual.name}, this is your profile.</h1>
                       <h3>Your information</h3>
+                      <div class="personal-rating">
+                        <h3>Your rating:</h3>
+                        <Rating individual={this.props.match.params.id} />
+                      </div>
                     </>
                   )) || (
                     /* or display below copy if the person viewing is not 
@@ -119,7 +125,15 @@ class IndividualProfile extends Component {
                     taskowner viewing applicant information
                     */
                     <>
-                      <h2>Applican'ts information</h2>
+                      <h2>Applicant's information</h2>
+                      <div class="create-review-box">
+                      <h3>Rating:</h3>
+                      <Rating individual={this.props.match.params.id} />
+                      <CreateReview
+                        individual={this.props.match.params.id}
+                        onReviewCreation={this.handleReviewCreation}
+                      />
+                      </div>
                     </>
                   )}
                   <p>
@@ -146,13 +160,6 @@ class IndividualProfile extends Component {
               )}
             </>
           )}
-          <div>
-            <Rating individual={this.props.match.params.id} />
-          </div>
-          <CreateReview
-            individual={this.props.match.params.id}
-            onReviewCreation={this.handleReviewCreation}
-          />
           <div>
             <ReviewList individual={this.props.match.params.id} />
           </div>
