@@ -90,6 +90,7 @@ class TaskOwner extends Component {
                 </form>
               )) || (
                 <div>
+                  <h2>{taskowner.name}'s Profile</h2>
                   <div className="profileTop">
                     {userId === taskowner._id && (
                       <button

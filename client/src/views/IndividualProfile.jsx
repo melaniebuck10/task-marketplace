@@ -108,6 +108,7 @@ class IndividualProfile extends Component {
                 </form>
               )) || (
                 <>
+                <h2>{individual.name}'s Profile</h2>
                   {/* only display info below to the owner of the profile - taskower can also see the individual profile */}
                   {(userId === individual._id && (
                     <>
@@ -132,7 +133,7 @@ class IndividualProfile extends Component {
                     taskowner viewing applicant information
                     */
                     <>
-                      <h2>{individual.name}'s information</h2>
+
                     </>
                   )}
                   <div className="individual">
