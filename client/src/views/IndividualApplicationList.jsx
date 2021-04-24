@@ -38,7 +38,7 @@ class IndividualApplicationList extends Component {
                       <strong>Decision: </strong>
 
                       {(application.decision === 'approved' && ' Approved') ||
-                        (application.decision === 'reject' && ' Rejected') ||
+                        (application.decision === 'rejected' && ' Rejected') ||
                         (application.decision === 'pending' && ' Pending')}
                     </p>
                     <p>
