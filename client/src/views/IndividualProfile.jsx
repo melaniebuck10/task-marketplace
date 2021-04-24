@@ -32,7 +32,7 @@ class IndividualProfile extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
 
@@ -43,7 +43,7 @@ class IndividualProfile extends Component {
     await this.handleProfileEdit(this.state.individual._id, {
       name,
       description,
-      email
+      email,
     });
 
     this.props.history.push(`/individual/${this.state.individual._id}`);
@@ -54,14 +54,14 @@ class IndividualProfile extends Component {
 
     this.setState({
       individual: individual,
-      editModeActive: false
+      editModeActive: false,
     });
     this.props.onUserChange(individual);
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 

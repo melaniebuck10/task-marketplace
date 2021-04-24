@@ -149,11 +149,11 @@ class SingleTask extends Component {
                         {task.hoursOfWork}
                       </p>
                       <p>
-                        <strong>What you get:</strong>
+                        <strong>What you get: </strong>
                         {task.price} EUR
                       </p>
                       <p>
-                        <strong>Status:</strong>
+                        <strong>Status: </strong>
                         {(task.status === 'open' && 'Open') ||
                           (task.status === 'closed' && 'Closed') ||
                           'In process'}

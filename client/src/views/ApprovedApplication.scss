@@ -1,0 +1,49 @@
+@import './../styles/variables.scss';
+
+.profilePictureImg {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.role {
+  text-transform: capitalize;
+}
+
+.profileCard {
+  display: flex;
+}
+
+.profileDetails {
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.allContactInfo {
+  //   display: flex;
+  justify-content: space-between;
+  margin-top: 3em;
+}
+
+.profileCard__standin-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: $color-primary;
+}
+
+.taskDescription {
+  display: flex;
+  justify-content: center;
+}
+
+.aprrovedTaskComponent {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.individualContactInfo {
+  margin-top: 25px;
+}

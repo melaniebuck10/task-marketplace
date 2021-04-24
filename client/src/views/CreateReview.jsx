@@ -9,17 +9,17 @@ class CreateReview extends React.Component {
   state = {
     rating: 1,
     review: [],
-    editModeActive: false
+    editModeActive: false,
   };
 
   async componentDidMount() {
     const review = await listRatings();
     this.setState({ review: review });
-}
+  }
 
   toggleTaskEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
 
@@ -36,7 +36,7 @@ class CreateReview extends React.Component {
     this.setState({
       rating: rating,
       review: review,
-      editModeActive: false
+      editModeActive: false,
     });
 
     this.props.onReviewCreation(newReview);
@@ -45,7 +45,7 @@ class CreateReview extends React.Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -56,8 +56,8 @@ class CreateReview extends React.Component {
   render() {
     const { rating } = this.state;
     return (
-      <main class="create-review">
-       {(this.state.editModeActive && (
+      <main className="create-review">
+        {(this.state.editModeActive && (
           <form onSubmit={this.handleFormSubmission}>
             <h3>Rate this person:</h3>
             <StarRatingComponent
