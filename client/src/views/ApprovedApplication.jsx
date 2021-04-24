@@ -41,7 +41,7 @@ class ApprovedApplication extends Component {
                     <img
                       className="profilePictureImg"
                       src={task.taskowner.profilePicture}
-                      atl=""
+                      alt=""
                     />
                   )}
                   <div className="profileDetails">
@@ -71,7 +71,7 @@ class ApprovedApplication extends Component {
                     <img
                       className="profilePictureImg"
                       src={approvedApplication.individual.profilePicture}
-                      atl=""
+                      alt=""
                     />
                   )}
                   <div className="profileDetails">
