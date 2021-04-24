@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
-import CreateReview from '../components/CreateReview';
+import CreateReview from './CreateReview';
 import { listRatings } from '../services/rating';
 import ReviewList from '../components/ReviewList';
-import './Profile.scss';
+import './IndividualProfile.scss';
+import settingsImage from './../pictures/gear-options-setup-comments-settings-wheel.png';
 
 class IndividualProfile extends Component {
   state = {
@@ -126,7 +127,7 @@ class IndividualProfile extends Component {
                     */
                     <>
                       <h2>Applicant's information</h2>
-                      <div class="create-review-box">
+                      <div className="create-review-box">
                       <h3>Rating:</h3>
                       <Rating individual={this.props.match.params.id} />
                       <CreateReview
@@ -149,16 +150,20 @@ class IndividualProfile extends Component {
                   </p>
                   {individual.email}
                   <br/>
-                  <div class="list-reviews">
-                    <h2>{individual.name}'s reviews:</h2>
-                    <ReviewList reviews={reviews} individual={this.props.match.params.id} />
-                  </div>
                   <div>
                     {userId === individual._id && (
-                      <button className="button" onClick={this.toggleEditMode}>
-                        Edit
+                      <button className="settingButton" onClick={this.toggleEditMode}>
+                        <img
+                          className="settingsImage"
+                          src={settingsImage}
+                          alt="logo"
+                        />
                       </button>
                     )}
+                  </div>
+                  <div className="list-reviews">
+                    <h2>{individual.name}'s reviews:</h2>
+                    <ReviewList reviews={reviews} individual={this.props.match.params.id} />
                   </div>
                 </>
               )}

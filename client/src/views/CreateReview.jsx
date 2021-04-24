@@ -31,6 +31,8 @@ class CreateReview extends React.Component {
 
     const newReview = await createRating(data);
 
+    // this.props.history.push(`/rating/${newReview._id}`);
+
     this.setState({
       rating: rating,
       review: review,
