@@ -7,15 +7,19 @@ const Navbar = ({ user, onSignOut }) => {
   return (
     <nav className="navbar">
       <Link to="/">
-            <img className="logoimage" src={logoimage} alt="logo" />
-          </Link>
+        <img className="logoimage" src={logoimage} alt="logo" />
+      </Link>
       {user && (
         <>
           {user.role === 'taskowner' && (
-            <Link to="/task/create">Create a Task</Link>
+            <Link to="/task/create" className="link">
+              Create a Task
+            </Link>
           )}
           {user.role === 'taskowner' && (
-            <Link to={`/taskowner/${user._id}/list`}>Your Tasks</Link>
+            <Link to={`/taskowner/${user._id}/list`} className="link">
+              Your Tasks
+            </Link>
           )}
 
           {user.role === 'individual' && (
@@ -35,9 +39,6 @@ const Navbar = ({ user, onSignOut }) => {
                   src={user.profilePicture}
                   alt={user.name}
                 />
-                <p className="img__description">
-                  <span>Your profile</span>{' '}
-                </p>
               </Link>
             )) || (
               <Link to={`/${user.role}/${user._id}`}>

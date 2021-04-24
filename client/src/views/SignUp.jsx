@@ -158,7 +158,7 @@ class SignUp extends Component {
                 placeholder="Your phone number"
                 name="phoneNumber"
                 type="tel"
-                maxLength="10"
+                maxLength="15"
                 required
                 value={this.state.phoneNumber}
                 onChange={this.handleInputChange}

@@ -29,7 +29,7 @@ class Applicants extends Component {
       applicants: applicants
     });
     // Updating the DB applications
-    const applicantsUpdated = await updatedApplications(
+    await updatedApplications(
       this.props.taskId,
       this.state.applicants
     );

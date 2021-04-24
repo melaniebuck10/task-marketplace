@@ -2,7 +2,7 @@ import './ApprovedApplication.scss';
 import { Component } from 'react';
 import { loadTask } from './../services/task';
 import { loadTaskApplicants } from './../services/taskownerInfo';
-import Task from './../components/Task';
+import ApplicantTask from './../components/ApplicantsTask';
 //import { Link } from 'react-router-dom';
 
 class ApprovedApplication extends Component {
@@ -29,7 +29,7 @@ class ApprovedApplication extends Component {
     const approvedApplication = this.state.approvedApplication;
     return (
       <main>
-        <div className='aprrovedTaskComponent'>
+        <div className="aprrovedTaskComponent">
           <div className="allContactInfo">
             {this.state.task && (
               <div>
@@ -59,7 +59,7 @@ class ApprovedApplication extends Component {
               </div>
             )}
             {this.state.approvedApplication && (
-              <div className='individualContactInfo'>
+              <div className="individualContactInfo">
                 <h2 className="role">
                   {approvedApplication.individual.role}'s contact info
                 </h2>
@@ -92,7 +92,7 @@ class ApprovedApplication extends Component {
             )}
           </div>
           <div className="taskDescription">
-            {this.state.task && <Task task={this.state.task} />}
+            {this.state.task && <ApplicantTask task={this.state.task} />}
           </div>
         </div>
       </main>

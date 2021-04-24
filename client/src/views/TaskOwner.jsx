@@ -10,25 +10,25 @@ class TaskOwner extends Component {
     editModeActive: false,
     name: '',
     phoneNumber: '',
-    email: ''
+    email: '',
   };
 
   async componentDidMount() {
     const { taskowner, tasksOfOwner } = await loadTaskOwner(
-      this.props.match.params.id
+      this.props.match.params.id,
     );
     this.setState({
       taskowner,
       tasks: tasksOfOwner,
       name: taskowner.name,
       phoneNumber: taskowner.phoneNumber,
-      email: taskowner.email
+      email: taskowner.email,
     });
   }
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
 
@@ -38,7 +38,7 @@ class TaskOwner extends Component {
 
     await this.handleProfileEdit(this.state.taskowner._id, {
       name,
-      phoneNumber
+      phoneNumber,
     });
     this.props.history.push(`/taskowner/${this.state.taskowner._id}`);
   };
@@ -48,7 +48,7 @@ class TaskOwner extends Component {
 
     this.setState({
       taskowner: taskowner,
-      editModeActive: false
+      editModeActive: false,
     });
     this.props.onUserChange(taskowner);
   };
@@ -56,7 +56,7 @@ class TaskOwner extends Component {
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -65,7 +65,7 @@ class TaskOwner extends Component {
     const userId = this.props.user._id;
     return (
       <main>
-        <div>
+        <div className="profile-box">
           {taskowner && (
             <div>
               {(this.state.editModeActive && (
@@ -91,7 +91,9 @@ class TaskOwner extends Component {
               )) || (
                 <div>
                   <div className="profileTop">
-                    <h1 className="title">PROFILE</h1>
+                    <h1 className="title">
+                      Hello, {taskowner.name}, this is your profile.
+                    </h1>
                     {userId === taskowner._id && (
                       <button
                         className="settingButton"
@@ -107,9 +109,13 @@ class TaskOwner extends Component {
                   </div>
                   <div className="taskOwner">
                     {(taskowner.profilePicture && (
-                      <img src={taskowner.profilePicture} alt="" />
+                      <img
+                        className="profile-picture"
+                        src={taskowner.profilePicture}
+                        alt=""
+                      />
                     )) || <div className="standinProfilePic"></div>}
-                    <div>
+                    <div className="info-profile">
                       <p>
                         <strong>Name: </strong>
                         {taskowner.name}

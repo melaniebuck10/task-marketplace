@@ -14,7 +14,7 @@ class IndividualProfile extends Component {
     name: '',
     email: '',
     description: '',
-    reviews: []
+    reviews: [],
   };
 
   async componentDidMount() {
@@ -32,7 +32,7 @@ class IndividualProfile extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
 
@@ -43,7 +43,7 @@ class IndividualProfile extends Component {
     await this.handleProfileEdit(this.state.individual._id, {
       name,
       description,
-      email
+      email,
     });
 
     this.props.history.push(`/individual/${this.state.individual._id}`);
@@ -54,14 +54,14 @@ class IndividualProfile extends Component {
 
     this.setState({
       individual: individual,
-      editModeActive: false
+      editModeActive: false,
     });
     this.props.onUserChange(individual);
   };
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -115,7 +115,7 @@ class IndividualProfile extends Component {
                     <>
                       <h1>Hello, {individual.name}, this is your profile.</h1>
                       <h3>Your information</h3>
-                      <div class="personal-rating">
+                      <div className="personal-rating">
                         <h3>Your rating:</h3>
                         <Rating individual={this.props.match.params.id} />
                       </div>
@@ -128,42 +128,53 @@ class IndividualProfile extends Component {
                     <>
                       <h2>Applicant's information</h2>
                       <div className="create-review-box">
-                      <h3>Rating:</h3>
-                      <Rating individual={this.props.match.params.id} />
-                      <CreateReview
-                        individual={this.props.match.params.id}
-                        onReviewCreation={this.handleReviewCreation}
-                      />
+                        <h3>Rating:</h3>
+                        <Rating individual={this.props.match.params.id} />
+                        <CreateReview
+                          individual={this.props.match.params.id}
+                          onReviewCreation={this.handleReviewCreation}
+                        />
                       </div>
                     </>
                   )}
-                  <p>
-                    <strong>Name: </strong>
-                  </p>
-                  {individual.name}
-                  <p>
-                    <strong>Description: </strong>
-                  </p>
-                  {individual.description}
-                  <p>
-                    <strong>Email address: </strong>
-                  </p>
-                  {individual.email}
-                  <br/>
-                  <div>
-                    {userId === individual._id && (
-                      <button className="settingButton" onClick={this.toggleEditMode}>
-                        <img
-                          className="settingsImage"
-                          src={settingsImage}
-                          alt="logo"
-                        />
-                      </button>
-                    )}
-                  </div>
-                  <div className="list-reviews">
-                    <h2>{individual.name}'s reviews:</h2>
-                    <ReviewList reviews={reviews} individual={this.props.match.params.id} />
+                  <div className="taskOwner">
+                    {(individual.profilePicture && (
+                      <img src={individual.profilePicture} alt="" />
+                    )) || <div className="standinProfilePic"></div>}
+                    <p>
+                      <strong>Name: </strong>
+                    </p>
+                    {individual.name}
+                    <p>
+                      <strong>Description: </strong>
+                    </p>
+                    {individual.description}
+                    <p>
+                      <strong>Email address: </strong>
+                    </p>
+                    {individual.email}
+                    <br />
+                    <div>
+                      {userId === individual._id && (
+                        <button
+                          className="settingButton"
+                          onClick={this.toggleEditMode}
+                        >
+                          <img
+                            className="settingsImage"
+                            src={settingsImage}
+                            alt="logo"
+                          />
+                        </button>
+                      )}
+                    </div>
+                    <div className="list-reviews">
+                      <h2>{individual.name}'s reviews:</h2>
+                      <ReviewList
+                        reviews={reviews}
+                        individual={this.props.match.params.id}
+                      />
+                    </div>
                   </div>
                 </>
               )}

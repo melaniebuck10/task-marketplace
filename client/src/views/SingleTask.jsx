@@ -18,7 +18,7 @@ class SingleTask extends Component {
     hoursOfWork: '',
     typeOfWork: '',
     status: '',
-    assignment: ''
+    assignment: '',
   };
 
   async componentDidMount() {
@@ -32,7 +32,7 @@ class SingleTask extends Component {
       price: task.price,
       hoursOfWork: task.hoursOfWork,
       typeOfWork: task.typeOfWork,
-      status: task.status
+      status: task.status,
     });
   }
 
@@ -43,7 +43,7 @@ class SingleTask extends Component {
 
   toggleEditMode = () => {
     this.setState({
-      editModeActive: true
+      editModeActive: true,
     });
   };
   handleFormSubmission = async (event) => {
@@ -55,7 +55,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     } = this.state;
 
     await this.handleTaskEdit(this.state.task._id, {
@@ -65,7 +65,7 @@ class SingleTask extends Component {
       price,
       hoursOfWork,
       typeOfWork,
-      status
+      status,
     });
 
     this.props.history.push(`/task/${this.state.task._id}`);
@@ -77,20 +77,20 @@ class SingleTask extends Component {
 
     this.setState({
       task: task.task,
-      editModeActive: false
+      editModeActive: false,
     });
   };
 
   handleAssignment = (updatedTask) => {
     this.setState({
-      task: updatedTask
+      task: updatedTask,
     });
   };
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -126,38 +126,41 @@ class SingleTask extends Component {
                       {!!task.pictures.length && (
                         <PictureSlider pictures={task.pictures} />
                       )}
-                      <h1>{task.name}</h1>
+                      <h2>{task.name}</h2>
                       {task.description && (
                         <p>
-                          <strong>Short description of the task:</strong> <br />
+                          <strong>Description: </strong>
+                          <br />
                           {task.description}
                         </p>
                       )}
-                      <strong>Type of Task: </strong>
-                      {(task.assignment === 'single_task' && 'Single Task') ||
-                        'Project'}
-                      <br />
-                      <strong>Type of work: </strong>
-                      {(task.typeOfWork === 'physical' && 'Physical') ||
-                        'Administrative'}
+                      <p>
+                        This is a
+                        {(task.assignment === 'single_task' &&
+                          ' single task ') ||
+                          'Project'}
+                        and it requires
+                        {(task.typeOfWork === 'physical' && ' physical') ||
+                          'administrative'}{' '}
+                        work.
+                      </p>
                       <p>
                         <strong> Amount of hours required:</strong>{' '}
                         {task.hoursOfWork}
                       </p>
                       <p>
-                        <strong>I am able to pay the following amount:</strong>{' '}
-                        <br />
-                        {task.price} Eur
+                        <strong>What you get: </strong>
+                        {task.price} EUR
                       </p>
                       <p>
-                        <strong>Status:</strong> <br />
+                        <strong>Status: </strong>
                         {(task.status === 'open' && 'Open') ||
                           (task.status === 'closed' && 'Closed') ||
                           'In process'}
                       </p>{' '}
-                      <br />
-                      <br />
-                      <span>Created by {task.taskowner.name}</span>
+                      <span>
+                        Created by <em>{task.taskowner.name}</em>
+                      </span>
                       <div>
                         {userId === task.taskowner._id && (
                           <>
