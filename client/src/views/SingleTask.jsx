@@ -37,7 +37,6 @@ class SingleTask extends Component {
   }
 
   handleTaskApplication = async () => {
-    console.log(this.props.match.params.id);
     const application = await applyTask(this.props.match.params.id);
     this.setState({ application });
   };
@@ -59,7 +58,6 @@ class SingleTask extends Component {
       status
     } = this.state;
 
-    // console.log(data);
     await this.handleTaskEdit(this.state.task._id, {
       name,
       assignment,
@@ -84,7 +82,6 @@ class SingleTask extends Component {
   };
 
   handleAssignment = (updatedTask) => {
-    console.log('UPDATED TASK COMP', updatedTask);
     this.setState({
       task: updatedTask
     });

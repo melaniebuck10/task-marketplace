@@ -26,7 +26,6 @@ router.post(
       typeOfWork,
       status
     } = req.body;
-    console.log(req.body);
     try {
       const task = await Task.create({
         name,
@@ -80,7 +79,6 @@ router.get('/:id/getapplications', routeGuard, async (req, res, next) => {
     const applicants = await Application.find({
       task: { $eq: req.params.id }
     }).populate('individual');
-    console.log('APPLICANTS', applicants);
     res.json({ applicants });
   } catch (error) {
     next(error);
@@ -89,8 +87,6 @@ router.get('/:id/getapplications', routeGuard, async (req, res, next) => {
 
 router.patch('/:id/updateapplications', routeGuard, async (req, res, next) => {
   try {
-    console.log('PARAMS', req.params.id);
-    console.log('REQ BODY', req.body);
     const body = req.body;
     const approvedApplication = body.filter(
       (application) => application.decision === 'approved'
@@ -103,7 +99,6 @@ router.patch('/:id/updateapplications', routeGuard, async (req, res, next) => {
       { decision: 'approved' },
       { new: true }
     );
-    console.log('Approved', responseForApprovedApplication);
     const responseForRejectedApplications = await Application.updateMany(
       {
         task: { $eq: req.params.id },
@@ -113,13 +108,11 @@ router.patch('/:id/updateapplications', routeGuard, async (req, res, next) => {
         decision: 'rejected'
       }
     );
-    console.log('REJECTED', responseForRejectedApplications);
     res.json({
       approved: responseForApprovedApplication,
       rejected: responseForRejectedApplications
     });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
@@ -134,7 +127,6 @@ router.patch('/:id/edit', routeGuard, async (req, res, next) => {
     typeOfWork,
     status
   } = req.body;
-  console.log(req.body);
   const id = req.params.id;
   try {
     const task = await Task.findByIdAndUpdate(id, {
@@ -157,9 +149,7 @@ router.delete('/:id', async (req, res, next) => {
     const applications = await Application.find({
       task: { $eq: req.params.id }
     });
-    console.log(applications);
     const toDeleteIds = applications.map((applicant) => applicant._id); // [id1, id2, id3]
-    console.log('TO DELETE', toDeleteIds);
     await Application.deleteMany({ _id: { $in: toDeleteIds } });
     await Task.findByIdAndDelete(req.params.id);
     res.json({});
@@ -203,7 +193,6 @@ router.post('/:id/apply', routeGuard, async (req, res, next) => {
     // });
     res.json({ application });
   } catch (error) {
-    console.log(error);
     next(error);
   }
 });
@@ -214,10 +203,8 @@ router.get(`/:id/approvedtask`, routeGuard, async (req, res, next) => {
       'taskowner',
       'name'
     );
-    console.log('TASK', task);
     res.json({ task });
   } catch (error) {
-    console.log('ERROR', error);
     next(error);
   }
 });

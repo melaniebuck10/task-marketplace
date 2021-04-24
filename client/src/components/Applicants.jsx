@@ -11,9 +11,7 @@ class Applicants extends Component {
   };
 
   async componentDidMount() {
-    console.log('taskId', this.props.taskId);
     const applicants = await loadTaskApplicants(this.props.taskId);
-    console.log('APPLICANTS', applicants);
     this.setState({ applicants });
   }
 
@@ -35,7 +33,6 @@ class Applicants extends Component {
       this.props.taskId,
       this.state.applicants
     );
-    console.log(applicantsUpdated);
   };
 
   render() {
