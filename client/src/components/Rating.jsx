@@ -6,7 +6,7 @@ import '../views/IndividualProfile.scss';
 class Rating extends React.Component {
   state = {
     averageScore: 1,
-    ratings: []
+    ratings: [],
   };
 
   async componentDidMount() {
@@ -29,18 +29,18 @@ class Rating extends React.Component {
   };
 
   render() {
- //   const { rating } = this.state;
-    
-    return ( 
-      <main>               
-      <div class="rating">
-        <h2>Rating:</h2>
-        <StarRatingComponent 
-          name="rate1" 
-          starCount={5}
-          value={this.state.averageScore}
-        />
-      </div>
+    //   const { rating } = this.state;
+
+    return (
+      <main>
+        <div className="rating">
+          <h2>Rating:</h2>
+          <StarRatingComponent
+            name="rate1"
+            starCount={5}
+            value={this.state.averageScore}
+          />
+        </div>
       </main>
     );
   }
