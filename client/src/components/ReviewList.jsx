@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import Review from './Review';
 
-
-const ReviewList = ({ reviews }) => {
+class ReviewList extends Component {
+  render() {
     return (
-      <main>
-        {/* <div>
-          {reviews.map((review) => (
+      <div>
+          {this.props.reviews.map((review) => (
             <div key={review._id}>
                 <Review review={review} />
             </div>
           ))}
-        </div> */}
-      </main>
+      </div>
     );
   }
+}
   
 
 export default ReviewList;
