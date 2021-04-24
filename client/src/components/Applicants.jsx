@@ -39,28 +39,35 @@ class Applicants extends Component {
     return (
       <main>
         <div className="applicantinfo">
-          <div><h3 className="title">Check out your applicants</h3></div>
+          <div>
+            <h3 className="title">Check out your applicants</h3>
+          </div>
           {this.state.applicants.map((applicant, index) => (
-            <div key={applicant._id}> 
+            <div key={applicant._id}>
               <Link to={`/individual/${applicant.individual._id}`}>
                 {' '}
-                <li className="list">{applicant.individual.name}</li> <br/>
+                <li className="list">{applicant.individual.name}</li> <br />
               </Link>
 
               <li className="list2">
-                Status of the application: <br/> {applicant.decision === 'approved' ? (
+                Status of the application: {applicant.decision}
+                <br />{' '}
+                {applicant.decision === 'approved' ? (
                   <Link to={`/task/${this.props.taskId}/approvedtask`}>
                     Communicate with the task taker!
                   </Link>
                 ) : (
-                  applicant.decision
+                  ''
                 )}
               </li>
               {applicant.decision === 'approved' ||
               applicant.decision === 'rejected' ? (
                 ''
               ) : (
-                <button className="assignbutton" onClick={(e) => this.handleAssignment(index)}>
+                <button
+                  className="assignbutton"
+                  onClick={(e) => this.handleAssignment(index)}
+                >
                   Assign task
                 </button>
               )}
