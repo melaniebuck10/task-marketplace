@@ -3,7 +3,7 @@ import TaskList from '../components/TaskList';
 import { listTasks } from './../services/task';
 //import { loadTaskOwner } from '../services/taskownerInfo';
 // import Task from '../components/Task';
-import './Homepage.scss';
+import './homepage.scss';
 
 class Home extends Component {
   state = {
