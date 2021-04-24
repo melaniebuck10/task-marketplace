@@ -1,6 +1,8 @@
+import './ApprovedApplication.scss';
 import { Component } from 'react';
 import { loadTask } from './../services/task';
 import { loadTaskApplicants } from './../services/taskownerInfo';
+import Task from './../components/Task';
 //import { Link } from 'react-router-dom';
 
 class ApprovedApplication extends Component {
@@ -27,40 +29,72 @@ class ApprovedApplication extends Component {
     const approvedApplication = this.state.approvedApplication;
     return (
       <main>
-      <div>
-        {this.state.task && (
-          <div>
-            <div>
-              <h1>{this.state.task.name}</h1>
-              <p>{this.state.task.description}</p>
-              <small>Payment is {this.state.task.price} EUR</small>
-            </div>
-            <div>
+        <div className='aprrovedTaskComponent'>
+          <div className="allContactInfo">
+            {this.state.task && (
               <div>
-                <h2>{task.taskowner.role}</h2>
-                <div>{task.taskowner.profilePicture}</div>
-                <div>
-                  <h2>Contact Info</h2>
-                  <div>{task.taskowner.name}</div>
-                  <div>Email: {task.taskowner.email}</div>
-                  <div>Phone: {task.taskowner.phoneNumber}</div>
+                <h2 className="role">{task.taskowner.role}'s contact info</h2>
+                <div className="profileCard">
+                  {!task.taskowner.profilePicture ? (
+                    <div className="profileCard__standin-picture"></div>
+                  ) : (
+                    <img
+                      className="profilePictureImg"
+                      src={task.taskowner.profilePicture}
+                    />
+                  )}
+                  <div className="profileDetails">
+                    <strong>{task.taskowner.name}</strong>
+                    <div>
+                      <strong>Email: </strong> {task.taskowner.email}
+                    </div>
+                    <div>
+                      <strong>Phone: </strong> {task.taskowner.phoneNumber}
+                    </div>
+                    <div>
+                      <strong>Location: </strong> {task.taskowner.address}
+                    </div>
+                  </div>
                 </div>
-                <div>Location: {task.taskowner.address}</div>
               </div>
-            </div>
+            )}
+            {this.state.approvedApplication && (
+              <div className='individualContactInfo'>
+                <h2 className="role">
+                  {approvedApplication.individual.role}'s contact info
+                </h2>
+                <div className="profileCard">
+                  {!approvedApplication.individual.profilePicture ? (
+                    <div className="profileCard__standin-picture"></div>
+                  ) : (
+                    <img
+                      className="profilePictureImg"
+                      src={approvedApplication.individual.profilePicture}
+                    />
+                  )}
+                  <div className="profileDetails">
+                    <strong>{approvedApplication.individual.name}</strong>
+                    <div>
+                      <strong>Email: </strong>
+                      {approvedApplication.individual.email}
+                    </div>
+                    <div>
+                      <strong>Phone: </strong>
+                      {approvedApplication.individual.phoneNumber}
+                    </div>
+                    <div>
+                      <strong>Description: </strong>
+                      {approvedApplication.individual.description}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-        {this.state.approvedApplication && (
-          <div>
-            <h2>{approvedApplication.individual.role}</h2>
-            <div>{approvedApplication.individual.profilePicture}</div>
-            <div>{approvedApplication.individual.name}</div>
-            <p>{approvedApplication.individual.description}</p>
-            <div>{approvedApplication.individual.email}</div>
-            <div>{approvedApplication.individual.phoneNumber}</div>
+          <div className="taskDescription">
+            {this.state.task && <Task task={this.state.task} />}
           </div>
-        )}
-      </div>
+        </div>
       </main>
     );
   }
