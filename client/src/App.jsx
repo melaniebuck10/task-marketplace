@@ -128,9 +128,7 @@ class App extends Component {
               />
               <ProtectedRoute
                 path="/messenger"
-                render={(props) => (
-                  <Messenger {...props} user={user} />
-                )}
+                render={(props) => <Messenger {...props} user={user} />}
                 authorized={user}
               />
 
@@ -168,7 +166,7 @@ class App extends Component {
                 authorized={user}
                 exact
               />
-              <Route path="/messenger" component={Messenger} exact />
+              {/* <Route path="/messenger" component={Messenger} exact /> */}
 
               <Route path="/error" component={ErrorPage} />
               <Redirect to="/error" />

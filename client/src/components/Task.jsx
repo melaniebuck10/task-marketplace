@@ -10,18 +10,11 @@ const Task = ({ task }) => {
         <h5>{task.name}</h5>
         <small>
           <strong> What type of task is it?</strong>{' '}
-          {task.assignment === 'single_task' ? 'Single Task' : 'Project'} <br />
-          <strong>I can pay you this much:</strong> {task.price} Eur <br />{' '}
-          <br />
-          <strong>Short description of the task: </strong> <br />
-          {task.description && <p>{task.description}</p>} <br />
+          <p>{task.assignment === 'single_task' ? 'Single Task' : 'Project'}</p>
           <p>
-            Status:{' '}
-            {(task.status === 'in_process' && 'In Process') ||
-              'Open' ||
-              'Closed'}
+            <strong>What you get:</strong> {task.price} EUR{' '}
           </p>
-          <p>Have a look at it and apply for it!</p>
+          <p>Have a look and apply for it!</p>
         </small>
       </div>
     </div>
