@@ -81,10 +81,6 @@ class ApprovedApplication extends Component {
                       {approvedApplication.individual.email}
                     </div>
                     <div>
-                      <strong>Phone: </strong>
-                      {approvedApplication.individual.phoneNumber}
-                    </div>
-                    <div>
                       <strong>Description: </strong>
                       {approvedApplication.individual.description}
                     </div>
