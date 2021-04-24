@@ -21,13 +21,8 @@ import TaskOwnerList from './views/TaskOwnerList';
 import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 import ApprovedApplication from './views/ApprovedApplication';
-<<<<<<< HEAD
 import CreateReview from './views/CreateReview';
 import ReviewList from './components/ReviewList';
-=======
-import CreateReview from './components/CreateReview';
-//import ReviewList from './components/ReviewList';
->>>>>>> 1838969556f52dc94f1ee9721af0f9649e19e1fa
 import Footer from './components/Footer';
 import Header from './components/Header';
 
