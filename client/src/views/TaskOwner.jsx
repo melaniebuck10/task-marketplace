@@ -65,7 +65,7 @@ class TaskOwner extends Component {
     const userId = this.props.user._id;
     return (
       <main>
-        <div>
+        <div class="profile-box">
           {taskowner && (
             <div>
               {(this.state.editModeActive && (
@@ -91,7 +91,7 @@ class TaskOwner extends Component {
               )) || (
                 <div>
                   <div className="profileTop">
-                    <h1 className="title">PROFILE</h1>
+                    <h1 className="title">Hello, {taskowner.name}, this is your profile.</h1>
                     {userId === taskowner._id && (
                       <button
                         className="settingButton"
@@ -107,9 +107,9 @@ class TaskOwner extends Component {
                   </div>
                   <div className="taskOwner">
                     {(taskowner.profilePicture && (
-                      <img src={taskowner.profilePicture} alt="" />
+                      <img className="profile-picture" src={taskowner.profilePicture} alt="" />
                     )) || <div className="standinProfilePic"></div>}
-                    <div>
+                    <div className="info-profile">
                       <p>
                         <strong>Name: </strong>
                         {taskowner.name}
