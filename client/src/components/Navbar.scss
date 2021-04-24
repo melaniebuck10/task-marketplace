@@ -53,29 +53,6 @@
   width: 128px;
 }
 
-.img__description {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: 4em;
-  background: rgba(167, 217, 179, 0.42);
-  color: rgb(2, 1, 1);
-  visibility: hidden;
-  opacity: 0;
-  border-radius: 1em;
-  font: 13px/30px serif;
-  span {
-    margin-left: 0.5em;
-  }
-}
-
-.img__wrap:hover .img__description {
-  visibility: visible;
-  opacity: 1;
-}
-
 // .link {
 //   border: 1.3px solid black;
 //   border-radius: 100px;
