@@ -59,14 +59,14 @@ class CreateReview extends React.Component {
       <main className="create-review">
         {(this.state.editModeActive && (
           <form onSubmit={this.handleFormSubmission}>
-            <h3>Rate this person:</h3>
             <StarRatingComponent
               name="create-review-rating-input"
               starCount={5}
               value={rating}
               onStarClick={this.handleStarClick}
+              className="rating-component"
             />
-            <button>Submit</button>
+            <button className="submit-review-button">Submit</button>
           </form>
         )) || (
           <button onClick={this.toggleTaskEditMode}>

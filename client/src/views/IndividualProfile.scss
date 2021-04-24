@@ -70,3 +70,32 @@
   padding-right: 150px;
   margin-top: 40px;
 }
+
+.create-review {
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+.rating-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.submit-review-button {
+  width: 80px;
+  height: 50px;
+  align-items: center;
+  margin-top: 5px;
+  background-color: $color-primary;
+  color: white;
+  font-weight: 500;
+  justify-content: center;
+  border: white;
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  background-color: $color-primary;
+  color: white;
+  border: 0;
+}

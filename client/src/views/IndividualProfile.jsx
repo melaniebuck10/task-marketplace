@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from './CreateReview';
-import { listRatings } from '../services/rating';
-// import ReviewList from '../components/ReviewList';
 import './IndividualProfile.scss';
 import settingsImage from './../pictures/gear-options-setup-comments-settings-wheel.png';
 
@@ -70,7 +68,7 @@ class IndividualProfile extends Component {
   };
 
   render() {
-    const { individual, reviews, name, email, description } = this.state;
+    const { individual, name, email, description } = this.state;
     const userId = this.props.user._id;
     return (
       <main>
@@ -133,12 +131,6 @@ class IndividualProfile extends Component {
                     */
                     <>
                       <h2>{individual.name}'s information</h2>
-                      <div>
-                      <CreateReview
-                        individual={this.props.match.params.id}
-                        onReviewCreation={this.handleReviewCreation}
-                      />
-                      </div>
                     </>
                   )}
                   <div className="individual">
@@ -165,6 +157,12 @@ class IndividualProfile extends Component {
                     {/* <h2>{individual.name}'s reviews:</h2>
                     <ReviewList reviews={reviews} individual={this.props.match.params.id} /> */}
                   {/* </div> */}
+                  </div>
+                  <div className="create-review">
+                      <CreateReview
+                        individual={this.props.match.params.id}
+                        onReviewCreation={this.handleReviewCreation}
+                      />
                   </div>
                 </>
               )}

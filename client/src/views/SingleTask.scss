@@ -19,3 +19,14 @@
   padding-right: 1em;
   padding-bottom: 1em;
 }
+
+.button {
+  font-weight: 600;
+  margin: 40px;
+  &:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 80px;
+}
+}
