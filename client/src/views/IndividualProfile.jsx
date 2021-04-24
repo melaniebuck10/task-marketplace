@@ -137,6 +137,10 @@ class IndividualProfile extends Component {
                       </div>
                     </>
                   )}
+                  <div className="taskOwner">
+                    {(individual.profilePicture && (
+                      <img src={individual.profilePicture} alt="" />
+                    )) || <div className="standinProfilePic"></div>}
                   <p>
                     <strong>Name: </strong>
                   </p>
@@ -164,6 +168,7 @@ class IndividualProfile extends Component {
                   <div className="list-reviews">
                     <h2>{individual.name}'s reviews:</h2>
                     <ReviewList reviews={reviews} individual={this.props.match.params.id} />
+                  </div>
                   </div>
                 </>
               )}
