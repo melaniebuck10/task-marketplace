@@ -1,8 +1,33 @@
+@import './../styles/variables.scss';
+
 .applicantinfo {
     display: flex;
     justify-content: space-around;
+    align-items: stretch;
+  margin-top: 5em;
+  border: 1px solid $color-primary;
+}
+.list {
+  list-style-type: none;
+  margin-top: 3em;
+}
 
+.assignbutton {
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  background-color: $color-primary;
+  color: white;
+  border: 0;
+
+  margin-right: 1em;
+  margin-top: 1em;
 }
-li {
-    text-decoration: none;
+
+
+.title {
+    margin-top: 3em;
 }
+
+.list2 {
+    list-style-type: none;
+  }
