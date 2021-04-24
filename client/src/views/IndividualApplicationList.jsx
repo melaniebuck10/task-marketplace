@@ -3,11 +3,12 @@ import { loadAppliedTasks } from '../services/individual';
 import { Link } from 'react-router-dom';
 //import TaskList from '../components/TaskList';
 //import Task from '../components/Task';
+import './IndividualApplicationList.scss';
 
 class IndividualApplicationList extends Component {
   state = {
     individual: null,
-    applications: []
+    applications: [],
   };
 
   async componentDidMount() {
@@ -20,28 +21,56 @@ class IndividualApplicationList extends Component {
 
     return (
       <main>
-      <div>
-        <h1>Tasks applied by you</h1>
-        {applications &&
-          applications.map((application) => {
-            return (
-              <div key={application._id}>
-                <div>{application.task.name}</div>
-                <div>{application.decision}</div>
-                {application.decision === 'approved' ? <div>{application.task.status}</div> : ''}
-                {application.decision === 'approved' ? (
-                  <Link to={`/task/${application.task._id}/approvedtask`}>
-                    View more details!
+        <div>
+          <h1 className="application_head">Your applied tasks</h1>
+          <div className="taskalign taskalign_application">
+            {applications &&
+              applications.map((application) => {
+                return (
+                  <div
+                    className="task__item application_item"
+                    key={application._id}
+                  >
+                    <p>
+                      <strong>{application.task.name}</strong>
+                    </p>
+                    <p>
+                      <strong>Decision</strong>
+
+                      {(application.decision === 'approved' && ' Approved') ||
+                        (application.decision === 'reject' && ' Rejected') ||
+                        (application.decision === 'pending' && ' Pending')}
+                    </p>
+                    <p>
+                      {application.decision === 'approved' ? (
+                        <>
+                          <strong>Status</strong>
+                          {(application.task.status === 'in_process' &&
+                            ' In process') ||
+                            (application.task.status === 'open' && ' Open') ||
+                            ' Closed'}
+                        </>
+                      ) : (
+                        ''
+                      )}
+                    </p>
+                    {application.decision === 'approved' ? (
+                      <Link
+                        className="link"
+                        to={`/task/${application.task._id}/approvedtask`}
+                      >
+                        View more details
+                        <br />
+                      </Link>
+                    ) : (
+                      ''
+                    )}{' '}
                     <br />
-                  </Link>
-                ) : (
-                  ''
-                )}{' '}
-                <br />
-              </div>
-            );
-          })}
-      </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </main>
     );
   }
