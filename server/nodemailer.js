@@ -34,12 +34,8 @@ const welcomeEmail = (userEmail) => {
             </html>`
       })
       .then((result) => {
-        console.log('Welcome email was sent.');
-        console.log(result);
       })
       .catch((error) => {
-        console.log('There was an error sending welcome email');
-        console.log(error);
       });
 };
 

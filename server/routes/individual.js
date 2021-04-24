@@ -46,7 +46,6 @@ router.patch('/:id', async (req, res, next) => {
 router.get('/:id/applications', async (req, res, next) => {
   try {
     const tasks = await Task.find().sort({ addedDate: -1 }).limit(20);
-    console.log(tasks);
     res.json({ tasks });
   } catch (error) {
     next(error);
@@ -58,7 +57,6 @@ router.get('/:id/myapplications', async (req, res, next) => {
     const applications = await Applications.find({
       individual: { $eq: req.params.id }
     }).populate('task');
-    console.log(applications);
     res.json({ applications });
   } catch (error) {
     next(error);

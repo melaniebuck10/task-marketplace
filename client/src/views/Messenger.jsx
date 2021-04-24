@@ -8,7 +8,6 @@
 
 //  async componentDidMount() {
 //    const messages = await loadMessages();
-//    console.log('message: ', messages);
 //    this.setState({ messages: messages.data.text });
 //  }
 //  render() {

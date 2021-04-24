@@ -12,7 +12,6 @@ class IndividualApplicationList extends Component {
 
   async componentDidMount() {
     const appliedTasks = await loadAppliedTasks(this.props.match.params.id);
-    console.log('APPLIED TASKS', appliedTasks);
     this.setState({ applications: appliedTasks.data.applications });
   }
 

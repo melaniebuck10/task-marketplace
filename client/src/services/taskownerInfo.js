@@ -16,7 +16,7 @@ export const editProfile = async (id, data) => {
 
 export const loadTaskApplicants = async (id) => {
   const response = await api.get(`task/${id}/getapplications`);
-  console.log('RESPONSE', response);
+  
   return response.data.applicants;
 };
 

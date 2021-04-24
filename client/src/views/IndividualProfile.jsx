@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from './CreateReview';
-import { listRatings } from '../services/rating';
+//import { listRatings } from '../services/rating';
 import ReviewList from '../components/ReviewList';
 import './IndividualProfile.scss';
 import settingsImage from './../pictures/gear-options-setup-comments-settings-wheel.png';
