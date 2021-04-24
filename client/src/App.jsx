@@ -22,7 +22,7 @@ import Messenger from './views/Messenger';
 import HomeBeforeAuthentication from './views/HomeBeforeAuthentication';
 import ApprovedApplication from './views/ApprovedApplication';
 import CreateReview from './views/CreateReview';
-import ReviewList from './components/ReviewList';
+//import ReviewList from './components/ReviewList';
 import Footer from './components/Footer';
 import Header from './components/Header';
 

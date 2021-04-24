@@ -13,7 +13,6 @@ router.get('/', routeGuard, (req, res, next) => {
 
  router.get('/:id', routeGuard, (req, res, next) => {
    const id = req.params.id;
-   console.log(req.user._id);
    Message.updateMany({ senderId: { $eq: req.user._id } }, { sender: true })
      .then(() => {
        return Message.find({
@@ -36,7 +35,6 @@ router.get('/', routeGuard, (req, res, next) => {
      })
     .then((messages) => {
        User.findById(id).then((receiver) => {
-         console.log(messages);
          res.render('message/chat-room', { messages, receiver });
          Message.updateMany(
            { senderId: { $eq: req.user._id } },

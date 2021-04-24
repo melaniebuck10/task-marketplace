@@ -28,8 +28,6 @@ router.post(
     if (req.file) {
       profilePicture = req.file.path;
     }
-    console.log(req.file);
-    console.log(req.body);
     try {
       const hash = await bcryptjs.hash(password, 10);
       const user = await User.create({
@@ -45,7 +43,6 @@ router.post(
       req.session.userId = user._id;
       res.json({ user });
       await nodemailer.welcomeEmail(user.email);
-      console.log('Successfully created new user');
     } catch (error) {
       next(error);
     }
@@ -80,7 +77,6 @@ router.post('/sign-in', (req, res, next) => {
 router.post('/sign-out', (req, res, next) => {
   req.session.destroy();
   res.json({});
-  console.log('session destroyed');
 });
 
 router.get('/verify', (req, res) => {

@@ -14,7 +14,6 @@ export const loadTask = async (id) => {
   const response = await api.get(`/task/${id}`);
   const task = response.data.task;
   const application = response.data.application;
-  console.log('APPLICATION', application);
   return { task, application };
 };
 
@@ -34,12 +33,11 @@ export const applyTask = async (id) => {
 
 export const assignTask = async (id, data) => {
   const response = await api.patch(`/task/${id}/assignTask`, data);
-  console.log('RESPONSE', response);
+  
   return response.data.assignedTask;
 };
 
 export const updatedApplications = async (id, data) => {
   const response = await api.patch(`task/${id}/updateapplications`, data);
-  console.log('RESPONSE', response);
   return response.data;
 };

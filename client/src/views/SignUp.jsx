@@ -70,7 +70,6 @@ class SignUp extends Component {
     this.setState({
       display: !this.state.display,
     });
-    console.log(this.state.display);
   };
 
   render() {

@@ -17,7 +17,6 @@ class ApprovedApplication extends Component {
     const approvedIndividual = applicationsResponse.filter(
       (application) => application.decision === 'approved'
     )[0];
-    console.log('approvedIndividual', approvedIndividual);
     this.setState({
       task: response.task,
       approvedApplication: approvedIndividual
@@ -26,7 +25,6 @@ class ApprovedApplication extends Component {
   render() {
     const task = this.state.task;
     const approvedApplication = this.state.approvedApplication;
-    console.log('INDIVIDUAL', approvedApplication);
     return (
       <main>
       <div>
