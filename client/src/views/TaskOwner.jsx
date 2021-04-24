@@ -91,12 +91,9 @@ class TaskOwner extends Component {
               )) || (
                 <div>
                   <div className="profileTop">
-                    <h1 className="title">
-                      Hello, {taskowner.name}, this is your profile.
-                    </h1>
                     {userId === taskowner._id && (
                       <button
-                        className="settingButton"
+                        className="settingButton-taskowner"
                         onClick={this.toggleEditMode}
                       >
                         <img

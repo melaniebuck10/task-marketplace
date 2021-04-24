@@ -112,7 +112,6 @@ class IndividualProfile extends Component {
                   {(userId === individual._id && (
                     <>
                       <div className="profileTop">
-                        <h1>Hello, {individual.name}, this is your profile.</h1>
                         {userId === individual._id && (
                           <button
                             className="settingButton"
