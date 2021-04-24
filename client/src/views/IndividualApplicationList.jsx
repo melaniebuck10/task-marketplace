@@ -31,11 +31,11 @@ class IndividualApplicationList extends Component {
                     className="task__item application_item"
                     key={application._id}
                   >
-                    <p>
+                    <h3>
                       <strong>{application.task.name}</strong>
-                    </p>
+                    </h3>
                     <p>
-                      <strong>Decision</strong>
+                      <strong>Decision: </strong>
 
                       {(application.decision === 'approved' && ' Approved') ||
                         (application.decision === 'reject' && ' Rejected') ||
@@ -44,7 +44,7 @@ class IndividualApplicationList extends Component {
                     <p>
                       {application.decision === 'approved' ? (
                         <>
-                          <strong>Status</strong>
+                          <strong>Status: </strong>
                           {(application.task.status === 'in_process' &&
                             ' In process') ||
                             (application.task.status === 'open' && ' Open') ||
