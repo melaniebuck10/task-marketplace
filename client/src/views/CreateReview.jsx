@@ -57,31 +57,20 @@ class CreateReview extends React.Component {
     const { rating } = this.state;
     return (
       <main class="create-review">
-        {(this.state.editModeActive && (
+       {(this.state.editModeActive && (
           <form onSubmit={this.handleFormSubmission}>
-            <h3>Your overall experience</h3>
+            <h3>Rate this person:</h3>
             <StarRatingComponent
               name="create-review-rating-input"
               starCount={5}
               value={rating}
               onStarClick={this.handleStarClick}
             />
-
-            <label htmlFor="input-review">Leave here your review</label>
-            <textarea
-              id="input-review"
-              name="review"
-              placeholder="Leave here your review about this person..."
-              value={this.state.review}
-              onChange={this.handleInputChange}
-              minLength="50"
-              required
-            />
-            <button>Submit review</button>
+            <button>Submit</button>
           </form>
         )) || (
           <button onClick={this.toggleTaskEditMode}>
-            <strong>Click here to leave your review</strong>
+            <strong>Click here to rate this person</strong>
           </button>
         )}
       </main>

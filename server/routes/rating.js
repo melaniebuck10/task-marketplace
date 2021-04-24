@@ -31,13 +31,13 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/list', async (req, res, next) => {
-  try {
-    const ratings = await Rating.find().sort({ addedDate: -1 }).limit(20);
-    res.json({ ratings });
-  } catch (error) {
-    next(error);
-  }
-});
+// router.get('/list', async (req, res, next) => {
+//   try {
+//     const ratings = await Rating.find().sort({ addedDate: -1 }).limit(20);
+//     res.json({ ratings });
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 module.exports = router;

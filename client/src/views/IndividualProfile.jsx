@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from './CreateReview';
-//import { listRatings } from '../services/rating';
-import ReviewList from '../components/ReviewList';
+import { listRatings } from '../services/rating';
+// import ReviewList from '../components/ReviewList';
 import './IndividualProfile.scss';
 import settingsImage from './../pictures/gear-options-setup-comments-settings-wheel.png';
 
@@ -14,19 +14,19 @@ class IndividualProfile extends Component {
     name: '',
     email: '',
     description: '',
-    reviews: []
+    // reviews: []
   };
 
   async componentDidMount() {
     const individual = await loadIndividual(this.props.match.params.id);
-    // const review = await listRatings();
+    // const reviews = await listRatings();
 
     this.setState({
       individual,
       name: individual.name,
       email: individual.email,
       description: individual.description,
-      // review: review
+      // reviews: reviews
     });
   }
 
@@ -74,7 +74,7 @@ class IndividualProfile extends Component {
     const userId = this.props.user._id;
     return (
       <main>
-        <div>
+        <div class="profile-box">
           {individual && (
             <>
               {(this.state.editModeActive && (
@@ -113,48 +113,8 @@ class IndividualProfile extends Component {
                   {/* only display info below to the owner of the profile - taskower can also see the individual profile */}
                   {(userId === individual._id && (
                     <>
-                      <h1>Hello, {individual.name}, this is your profile.</h1>
-                      <h3>Your information</h3>
-                      <div class="personal-rating">
-                        <h3>Your rating:</h3>
-                        <Rating individual={this.props.match.params.id} />
-                      </div>
-                    </>
-                  )) || (
-                    /* or display below copy if the person viewing is not 
-                    the owner of the profile, in this case the 
-                    taskowner viewing applicant information
-                    */
-                    <>
-                      <h2>Applicant's information</h2>
-                      <div className="create-review-box">
-                      <h3>Rating:</h3>
-                      <Rating individual={this.props.match.params.id} />
-                      <CreateReview
-                        individual={this.props.match.params.id}
-                        onReviewCreation={this.handleReviewCreation}
-                      />
-                      </div>
-                    </>
-                  )}
-                  <div className="taskOwner">
-                    {(individual.profilePicture && (
-                      <img src={individual.profilePicture} alt="" />
-                    )) || <div className="standinProfilePic"></div>}
-                  <p>
-                    <strong>Name: </strong>
-                  </p>
-                  {individual.name}
-                  <p>
-                    <strong>Description: </strong>
-                  </p>
-                  {individual.description}
-                  <p>
-                    <strong>Email address: </strong>
-                  </p>
-                  {individual.email}
-                  <br/>
-                  <div>
+                    <div className="profileTop">
+                    <h1>Hello, {individual.name}, this is your profile.</h1>
                     {userId === individual._id && (
                       <button className="settingButton" onClick={this.toggleEditMode}>
                         <img
@@ -164,11 +124,47 @@ class IndividualProfile extends Component {
                         />
                       </button>
                     )}
+                    </div>
+                    </>
+                  )) || (
+                    /* or display below copy if the person viewing is not 
+                    the owner of the profile, in this case the 
+                    taskowner viewing applicant information
+                    */
+                    <>
+                      <h2>{individual.name}'s information</h2>
+                      <div>
+                      <CreateReview
+                        individual={this.props.match.params.id}
+                        onReviewCreation={this.handleReviewCreation}
+                      />
+                      </div>
+                    </>
+                  )}
+                  <div className="individual">
+                    {(individual.profilePicture && (
+                      <img className="profile-picture" src={individual.profilePicture} alt="" />
+                    )) || <div className="standinProfilePic"></div>}
+                  <div className="info-profile">
+                  <p>
+                    <strong>Name: </strong>
+                  {individual.name}
+                  </p>
+                  <p>
+                    <strong>Email address: </strong>
+                  {individual.email}
+                  </p>
+                  <p>
+                    <strong>Description: </strong>
+                  {individual.description}
+                  </p>
+                  <br/>
+                  <Rating individual={this.props.match.params.id} />
                   </div>
-                  <div className="list-reviews">
-                    <h2>{individual.name}'s reviews:</h2>
-                    <ReviewList reviews={reviews} individual={this.props.match.params.id} />
-                  </div>
+                  {/* <div className="list-reviews"> */}
+                    {/* <h2>{individual.name}'s reviews:</h2>
+                    <ReviewList reviews={reviews} individual={this.props.match.params.id} /> */}
+                  {/* </div> */}
                   </div>
                 </>
               )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import { loadRating } from '../services/rating';
+import '../views/IndividualProfile.scss';
 
 class Rating extends React.Component {
   state = {
@@ -32,7 +33,8 @@ class Rating extends React.Component {
     
     return ( 
       <main>               
-      <div>
+      <div class="rating">
+        <h2>Rating:</h2>
         <StarRatingComponent 
           name="rate1" 
           starCount={5}

@@ -19,11 +19,11 @@ const ratingSchema = new mongoose.Schema(
       min: 1,
       max: 5
     },
-    review: {
-      type: String,
-      minlength: 5,
-      maxlength: 1500
-    }
+    // review: {
+    //   type: String,
+    //   minlength: 5,
+    //   maxlength: 1500
+    // }
   },
   {
     timestamps: {

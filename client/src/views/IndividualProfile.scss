@@ -1,23 +1,72 @@
-.create-review-box {
-    float: right;
+@import './../styles/variables.scss';
+
+.settingsImage {
+  width: 8em;
+  height: 8em;
+  border-radius: 50%;
+  box-shadow: 0 0.125em 0.75em -0.5em $color-shadow;
+  margin-right: 1em;
 }
 
-.personal-rating {
-    float: right;
+.profile-box {
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 30px;
 }
 
-.list-reviews {
-    margin-top: 30px;
+.individual {
+  display: flex;
 }
 
 .settingsImage {
-  width: 30px;
-  height: auto;
+  width: 40px;
+  height: 40px;
   margin: 0;
   padding: 0;
 }
 
 .settingButton {
-  padding: 0;
+  padding: 15x;
+  padding: 3px 1px 3px 1px;
   margin: 0;
+  width: 50px;
+  height: 50px;
+  float: right;
+  // margin-top: 10px;
+}
+
+.profileTop {
+  justify-content: space-between;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.title {
+  display: inline-flex;
+}
+
+.standinProfilePic {
+  background-color: lightseagreen;
+}
+
+.profile-picture {
+  float: left;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+}
+
+.info-profile {
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 900px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 150px;
+  margin-top: 40px;
 }
