@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { loadIndividual, editProfile } from '../services/individual';
 import Rating from '../components/Rating';
 import CreateReview from '../components/CreateReview';
-import { listRatings } from '../services/rating';
+//import { listRatings } from '../services/rating';
 import ReviewList from '../components/ReviewList';
 import './Profile.scss';
 

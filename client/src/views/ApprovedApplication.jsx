@@ -63,9 +63,6 @@ class ApprovedApplication extends Component {
           </div>
         )}
       </div>
-      <div>Any questions, click here and start a conversation <button className="button">
-            //  <Link to="/message"> Message!</Link>
-            </button></div>
       </main>
     );
   }
