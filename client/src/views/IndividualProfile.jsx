@@ -72,7 +72,7 @@ class IndividualProfile extends Component {
     const userId = this.props.user._id;
     return (
       <main>
-        <div class="profile-box">
+        <div className="profile-box">
           {individual && (
             <>
               {(this.state.editModeActive && (
@@ -111,18 +111,21 @@ class IndividualProfile extends Component {
                   {/* only display info below to the owner of the profile - taskower can also see the individual profile */}
                   {(userId === individual._id && (
                     <>
-                    <div className="profileTop">
-                    <h1>Hello, {individual.name}, this is your profile.</h1>
-                    {userId === individual._id && (
-                      <button className="settingButton" onClick={this.toggleEditMode}>
-                        <img
-                          className="settingsImage"
-                          src={settingsImage}
-                          alt="logo"
-                        />
-                      </button>
-                    )}
-                    </div>
+                      <div className="profileTop">
+                        <h1>Hello, {individual.name}, this is your profile.</h1>
+                        {userId === individual._id && (
+                          <button
+                            className="settingButton"
+                            onClick={this.toggleEditMode}
+                          >
+                            <img
+                              className="settingsImage"
+                              src={settingsImage}
+                              alt="logo"
+                            />
+                          </button>
+                        )}
+                      </div>
                     </>
                   )) || (
                     /* or display below copy if the person viewing is not 
@@ -131,32 +134,42 @@ class IndividualProfile extends Component {
                     */
                     <>
                       <h2>{individual.name}'s information</h2>
+                      <div>
+                        <CreateReview
+                          individual={this.props.match.params.id}
+                          onReviewCreation={this.handleReviewCreation}
+                        />
+                      </div>
                     </>
                   )}
                   <div className="individual">
                     {(individual.profilePicture && (
-                      <img className="profile-picture" src={individual.profilePicture} alt="" />
+                      <img
+                        className="profile-picture"
+                        src={individual.profilePicture}
+                        alt=""
+                      />
                     )) || <div className="standinProfilePic"></div>}
-                  <div className="info-profile">
-                  <p>
-                    <strong>Name: </strong>
-                  {individual.name}
-                  </p>
-                  <p>
-                    <strong>Email address: </strong>
-                  {individual.email}
-                  </p>
-                  <p>
-                    <strong>Description: </strong>
-                  {individual.description}
-                  </p>
-                  <br/>
-                  <Rating individual={this.props.match.params.id} />
-                  </div>
-                  {/* <div className="list-reviews"> */}
+                    <div className="info-profile">
+                      <p>
+                        <strong>Name: </strong>
+                        {individual.name}
+                      </p>
+                      <p>
+                        <strong>Email address: </strong>
+                        {individual.email}
+                      </p>
+                      <p>
+                        <strong>Description: </strong>
+                        {individual.description}
+                      </p>
+                      <br />
+                      <Rating individual={this.props.match.params.id} />
+                    </div>
+                    {/* <div className="list-reviews"> */}
                     {/* <h2>{individual.name}'s reviews:</h2>
                     <ReviewList reviews={reviews} individual={this.props.match.params.id} /> */}
-                  {/* </div> */}
+                    {/* </div> */}
                   </div>
                   <div className="create-review">
                       <CreateReview

@@ -1,0 +1,23 @@
+@import './../styles/variables.scss';
+
+.taskalign_application {
+  margin-top: 2em;
+}
+.application_item {
+  margin: 0.25em;
+  background-color: #a6d8b266;
+  & p {
+    margin: 1em;
+  }
+  & a {
+    margin: 1em;
+  }
+}
+.application_head {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
