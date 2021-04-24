@@ -31,9 +31,9 @@ class IndividualApplicationList extends Component {
                     className="task__item application_item"
                     key={application._id}
                   >
-                    <h3>
+                    <p>
                       <strong>{application.task.name}</strong>
-                    </h3>
+                    </p>
                     <p>
                       <strong>Decision: </strong>
 
